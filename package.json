@@ -1,0 +1,24 @@
+{
+	"name": "react-physics",
+	"version": "1.0.0",
+	"description": "Elements of physics represented on web using React",
+	"main": "index.js",
+	"author": "Nitin Tulswani",
+	"license": "MIT",
+	"dependencies": {
+		"p5": "^0.6.1",
+		"react": "^16.4.0",
+		"react-dom": "^16.4.0"
+	},
+	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-react": "^6.24.1",
+		"parcel-bundler": "^1.8.1"
+	},
+	"scripts": {
+		"start": "parcel ./index.html"
+	}
+}
