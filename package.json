@@ -16,11 +16,19 @@
 		"babel-plugin-transform-object-rest-spread": "^6.26.0",
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-react": "^6.24.1",
+		"husky": "^0.14.3",
+		"lint-staged": "^7.1.3",
 		"parcel-bundler": "^1.8.1",
 		"prettier": "^1.13.4"
 	},
 	"scripts": {
 		"start": "parcel ./index.html",
 		"format": "find src -name '*.js' | xargs ./node_modules/.bin/prettier --write --no-semi --single-quote"
+	},
+	"lint-staged": {
+		"*.{js,json}": [
+			"./node_modules/.bin/prettier --write --no-semi --single-quote",
+			"git add"
+		]
 	}
 }
