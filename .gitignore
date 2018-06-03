@@ -2,4 +2,4 @@ node_modules
 .cache
 dist
 index.html
-index.js
+./index.js
