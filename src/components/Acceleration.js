@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { hoc } from './hoc'
-import { DEFAULT_BALLS, DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../constants'
+import { DEFAULT_BALLS, getCanvasSize } from '../constants'
 import { DrawBalls } from '../Ball'
 import {
   accelerationDefaultProps,
@@ -14,7 +14,7 @@ const drawStuffUsingAcceleration = (p, dispatch, props) => {
   const balls = new Array(props.balls || DEFAULT_BALLS)
 
   const setup = () => {
-    p.createCanvas(props.width || DEFAULT_WIDTH, props.height || DEFAULT_HEIGHT)
+    getCanvasSize(p, props)
 
     for (let i = 0; i < balls.length; i++) {
       balls[i] = new DrawBalls(p, props)

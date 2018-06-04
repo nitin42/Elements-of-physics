@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { hoc } from './hoc'
-import { DEFAULT_BALLS, DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../constants'
+import { DEFAULT_BALLS, getCanvasSize } from '../constants'
 import { Vector } from '../vector'
 import { FMA } from '../FMA'
 import {
@@ -15,7 +15,7 @@ const drawStuffUsingForces = (p, dispatch, props) => {
   const balls = new Array(props.balls || DEFAULT_BALLS)
 
   const setup = () => {
-    p.createCanvas(props.width || DEFAULT_WIDTH, props.height || DEFAULT_HEIGHT)
+    getCanvasSize(p, props)
 
     for (let i = 0; i < balls.length; i++) {
       balls[i] = new FMA(p, props, Math.random(10, 20), 0, 0)

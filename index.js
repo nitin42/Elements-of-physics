@@ -22,7 +22,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Acceleration
+      <Gravity
         width={640}
         height={640}
         color="#ff96ca"

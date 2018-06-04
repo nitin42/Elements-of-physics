@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { hoc } from './hoc'
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../constants'
+import { getCanvasSize } from '../constants'
 import { Magnet } from '../magnet'
 import { FMA } from '../FMA'
 
@@ -17,7 +17,8 @@ const drawStuffUsingGravity = (p, dispatch, props) => {
   let rotator
 
   const setup = () => {
-    p.createCanvas(props.width || DEFAULT_WIDTH, props.height || DEFAULT_HEIGHT)
+    getCanvasSize(p, props)
+
     rotator = new FMA(p, props, 1.5, p.width / 2.5, p.height / 2.5)
     magnet = new Magnet(p, props)
   }
