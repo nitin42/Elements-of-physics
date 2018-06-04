@@ -68,7 +68,7 @@ const drawStuffUsingAcceleration = (p, dispatch, props) => {
   dispatch([setup, draw])
 }
 
-const hoc = (element, drawStuffFn, propsGetter) =>
+const hoc = (drawStuffFn, propsGetter) =>
   class extends React.Component {
     componentDidMount() {
       this.getCanvas()
@@ -126,7 +126,7 @@ const getAccelerationProps = props => {
   return rest
 }
 
-export const Forces = hoc('div', drawStuffUsingForces, getForcesProps)
+export const Forces = hoc(drawStuffUsingForces, getForcesProps)
 
 export const Acceleration = hoc(
   'div',
