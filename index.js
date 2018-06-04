@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Acceleration, Forces } from './src'
-import { Vector } from './src/utils'
+import { Acceleration, Force, Gravity } from './src'
 
 const deferUpdates = ReactDOM.unstable_deferredUpdates
 
@@ -23,34 +22,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Forces
-          width={640}
-          height={640}
-          balls={132}
-          color="mistyrose"
-          stroke={1.8}
-          background="yellow"
-          ballSize={{ width: 20, height: 20 }}
-          applyForce={(ball, Vector) => {
-            ball.applyForce(new Vector(0.01, 0))
-            ball.applyForce(new Vector(0.4, 0.8))
-          }}
-          extras={instance => this.setState({ instance })}
-          onClick={this.handleClick}
-          onContextMenu={e => {
-            e.preventDefault()
-            this.state.instance.loop()
-          }}
-        />
-        <input
-          type="range"
-          min="1"
-          max="50"
-          value={this.state.value}
-          onChange={this.redraw}
-        />
-      </React.Fragment>
+      <Acceleration
+        width={640}
+        height={640}
+        color="#ff96ca"
+        stroke={0.2}
+        background="yellow"
+        ballSize={{ width: 20, height: 20 }}
+        extras={instance => this.setState({ instance })}
+        measures={this.updateMeasures}
+      />
     )
   }
 }
