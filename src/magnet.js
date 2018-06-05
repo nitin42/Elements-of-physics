@@ -1,8 +1,19 @@
+// @flow
+
 import { Vector } from './vector'
+import { FMA } from './FMA'
+
+import type { instance, GravityProps } from './types'
 
 // Gravitational force (force of attraction)
 export class Magnet {
-  constructor(instance, props) {
+  instance: instance
+  props: GravityProps
+  location: Vector
+  mass: number
+  G: number
+
+  constructor(instance: instance, props: GravityProps) {
     this.instance = instance
     this.props = props
     this.location = new Vector(
@@ -13,7 +24,7 @@ export class Magnet {
     this.G = this.props.gConstant || 0.4
   }
 
-  attract(rotator) {
+  attract(rotator: FMA) {
     let force = Vector.sub(this.location, rotator.location)
     let distance = force.mag()
 

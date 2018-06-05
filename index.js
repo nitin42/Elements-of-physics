@@ -22,11 +22,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <Gravity
+      <Force
         width={640}
         height={640}
         color="#ff96ca"
         stroke={0.2}
+        balls={120}
         background="yellow"
         ballSize={{ width: 20, height: 20 }}
         extras={instance => this.setState({ instance })}

@@ -1,8 +1,28 @@
+// @flow
+
 import { Vector } from './vector'
+
+import type { instance, ForceProps, GravityProps } from './types'
 
 // Draw the balls using laws of motion (force = mass x acceleration)
 export class FMA {
-  constructor(instance, props, mass, xPos, yPos) {
+  instance: instance
+  props: ForceProps | GravityProps
+  mass: number
+  xPos: number
+  yPos: number
+  location: Vector
+  velocity: Vector
+  acc: Vector
+  force: Vector
+
+  constructor(
+    instance: instance,
+    props: ForceProps | GravityProps,
+    mass: number,
+    xPos: number,
+    yPos: number
+  ) {
     // Location of ball
     this.location = new Vector(xPos, yPos)
     // Velocity of ball
@@ -22,7 +42,7 @@ export class FMA {
   }
 
   // Apply a certain force to a ball (can be gravity, wind, ...)
-  applyForce(f) {
+  applyForce(f: Vector) {
     // Determine the acceleration
     // Here, acceleration is equal to force because we have assume the amount of matter (pixels) to be 1. So the mass is one, hence F=A
     this.force = Vector.div(f, this.mass)

@@ -1,27 +1,48 @@
+// @flow
+
 import { Vector } from './vector'
 
+import type { instance, AccelerationProps } from './types'
+
+import {
+  DEFAULT_BALL_COLOR,
+  DEFAULT_BALL_HEIGHT,
+  DEFAULT_MAX_VELOCITY,
+  DEFAULT_BALL_WIDTH,
+  DEFAULT_STROKE_WEIGHT
+} from './constants'
+
 export class DrawBalls {
-  constructor(instance, props) {
-    // Processing instance
+  // Processing instance
+  instance: instance
+  // Component props
+  props: AccelerationProps
+  // Location of a ball on canvas
+  loc: Vector
+  // Initial velocity of moving ball
+  velocity: Vector
+  // Acceleration of the ball
+  acc: Vector
+  // Create a new vector using mouse events
+  mouse: Vector
+  // distance of the mouse vector from the center of canvas
+  dir: Vector
+
+  constructor(instance: instance, props: AccelerationProps) {
     this.instance = instance
-    // Component props
     this.props = props
-    // Location of a ball on canvas
+    // $FlowFixMe
     this.loc = new Vector(
       Math.random(this.instance.width / 2),
       Math.random(this.instance.height / 2)
     )
-    // Initial velocity of moving ball
     this.velocity = new Vector(0, 0)
-    // Acceleration of the ball
     this.acc = new Vector(-0.001, 0.01)
   }
 
   updatePosition() {
-    // Create a new vector using mouse events
     this.mouse = new Vector(this.instance.mouseX, this.instance.mouseY)
 
-    // Calculate the distance of the above vector from the center of canvas
     this.dir = Vector.sub(this.mouse, this.loc)
 
     // Calculate its unit vector
@@ -38,7 +59,7 @@ export class DrawBalls {
     this.velocity.add(this.acc)
 
     // Limit the velocity vector magnitude
-    this.velocity.limit(this.props.maxVelocity)
+    this.velocity.limit(this.props.maxVelocity || DEFAULT_MAX_VELOCITY)
 
     // Changing location is velocity hence balls appeared to be moving
     this.loc.add(this.velocity)
@@ -66,13 +87,13 @@ export class DrawBalls {
   }
 
   displayBalls() {
-    this.instance.strokeWeight(this.props.stroke)
-    this.instance.fill(this.props.color)
+    this.instance.strokeWeight(this.props.stroke || DEFAULT_STROKE_WEIGHT)
+    this.instance.fill(this.props.color || DEFAULT_BALL_COLOR)
     this.instance.ellipse(
       this.loc.x,
       this.loc.y,
-      this.props.ballSize.width,
-      this.props.ballSize.height
+      this.props.ballSize.width || DEFAULT_BALL_WIDTH,
+      this.props.ballSize.height || DEFAULT_BALL_HEIGHT
     )
   }
 }

@@ -1,16 +1,20 @@
+// @flow
+
 import React from 'react'
 
 import { hoc } from './hoc'
 import { DEFAULT_BALLS, getCanvasSize } from '../constants'
 import { DrawBalls } from '../Ball'
-import {
-  accelerationDefaultProps,
-  accelerationPropTypes,
-  getAccelerationProps
-} from '../props/accelerationProps'
+import { getAccelerationProps } from '../props/accelerationProps'
+
+import type { instance, dispatch, AccelerationProps } from '../types'
 
 // Draw the balls on canvas when <Acceleration /> component is used
-const drawStuffUsingAcceleration = (p, dispatch, props) => {
+const drawStuffUsingAcceleration = (
+  p: instance,
+  dispatch: dispatch,
+  props: AccelerationProps
+) => {
   const balls = new Array(props.balls || DEFAULT_BALLS)
 
   const setup = () => {
@@ -41,7 +45,3 @@ export const Acceleration = hoc(
 )
 
 Acceleration.displayName = 'Acceleration'
-
-Acceleration.defaultProps = accelerationDefaultProps
-
-Acceleration.propTypes = accelerationPropTypes

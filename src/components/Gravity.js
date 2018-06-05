@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 import { hoc } from './hoc'
@@ -5,14 +7,16 @@ import { getCanvasSize } from '../constants'
 import { Magnet } from '../magnet'
 import { FMA } from '../FMA'
 
-import {
-  getGravityProps,
-  gravityDefaultProps,
-  gravityPropTypes
-} from '../props/gravityProps'
+import { getGravityProps } from '../props/gravityProps'
+
+import type { instance, dispatch, GravityProps } from '../types'
 
 // Draw the balls on canvas when <Acceleration /> component is used
-const drawStuffUsingGravity = (p, dispatch, props) => {
+const drawStuffUsingGravity = (
+  p: instance,
+  dispatch: dispatch,
+  props: GravityProps
+) => {
   let magnet
   let rotator
 
@@ -50,7 +54,3 @@ const drawStuffUsingGravity = (p, dispatch, props) => {
 export const Gravity = hoc(drawStuffUsingGravity, getGravityProps)
 
 Gravity.displayName = 'Gravity'
-
-Gravity.propTypes = gravityPropTypes
-
-Gravity.defaultProps = gravityDefaultProps

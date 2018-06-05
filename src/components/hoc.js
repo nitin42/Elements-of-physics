@@ -1,12 +1,20 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 
 const p5 = require('p5')
 
 import { p5Renderer } from '../renderer'
 
-export const hoc = (drawStuffFn, propsGetter) =>
-  class extends React.Component {
-    instance = null
+import type { instance, drawStuff, mixedProps, propsGetter } from '../types'
+
+export const hoc = (
+  drawStuffFn: drawStuff,
+  propsGetter: propsGetter
+): React.ComponentType<any> =>
+  class extends React.Component<mixedProps, void> {
+    instance: null
+    wrapper: null
 
     componentDidMount() {
       this.getCanvas()
@@ -17,7 +25,7 @@ export const hoc = (drawStuffFn, propsGetter) =>
       this.instance && this.instance.remove()
     }
 
-    renderer = p => p5Renderer(p, drawStuffFn, this.props)
+    renderer = (p: instance) => p5Renderer(p, drawStuffFn, this.props)
 
     getCanvas = () =>
       new p5(p => {
@@ -29,7 +37,7 @@ export const hoc = (drawStuffFn, propsGetter) =>
         this.props.extras && this.props.extras(p)
       }, this.wrapper)
 
-    render() {
+    render(): React.Node {
       return (
         <div
           ref={wrapper => (this.wrapper = wrapper)}

@@ -1,1 +1,3 @@
-export const noop = i => {}
+// @flow
+
+export const noop = (i: any): void => {}

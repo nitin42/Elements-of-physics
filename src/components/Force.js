@@ -1,24 +1,28 @@
+// @flow
+
 import React from 'react'
 
 import { hoc } from './hoc'
 import { DEFAULT_BALLS, getCanvasSize } from '../constants'
 import { Vector } from '../vector'
 import { FMA } from '../FMA'
-import {
-  forceDefaultProps,
-  forcePropTypes,
-  getForcesProps
-} from '../props/forceProps'
+import { getForcesProps } from '../props/forceProps'
+
+import type { instance, dispatch, ForceProps } from '../types'
 
 // Draw the balls on canvas when <Force /> component is used
-const drawStuffUsingForces = (p, dispatch, props) => {
+const drawStuffUsingForces = (
+  p: instance,
+  dispatch: dispatch,
+  props: ForceProps
+) => {
   const balls = new Array(props.balls || DEFAULT_BALLS)
 
   const setup = () => {
     getCanvasSize(p, props)
 
     for (let i = 0; i < balls.length; i++) {
-      balls[i] = new FMA(p, props, Math.random(10, 20), 0, 0)
+      balls[i] = new FMA(p, props, Math.random(), 0, 0)
     }
   }
 
@@ -74,7 +78,3 @@ const drawStuffUsingForces = (p, dispatch, props) => {
 export const Force = hoc(drawStuffUsingForces, getForcesProps)
 
 Force.displayName = 'Force'
-
-Force.defaultProps = forceDefaultProps
-
-Force.propTypes = forcePropTypes
