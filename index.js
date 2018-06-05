@@ -8,7 +8,7 @@ const deferUpdates = ReactDOM.unstable_deferredUpdates
 class App extends React.Component {
   state = { velocity: 0, acceleration: 0, instance: null, value: 1 }
 
-  // Do not remove deferUpdates. If we simply schedule the state update, then it creates a janky experience on the screen
+  // Do not remove deferUpdates. If we simply schedule the state update, then it creates a janky experience on the screen (IDK why, still 😅)
   updateMeasures = ({ acceleration, velocity }) =>
     deferUpdates(() => this.setState({ acceleration, velocity }))
 
@@ -22,7 +22,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Force
+      <Gravity
         width={640}
         height={640}
         color="#ff96ca"
