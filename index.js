@@ -22,17 +22,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <Gravity
-        width={640}
-        height={640}
-        color="#ff96ca"
-        stroke={0.2}
-        balls={120}
-        background="yellow"
-        ballSize={{ width: 20, height: 20 }}
-        extras={instance => this.setState({ instance })}
-        measures={this.updateMeasures}
-      />
+      <div>
+        <Force
+          width={640}
+          height={640}
+          color="#ff96ca"
+          stroke={0.01}
+          applyForce={(ball, Vector) => {
+            ball.applyForce(new Vector(0.1, 0.5))
+          }}
+          background="yellow"
+          ballSize={{ width: 20, height: 20 }}
+        />
+      </div>
     )
   }
 }

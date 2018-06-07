@@ -33,8 +33,8 @@ export class DrawBalls {
     this.props = props
     // $FlowFixMe
     this.loc = new Vector(
-      Math.random(this.instance.width / 2),
-      Math.random(this.instance.height / 2)
+      Math.floor(Math.random() * Math.floor(this.instance.width / 2)),
+      Math.floor(Math.random() * Math.floor(this.instance.height / 2))
     )
     this.velocity = new Vector(0, 0)
     this.acc = new Vector(-0.001, 0.01)
