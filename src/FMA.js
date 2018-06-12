@@ -73,8 +73,8 @@ export class FMA {
     this.instance.ellipse(
       this.location.x,
       this.location.y,
-      this.mass * this.props.ballSize.width || 20,
-      this.mass * this.props.ballSize.height || 20
+      this.mass * this.props.ballSize.width,
+      this.mass * this.props.ballSize.height
     )
   }
 

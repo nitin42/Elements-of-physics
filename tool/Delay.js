@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-// Copied and edited from https://github.com/chrisshiplet/react-delay
+// Copied and edited from https://github.com/chrisshiplet/react-delay (LAZINESS BITCH)
 export class Delay extends Component {
   static propTypes = {
     render: PropTypes.func,

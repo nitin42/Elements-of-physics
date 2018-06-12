@@ -21,9 +21,10 @@ export default class Layout extends React.Component {
   state = {
     width: null,
     height: null,
+    elements: ['Acceleration', 'Force', 'Gravity'],
     currentElement: 'Acceleration',
     balls: 100,
-    ballSize: 30,
+    ballSize: 20,
     maxVelocity: 10,
     showColorPicker: false,
     color: 'hotpink',
@@ -47,6 +48,16 @@ export default class Layout extends React.Component {
     window.addEventListener('resize', this.handleCanvasResize, false)
   }
 
+  componentDidUpdate() {
+    const { height } = this.node.getBoundingClientRect()
+
+    if (height !== this.state.height) {
+      const canvas = document.getElementById('defaultCanvas0')
+
+      canvas.style.height = height
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleCanvasResize, false)
   }
@@ -58,6 +69,16 @@ export default class Layout extends React.Component {
 
     canvas.style.height = height
     canvas.style.width = width
+  }
+
+  renderOptions = () => {
+    return this.state.elements.map((element, i) => {
+      return (
+        <option value={element} key={i}>
+          {element}
+        </option>
+      )
+    })
   }
 
   handleElementSelect = e => this.setState({ currentElement: e.target.value })
@@ -106,7 +127,7 @@ export default class Layout extends React.Component {
                 <Loading />
               ) : (
                 <Provider value={this.state}>
-                  <Canvas />
+                  <Canvas node={this.node} />
                 </Provider>
               )
             }}
@@ -128,6 +149,7 @@ export default class Layout extends React.Component {
               handleFrictionCoefficient={this.handleFrictionCoefficient}
               handleGConstant={this.handleGConstant}
               handleMove={this.handleMove}
+              renderOptions={this.renderOptions}
             />
           </Provider>
         </div>

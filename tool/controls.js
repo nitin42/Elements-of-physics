@@ -1,24 +1,93 @@
 import React from 'react'
-import { SketchPicker } from 'react-color'
 
 import { Consumer } from './context'
 
+import { Slider } from './Slider'
+import { CheckBox } from './CheckBox'
+import { ColorPicker } from './ColorPicker'
+import { Force } from '../src'
+
+const ForceControls = props => (
+  <React.Fragment>
+    <li>
+      <Slider
+        name="Balls: "
+        min="1"
+        max="1000"
+        value={props.balls}
+        handler={props.handleBallChange}
+      />
+    </li>
+    <li>
+      <CheckBox
+        name="friction"
+        checked={props.friction}
+        handler={props.handleFriction}
+      />
+    </li>
+    <li>
+      <Slider
+        name="Friction coefficient: "
+        min="0.1"
+        max="1"
+        step="0.1"
+        value={props.frictionCoefficient}
+        handler={props.handleFrictionCoefficient}
+      />
+    </li>
+    <li>
+      <CheckBox
+        name="gravity"
+        checked={props.gravity}
+        handler={props.handleGravity}
+      />
+    </li>
+    <li>
+      <strong>Apply force: </strong>
+      <i className="fas fa-plus" />
+    </li>
+  </React.Fragment>
+)
+
+const AccelerationControls = props => (
+  <li>
+    <Slider
+      name="Balls: "
+      min="1"
+      max="1000"
+      value={props.balls}
+      handler={props.handleBallChange}
+    />
+  </li>
+)
+
+const GravityControls = props => (
+  <React.Fragment>
+    <li>
+      <CheckBox name="move" checked={props.move} handler={props.handleMove} />
+    </li>
+    <li>
+      <Slider
+        name="Gravitational constant: "
+        min="1"
+        max="10"
+        value={props.gConstant}
+        handler={props.handleGConstant}
+      />
+    </li>
+  </React.Fragment>
+)
+
+const renderControls = props => {
+  if (props.currentElement === 'Force') return <ForceControls {...props} />
+
+  if (props.currentElement === 'Gravity') return <GravityControls {...props} />
+
+  if (props.currentElement === 'Acceleration')
+    return <AccelerationControls {...props} />
+}
+
 export class Controls extends React.Component {
-  state = {
-    elements: ['Acceleration', 'Force', 'Gravity'],
-    currentElement: 'Acceleration'
-  }
-
-  renderOptions = () => {
-    return this.state.elements.map((element, i) => {
-      return (
-        <option value={element} key={i}>
-          {element}
-        </option>
-      )
-    })
-  }
-
   render() {
     return (
       <Consumer>
@@ -44,155 +113,46 @@ export class Controls extends React.Component {
                     name="elements"
                     onChange={this.props.handleElementSelect}
                   >
-                    {this.renderOptions()}
+                    {this.props.renderOptions()}
                   </select>
                 </li>
                 <li>
-                  <strong>Color: </strong>
-                  <div
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: '4px',
-                      backgroundColor: state.color,
-                      display: 'inline-block',
-                      marginBottom: -4
-                    }}
-                    onClick={this.props.handleColorPicker}
+                  <ColorPicker
+                    name="Color: "
+                    color={state.color}
+                    clickHandler={this.props.handleColorPicker}
+                    show={state.showColorPicker}
+                    handleColorChange={this.props.handleColorChange}
                   />
-                  {state.showColorPicker ? (
-                    <div style={{ marginTop: '10px' }}>
-                      <SketchPicker
-                        color={state.color}
-                        onChangeComplete={this.props.handleColorChange}
-                      />
-                    </div>
-                  ) : null}
                 </li>
                 <li>
-                  <strong>Background: </strong>
-                  <div
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: '4px',
-                      backgroundColor: state.background,
-                      display: 'inline-block',
-                      marginBottom: -4
-                    }}
-                    onClick={this.props.handleBackground}
+                  <ColorPicker
+                    name="Background: "
+                    color={state.background}
+                    clickHandler={this.props.handleBackground}
+                    show={state.showBackgroundPicker}
+                    handleColorChange={this.props.handleBackgroundChange}
                   />
-                  {state.showBackgroundPicker ? (
-                    <div style={{ marginTop: '10px' }}>
-                      <SketchPicker
-                        color={state.background}
-                        onChangeComplete={this.props.handleBackgroundChange}
-                      />
-                    </div>
-                  ) : null}
                 </li>
                 <li>
-                  <strong>Size: </strong>
-                  <input
-                    className="slider"
-                    type="range"
+                  <Slider
+                    name="Size: "
                     min="1"
                     max="60"
                     value={state.ballSize}
-                    onChange={this.props.handleBallSize}
-                  />{' '}
-                  {state.ballSize}
+                    handler={this.props.handleBallSize}
+                  />
                 </li>
                 <li>
-                  <strong>Max. velocity: </strong>
-                  <input
-                    className="slider"
-                    type="range"
+                  <Slider
+                    name="Max. velocity: "
                     min="1"
                     max="60"
                     value={state.maxVelocity}
-                    onChange={this.props.handleVelocity}
-                  />{' '}
-                  {state.maxVelocity}
+                    handler={this.props.handleVelocity}
+                  />
                 </li>
-                <li>
-                  <strong>Balls: </strong>
-                  <input
-                    className="slider"
-                    type="range"
-                    min="1"
-                    max="1000"
-                    value={state.balls}
-                    onChange={this.props.handleBallChange}
-                  />{' '}
-                  {state.balls}
-                </li>
-                <li>
-                  <strong>Friction: </strong>
-                  <label className="switch">
-                    <input
-                      type="checkbox"
-                      name="friction"
-                      checked={state.friction}
-                      onChange={this.props.handleFriction}
-                    />
-                    <span className="toggle round" />
-                  </label>
-                </li>
-                <li>
-                  <strong>Friction coefficient: </strong>
-                  <input
-                    className="slider"
-                    type="range"
-                    min="0.1"
-                    max="1"
-                    step="0.1"
-                    value={state.frictionCoefficient}
-                    onChange={this.props.handleFrictionCoefficient}
-                  />{' '}
-                  {state.frictionCoefficient}
-                </li>
-                <li>
-                  <strong>Gravity: </strong>
-                  <label className="switch">
-                    <input
-                      type="checkbox"
-                      name="gravity"
-                      checked={state.gravity}
-                      onChange={this.props.handleGravity}
-                    />
-                    <span className="toggle round" />
-                  </label>
-                </li>
-                <li>
-                  <strong>Drag: </strong>
-                  <label className="switch">
-                    <input
-                      type="checkbox"
-                      name="move"
-                      checked={state.move}
-                      onChange={this.props.handleMove}
-                    />
-                    <span className="toggle round" />
-                  </label>
-                </li>
-                <li>
-                  <strong>Gravitational constant: </strong>
-                  <input
-                    className="slider"
-                    type="range"
-                    min="1"
-                    max="10"
-                    step="1"
-                    value={state.gConstant}
-                    onChange={this.props.handleGConstant}
-                  />{' '}
-                  {state.gConstant}
-                </li>
-                <li>
-                  <strong>Apply force: </strong>
-                  <i className="fas fa-plus" />
-                </li>
+                {renderControls({ ...state, ...this.props })}
               </ul>
             </div>
           </React.Fragment>

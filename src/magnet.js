@@ -38,13 +38,15 @@ export class Magnet {
   }
 
   display() {
+    const offset = this.props.ballSize.width / 9
+
     this.instance.strokeWeight(this.props.stroke)
     this.instance.fill(this.props.color)
     this.instance.ellipse(
       this.location.x,
       this.location.y,
-      this.mass * 4,
-      this.mass * 4
+      this.mass * offset,
+      this.mass * offset
     )
   }
 }

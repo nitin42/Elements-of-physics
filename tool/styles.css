@@ -37,8 +37,19 @@ ul#horizontal-list {
 	padding: 20px 10px 2px;
 }
 
+@keyframes opacity {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
 ul#horizontal-list li {
 	padding: 20px;
+	animation: opacity 1s;
 }
 
 .slider {
