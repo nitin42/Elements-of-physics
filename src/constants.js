@@ -3,7 +3,7 @@
 import type { instance, mixedProps } from './types'
 
 // Default value for number of balls
-export const DEFAULT_BALLS = 10
+export const DEFAULT_BALLS = 100
 
 // Default height of the canvas
 export const DEFAULT_HEIGHT = 640

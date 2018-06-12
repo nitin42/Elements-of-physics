@@ -10,6 +10,7 @@ export const getGravityProps = props => {
     ballSize,
     extras,
     background,
+    move,
     ...rest
   } = props
   return rest

@@ -1,12 +1,14 @@
 // @flow
 
 import * as React from 'react'
-
 const p5 = require('p5')
 
 import { p5Renderer } from '../renderer'
 
 import type { instance, drawStuff, mixedProps, propsGetter } from '../types'
+
+const rAF = window.requestAnimationFrame
+const cAF = window.cancelAnimationFrame
 
 export const hoc = (
   drawStuffFn: drawStuff,
@@ -15,8 +17,16 @@ export const hoc = (
   class extends React.Component<mixedProps, void> {
     instance: null
     wrapper: null
+    id: null
 
     componentDidMount() {
+      this.getCanvas()
+    }
+
+    componentDidUpdate() {
+      // $FlowFixMe
+      this.instance.remove()
+
       this.getCanvas()
     }
 
@@ -30,7 +40,6 @@ export const hoc = (
     getCanvas = () =>
       new p5(p => {
         this.renderer(p)
-
         this.instance = p
 
         // Do some extra stuff here with processing

@@ -6,8 +6,11 @@ import { hoc } from './hoc'
 import { DEFAULT_BALLS, getCanvasSize } from '../constants'
 import { DrawBalls } from '../Ball'
 import { getAccelerationProps } from '../props/accelerationProps'
+import { p5Renderer } from '../renderer'
 
 import type { instance, dispatch, AccelerationProps } from '../types'
+
+var p5inst = null
 
 // Draw the balls on canvas when <Acceleration /> component is used
 const drawStuffUsingAcceleration = (
@@ -15,7 +18,7 @@ const drawStuffUsingAcceleration = (
   dispatch: dispatch,
   props: AccelerationProps
 ) => {
-  const balls = new Array(props.balls || DEFAULT_BALLS)
+  const balls = new Array(Number(props.balls) || DEFAULT_BALLS)
 
   const setup = () => {
     getCanvasSize(p, props)
@@ -27,7 +30,6 @@ const drawStuffUsingAcceleration = (
 
   const draw = () => {
     p.background(props.background)
-
     for (let i = 0; i < balls.length; i++) {
       balls[i].updatePosition()
       balls[i].hasCrossedEdge()

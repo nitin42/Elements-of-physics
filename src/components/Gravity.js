@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import debounce from 'debounce'
 
 import { hoc } from './hoc'
 import { getCanvasSize } from '../constants'
@@ -48,7 +49,7 @@ const drawStuffUsingGravity = (
   }
 
   // Dispatch all the processing core functions
-  dispatch([setup, draw, mouseDragged])
+  dispatch([setup, draw, props.move ? mouseDragged : null])
 }
 
 export const Gravity = hoc(drawStuffUsingGravity, getGravityProps)

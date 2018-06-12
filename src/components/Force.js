@@ -14,9 +14,10 @@ import type { instance, dispatch, ForceProps } from '../types'
 const drawStuffUsingForces = (
   p: instance,
   dispatch: dispatch,
-  props: ForceProps
+  props: ForceProps,
+  getArray
 ) => {
-  const balls = new Array(props.balls || DEFAULT_BALLS)
+  const balls = new Array(Number(props.balls) || DEFAULT_BALLS)
 
   const setup = () => {
     getCanvasSize(p, props)
