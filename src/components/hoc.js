@@ -15,7 +15,7 @@ export const hoc = (
   propsGetter: propsGetter
 ): React.ComponentType<any> =>
   class extends React.Component<mixedProps, void> {
-    instance: null
+    instance: instance
     wrapper: null
     id: null
 
@@ -24,7 +24,6 @@ export const hoc = (
     }
 
     componentDidUpdate() {
-      // $FlowFixMe
       this.instance.remove()
 
       this.getCanvas()

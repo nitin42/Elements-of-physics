@@ -1,12 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import { Consumer } from './context'
+
 import { Acceleration, Force, Gravity } from '../src'
 import { isThisSecond } from 'date-fns'
 
 const deferUpdates = ReactDOM.unstable_deferredUpdates
 
-export default class Canvas extends React.Component {
+export class Canvas extends React.Component {
   state = { velocity: 0, acceleration: 0, instance: null, value: 1 }
 
   updateMeasures = ({ acceleration, velocity }) =>
@@ -26,10 +28,10 @@ export default class Canvas extends React.Component {
         <Force
           width={props.width}
           height={props.height}
-          color={this.props.color}
+          color={props.color}
           stroke={0.01}
           balls={props.balls}
-          background={this.props.background}
+          background={props.background}
           maxVelocity={props.maxVelocity}
           friction={props.friction}
           gravity={props.gravity}
@@ -45,11 +47,11 @@ export default class Canvas extends React.Component {
         <Acceleration
           width={props.width}
           height={props.height}
-          color={this.props.color}
+          color={props.color}
           stroke={0.01}
           balls={props.balls}
           maxVelocity={props.maxVelocity}
-          background={this.props.background}
+          background={props.background}
           ballSize={{ width: props.ballSize, height: props.ballSize }}
         />
       )
@@ -58,11 +60,11 @@ export default class Canvas extends React.Component {
         <Gravity
           width={props.width}
           height={props.height}
-          color={this.props.color}
+          color={props.color}
           stroke={0.01}
           gConstant={props.gConstant}
-          background={this.props.background}
-          move={this.props.move}
+          background={props.background}
+          move={props.move}
           ballSize={{ width: props.ballSize, height: props.ballSize }}
         />
       )
@@ -71,7 +73,13 @@ export default class Canvas extends React.Component {
 
   render() {
     return (
-      <div style={{ margin: '0 auto' }}>{this.renderElement(this.props)}</div>
+      <Consumer>
+        {state => {
+          return (
+            <div style={{ margin: '0 auto' }}>{this.renderElement(state)}</div>
+          )
+        }}
+      </Consumer>
     )
   }
 }

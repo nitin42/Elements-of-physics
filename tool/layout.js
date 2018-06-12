@@ -1,10 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
-import Delay from './Delay'
+import { Provider } from './context'
 
-import Canvas from './canvas'
-import Controls from './controls'
+import { Delay } from './Delay'
+import { Loading } from './Loading'
+import { Canvas } from './canvas'
+import { Controls } from './controls'
 
 import './styles.css'
 
@@ -15,18 +16,6 @@ const mainStyles = {
   gridTemplateRows: '20% 20%',
   border: '2px solid #4c4c4c'
 }
-
-const loaderStyles = {
-  display: 'flex',
-  justifyContent: 'center',
-  marginTop: '100px'
-}
-
-const Loading = () => (
-  <div style={loaderStyles}>
-    <div className="loading">🌀</div>
-  </div>
-)
 
 export default class Layout extends React.Component {
   state = {
@@ -116,52 +105,31 @@ export default class Layout extends React.Component {
               return waiting ? (
                 <Loading />
               ) : (
-                <Canvas
-                  currentElement={this.state.currentElement}
-                  balls={this.state.balls}
-                  width={this.state.width}
-                  ballSize={this.state.ballSize}
-                  height={this.state.height}
-                  maxVelocity={this.state.maxVelocity}
-                  color={this.state.color}
-                  background={this.state.background}
-                  friction={this.state.friction}
-                  frictionCoefficient={this.state.frictionCoefficient}
-                  gravity={this.state.gravity}
-                  gConstant={this.state.gConstant}
-                  move={this.state.move}
-                />
+                <Provider value={this.state}>
+                  <Canvas />
+                </Provider>
               )
             }}
           />
         </div>
         <div className="controls">
-          <Controls
-            balls={this.state.balls}
-            ballSize={this.state.ballSize}
-            maxVelocity={this.state.maxVelocity}
-            handleVelocity={this.handleVelocity}
-            handleElementSelect={this.handleElementSelect}
-            handleBallChange={this.handleBallChange}
-            handleBallSize={this.handleBallSize}
-            handleColorPicker={this.showColorPicker}
-            showColorPicker={this.state.showColorPicker}
-            showBackgroundPicker={this.state.showBackgroundPicker}
-            handleColorChange={this.handleColorChange}
-            handleBackgroundChange={this.handleBackgroundChange}
-            handleBackground={this.handleBackground}
-            handleFriction={this.handleFriction}
-            handleGravity={this.handleGravity}
-            handleFrictionCoefficient={this.handleFrictionCoefficient}
-            handleGConstant={this.handleGConstant}
-            handleMove={this.handleMove}
-            color={this.state.color}
-            background={this.state.background}
-            friction={this.state.friction}
-            frictionCoefficient={this.state.frictionCoefficient}
-            gravity={this.state.gravity}
-            gConstant={this.state.gConstant}
-          />
+          <Provider value={this.state}>
+            <Controls
+              handleVelocity={this.handleVelocity}
+              handleElementSelect={this.handleElementSelect}
+              handleBallChange={this.handleBallChange}
+              handleBallSize={this.handleBallSize}
+              handleColorPicker={this.showColorPicker}
+              handleColorChange={this.handleColorChange}
+              handleBackgroundChange={this.handleBackgroundChange}
+              handleBackground={this.handleBackground}
+              handleFriction={this.handleFriction}
+              handleGravity={this.handleGravity}
+              handleFrictionCoefficient={this.handleFrictionCoefficient}
+              handleGConstant={this.handleGConstant}
+              handleMove={this.handleMove}
+            />
+          </Provider>
         </div>
       </div>
     )
