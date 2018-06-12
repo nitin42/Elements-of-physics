@@ -12,7 +12,7 @@ import { getGravityProps } from '../props/gravityProps'
 
 import type { instance, dispatch, GravityProps } from '../types'
 
-// Draw the balls on canvas when <Acceleration /> component is used
+// Draw the balls on canvas when <Gravity /> component is used
 const drawStuffUsingGravity = (
   p: instance,
   dispatch: dispatch,
