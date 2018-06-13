@@ -14,7 +14,7 @@ export const hoc = (
   drawStuffFn: drawStuff,
   propsGetter: propsGetter
 ): React.ComponentType<any> =>
-  class extends React.Component<mixedProps, void> {
+  class extends React.PureComponent<mixedProps, void> {
     instance: instance
     wrapper: null
     id: null
