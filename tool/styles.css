@@ -6,9 +6,18 @@ body {
 
 .controls {
 	margin: 0 auto;
-	min-width: 100px;
 	padding: 5px 20px;
-	border-left: 2px solid #4c4c4c;
+	border-left: 1px solid #bebebe;
+}
+
+.control-center {
+	min-width: 100%;
+}
+
+.description {
+	margin: 0 auto;
+	padding: 5px 20px;
+	border-left: 1px solid #bebebe;
 }
 
 .loading {
@@ -26,9 +35,9 @@ body {
 	}
 }
 
-strong {
+span {
 	font-size: 18px;
-	font-weight: bolder;
+	font-weight: 300;
 }
 
 ul#horizontal-list {
@@ -48,12 +57,13 @@ ul#horizontal-list {
 }
 
 ul#horizontal-list li {
-	padding: 20px;
+	padding: 15px;
 	animation: opacity 1s;
 }
 
 .slider {
 	height: 10px;
+	width: 100%;
 	border-radius: 5px;
 	background: whitesmoke;
 	outline: none;

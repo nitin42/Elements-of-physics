@@ -2,8 +2,9 @@ import React from 'react'
 
 import { Consumer } from './context'
 
-import { ForceCanvas, AccelerationCanvas, GravityCanvas } from './components'
+import { ForceCanvas, AccelerationCanvas, GravityCanvas } from './elements'
 
+// Draw canvas based on currently selected element (state.currentElement)
 const renderCanvas = state => {
   if (state.currentElement === 'Force') {
     return <ForceCanvas {...state} />

@@ -63,13 +63,6 @@ export class DrawBalls {
 
     // Changing location is velocity hence balls appeared to be moving
     this.loc.add(this.velocity)
-
-    // Invoke the measures callback from component
-    this.props.measures &&
-      this.props.measures({
-        velocity: Number(this.loc.x - this.loc.y).toFixed(2),
-        acceleration: Number(this.velocity.x - this.velocity.y).toFixed(2)
-      })
   }
 
   hasCrossedEdge() {

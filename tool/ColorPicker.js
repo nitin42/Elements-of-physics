@@ -5,7 +5,7 @@ import { capitalize } from './utils'
 
 export const ColorPicker = props => (
   <React.Fragment>
-    <strong>{capitalize(props.name)}</strong>
+    <span>{capitalize(props.name)}</span>
     <div
       style={{
         width: 20,
@@ -19,10 +19,7 @@ export const ColorPicker = props => (
     />
     {props.show ? (
       <div style={{ marginTop: '10px' }}>
-        <SketchPicker
-          color={props.color}
-          onChangeComplete={props.handleColorChange}
-        />
+        <SketchPicker color={props.color} onChange={props.handleColorChange} />
       </div>
     ) : null}
   </React.Fragment>

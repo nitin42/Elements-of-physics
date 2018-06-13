@@ -4,9 +4,9 @@ import { capitalize } from './utils'
 
 export const CheckBox = props => (
   <React.Fragment>
-    <strong>
+    <span>
       {props.name === 'move' ? 'Drag: ' : `${capitalize(props.name)}: `}
-    </strong>
+    </span>
     <label className="switch">
       <input
         type="checkbox"

@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react'
-import debounce from 'debounce'
 
 import { hoc } from './hoc'
 import { getCanvasSize } from '../constants'

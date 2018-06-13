@@ -2,7 +2,10 @@ import React from 'react'
 
 export const Slider = props => (
   <React.Fragment>
-    <strong>{props.name}</strong>
+    <span>
+      {props.name}
+      {props.value}
+    </span>
     <input
       className="slider"
       type="range"
@@ -11,7 +14,11 @@ export const Slider = props => (
       step={props.step || 1}
       value={props.value}
       onChange={props.handler}
+      disabled={props.disabled}
     />
-    {props.value}
   </React.Fragment>
 )
+
+Slider.defaultProps = {
+  disabled: false
+}

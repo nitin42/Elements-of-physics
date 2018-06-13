@@ -38,7 +38,7 @@ const drawStuffUsingForces = (
       // Gravity - The force that pulls together all the matter
       if (props.gravity) {
         const mass = balls[i].mass
-        gravity = new Vector(0, 0.1 * mass)
+        gravity = new Vector(0, 0.1 * 9)
       } else {
         gravity = new Vector(0, 0.1)
       }

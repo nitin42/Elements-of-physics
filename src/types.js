@@ -56,13 +56,18 @@ export type AccelerationProps = {
 export type GravityProps = {
   // Gravitational constant
   gConstant: number,
+  // For dragging the center ball
+  move: boolean,
   ...$Exact<commonProps>
 }
 
 export type mixedProps = GravityProps | ForceProps | AccelerationProps
 
+// Processing core callbacks
+type dispatchCallback = () => void | boolean
+
 // Dispatch function batches all the processing core functions
-export type dispatch = (args: Array<() => void | boolean>) => void
+export type dispatch = (args: Array<dispatchCallback | null>) => void
 
 // Core draw function for drawing stuff when Gravity component is used
 export type gravityStuff = (

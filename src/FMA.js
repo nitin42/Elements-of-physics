@@ -4,6 +4,14 @@ import { Vector } from './vector'
 
 import type { instance, ForceProps, GravityProps } from './types'
 
+import {
+  DEFAULT_BALL_COLOR,
+  DEFAULT_BALL_HEIGHT,
+  DEFAULT_MAX_VELOCITY,
+  DEFAULT_BALL_WIDTH,
+  DEFAULT_STROKE_WEIGHT
+} from './constants'
+
 // Draw the balls using laws of motion (force = mass x acceleration)
 export class FMA {
   instance: instance
@@ -53,6 +61,9 @@ export class FMA {
   updatePosition() {
     // Change of velocity
     this.velocity.add(this.acc)
+
+    this.velocity.limit(this.props.maxVelocity || DEFAULT_MAX_VELOCITY)
+
     // Change of location
     this.location.add(this.velocity)
 
@@ -68,8 +79,8 @@ export class FMA {
   }
 
   displayBalls() {
-    this.instance.strokeWeight(this.props.stroke)
-    this.instance.fill(this.props.color)
+    this.instance.strokeWeight(this.props.stroke || DEFAULT_STROKE_WEIGHT)
+    this.instance.fill(this.props.color || DEFAULT_BALL_COLOR)
     this.instance.ellipse(
       this.location.x,
       this.location.y,

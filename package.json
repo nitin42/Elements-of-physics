@@ -11,9 +11,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-color": "^2.14.1",
-    "react-delay": "^0.1.0",
-    "react-dom": "^16.4.0",
-    "react-toggle": "^4.0.2"
+    "react-dom": "^16.4.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -29,6 +27,7 @@
   "scripts": {
     "start": "parcel ./index.html",
     "precommit": "lint-staged",
+    "flow": "flow",
     "format": "find src -name '*.js' | xargs ./node_modules/.bin/prettier --write --no-semi --single-quote"
   },
   "lint-staged": {
