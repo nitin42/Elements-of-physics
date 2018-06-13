@@ -77,7 +77,9 @@ export const Controls = props => (
   <Consumer>
     {state => (
       <React.Fragment>
-        <h1>Elements of physics</h1>
+        <h1 style={{ fontFamily: "'Satisfy', cursive", fontSize: '40px' }}>
+          Elements of physics
+        </h1>
         <div className="control-center">
           <p
             style={{

@@ -1,4 +1,5 @@
 import React from 'react'
+import hexToRgba from 'hex-rgba'
 
 import { Provider } from './context'
 
@@ -13,7 +14,8 @@ import './styles.css'
 const mainStyles = {
   display: 'grid',
   gridTemplateColumns: '65% 35%',
-  border: '1px solid #bebebe'
+  border: '1px solid #f8f8f8',
+  boxShadow: '7px 7px 7px #f8f8f8'
 }
 
 export class Layout extends React.Component {
@@ -36,10 +38,10 @@ export class Layout extends React.Component {
     maxVelocity: 10,
     showColorPicker: false,
     // Ball color
-    color: 'hotpink',
+    color: '#ff69b4',
     showBackgroundPicker: false,
     // Canvas color
-    background: 'mistyrose',
+    background: '#5d5d5d',
     // Enable frictional force
     friction: false,
     // Friction coefficient value
@@ -168,7 +170,10 @@ export class Layout extends React.Component {
             }}
           />
         </div>
-        <div className="controls">
+        <div
+          className="controls"
+          style={{ backgroundColor: hexToRgba(this.state.color, '10') }}
+        >
           <Provider value={this.state}>
             <Controls
               handleVelocity={this.handleVelocity}

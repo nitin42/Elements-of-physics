@@ -6,7 +6,7 @@
   "author": "Nitin Tulswani",
   "license": "MIT",
   "dependencies": {
-    "debounce": "^1.1.0",
+    "hex-rgba": "^1.0.2",
     "p5": "^0.6.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",

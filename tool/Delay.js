@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-// Copied and edited from https://github.com/chrisshiplet/react-delay (LAZINESS BITCH)
+// Copied and edited from https://github.com/chrisshiplet/react-delay (LAZINESS 😅)
 export class Delay extends Component {
   static defaultProps = {
     wait: 250
