@@ -4,7 +4,7 @@ import React from 'react'
 
 import { hoc } from './hoc'
 import { DEFAULT_BALLS, getCanvasSize } from '../constants'
-import { DrawBalls } from '../Ball'
+import { Ball } from '../Ball'
 import { getAccelerationProps } from '../props/accelerationProps'
 import { p5Renderer } from '../renderer'
 
@@ -24,7 +24,7 @@ const drawStuffUsingAcceleration = (
     getCanvasSize(p, props)
 
     for (let i = 0; i < balls.length; i++) {
-      balls[i] = new DrawBalls(p, props)
+      balls[i] = new Ball(p, props)
     }
   }
 

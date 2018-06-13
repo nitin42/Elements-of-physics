@@ -106,7 +106,7 @@ export class Layout extends React.Component {
   // Handler for updating currently selected element
   // Also update the state for drag because when it is enabled, sliders are disabled. So for every new element, reset that state
   handleElementSelect = e =>
-    this.setState({ currentElement: e.target.value, move: !this.state.move })
+    this.setState({ currentElement: e.target.value, move: false })
 
   // Handler for updating number of balls being drawn on the canvas
   handleBallChange = e => {

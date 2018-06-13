@@ -4,7 +4,7 @@ import React from 'react'
 
 import { hoc } from './hoc'
 import { getCanvasSize } from '../constants'
-import { Magnet } from '../magnet'
+import { Magnet } from '../Magnet'
 import { FMA } from '../FMA'
 
 import { getGravityProps } from '../props/gravityProps'

@@ -12,7 +12,7 @@ import {
   DEFAULT_STROKE_WEIGHT
 } from './constants'
 
-export class DrawBalls {
+export class Ball {
   // Processing instance
   instance: instance
   // Component props
