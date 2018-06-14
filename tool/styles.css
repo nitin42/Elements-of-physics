@@ -1,17 +1,30 @@
 body {
 	font-family: 'PT Sans', sans-serif;
-	padding: 40px 80px 20px 80px;
+	padding: 40px 80px 40px 80px;
 	color: #4c4c4c;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 65% auto;
+	grid-gap: 0;
+	border: 1px solid #f8f8f8;
+	box-shadow: 8px 8px 8px #f8f8f8;
+}
+
+.heading {
+	font-family: 'Satisfy', cursive;
+	font-size: 40px;
+}
+
+.canvas-container {
+	min-width: 60%;
 }
 
 .controls {
 	margin: 0 auto;
 	padding: 5px 20px;
 	border-left: 1px solid #f8f8f8;
-}
-
-.control-center {
-	min-width: 100%;
 }
 
 .description {
@@ -87,4 +100,10 @@ ul#horizontal-list li {
 	height: 25px;
 	border-radius: 50%;
 	cursor: pointer;
+}
+
+@media only screen and (max-width: 450px) {
+	.heading {
+		font-size: 30px;
+	}
 }

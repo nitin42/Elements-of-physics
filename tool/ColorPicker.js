@@ -1,10 +1,10 @@
 import React from 'react'
-import { TwitterPicker } from 'react-color'
+import { BlockPicker } from 'react-color'
 
 import { capitalize } from './utils'
 
 export const ColorPicker = props => {
-  const pickerOffset = props.name === 'Color: ' ? '-40px' : '-95px'
+  const pickerOffset = props.name === 'Color: ' ? '25px' : '-25px'
 
   return (
     <React.Fragment>
@@ -28,10 +28,7 @@ export const ColorPicker = props => {
             right: pickerOffset
           }}
         >
-          <TwitterPicker
-            color={props.color}
-            onChange={props.handleColorChange}
-          />
+          <BlockPicker color={props.color} onChange={props.handleColorChange} />
         </div>
       ) : null}
     </React.Fragment>

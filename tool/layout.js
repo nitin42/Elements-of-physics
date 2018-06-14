@@ -10,14 +10,6 @@ import { Controls } from './controls'
 
 import './styles.css'
 
-// Main container styles
-const mainStyles = {
-  display: 'grid',
-  gridTemplateColumns: '65% 35%',
-  border: '1px solid #f8f8f8',
-  boxShadow: '7px 7px 7px #f8f8f8'
-}
-
 export class Layout extends React.Component {
   ref = React.createRef()
 
@@ -55,26 +47,30 @@ export class Layout extends React.Component {
   }
 
   componentDidMount() {
-    const { width, height } = this.ref.current.getBoundingClientRect()
+    if (window.innerWidth > 450) {
+      const { width, height } = this.ref.current.getBoundingClientRect()
 
-    // Send this measures down to canvas to size accordingly
-    this.setState({
-      width,
-      height
-    })
+      // Send this measures down to canvas to size accordingly
+      this.setState({
+        width,
+        height
+      })
 
-    window.addEventListener('resize', this.handleCanvasResize, false)
+      window.addEventListener('resize', this.handleCanvasResize, false)
+    }
   }
 
   componentDidUpdate() {
-    const { height } = this.ref.current.getBoundingClientRect()
+    if (window.innerWidth > 450) {
+      const { height } = this.ref.current.getBoundingClientRect()
 
-    // Update the canvas height when controls are updated.
-    if (height !== this.state.height) {
-      const canvas = document.getElementById('defaultCanvas0')
+      // Update the canvas height when controls are updated.
+      if (height !== this.state.height) {
+        const canvas = document.getElementById('defaultCanvas0')
 
-      if (canvas !== null) {
-        canvas.style.height = height
+        if (canvas !== null) {
+          canvas.style.height = height
+        }
       }
     }
   }
@@ -84,13 +80,15 @@ export class Layout extends React.Component {
   }
 
   handleCanvasResize = e => {
-    const { width, height } = this.ref.current.getBoundingClientRect()
+    if (window.innerWidth > 450) {
+      const { width, height } = this.ref.current.getBoundingClientRect()
 
-    const canvas = document.getElementById('defaultCanvas0')
+      const canvas = document.getElementById('defaultCanvas0')
 
-    if (canvas !== null) {
-      canvas.style.height = height
-      canvas.style.width = width
+      if (canvas !== null) {
+        canvas.style.height = height
+        canvas.style.width = width
+      }
     }
   }
 
@@ -154,46 +152,61 @@ export class Layout extends React.Component {
   handleMove = e => this.setState({ [e.target.name]: e.target.checked })
 
   render() {
-    return (
-      <div style={mainStyles}>
-        <div ref={this.ref}>
-          <Delay
-            wait={1500}
-            render={waiting => {
-              return waiting ? (
-                <Loading />
-              ) : (
-                <Provider value={this.state}>
-                  <Canvas />
-                </Provider>
-              )
-            }}
-          />
-        </div>
-        <div
-          className="controls"
-          style={{ backgroundColor: hexToRgba(this.state.color, '10') }}
-        >
-          <Provider value={this.state}>
-            <Controls
-              handleVelocity={this.handleVelocity}
-              handleElementSelect={this.handleElementSelect}
-              handleBallChange={this.handleBallChange}
-              handleBallSize={this.handleBallSize}
-              handleColorPicker={this.showColorPicker}
-              handleColorChange={this.handleColorChange}
-              handleBackgroundChange={this.handleBackgroundChange}
-              handleBackground={this.showBackgroundColorPicker}
-              handleFriction={this.handleFriction}
-              handleGravity={this.handleGravity}
-              handleFrictionCoefficient={this.handleFrictionCoefficient}
-              handleGConstant={this.handleGConstant}
-              handleMove={this.handleMove}
-              renderOptions={this.renderOptions}
+    if (window.innerWidth > 450) {
+      return (
+        <div className="container">
+          <div className="canvas-container" ref={this.ref}>
+            <Delay
+              wait={800}
+              render={waiting => {
+                return waiting ? (
+                  <Loading />
+                ) : (
+                  <Provider value={this.state}>
+                    <Canvas />
+                  </Provider>
+                )
+              }}
             />
-          </Provider>
+          </div>
+          <div
+            className="controls"
+            style={{ backgroundColor: hexToRgba(this.state.color, '10') }}
+          >
+            <Provider value={this.state}>
+              <Controls
+                handleVelocity={this.handleVelocity}
+                handleElementSelect={this.handleElementSelect}
+                handleBallChange={this.handleBallChange}
+                handleBallSize={this.handleBallSize}
+                handleColorPicker={this.showColorPicker}
+                handleColorChange={this.handleColorChange}
+                handleBackgroundChange={this.handleBackgroundChange}
+                handleBackground={this.showBackgroundColorPicker}
+                handleFriction={this.handleFriction}
+                handleGravity={this.handleGravity}
+                handleFrictionCoefficient={this.handleFrictionCoefficient}
+                handleGConstant={this.handleGConstant}
+                handleMove={this.handleMove}
+                renderOptions={this.renderOptions}
+              />
+            </Provider>
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div
+          style={{
+            backgroundColor: 'mistyrose',
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '50px'
+          }}
+        >
+          <p>Oops! Simulator can be accessed only on bigger screens 😅</p>
+        </div>
+      )
+    }
   }
 }
