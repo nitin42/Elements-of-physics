@@ -1,5 +1,5 @@
 body {
-	font-family: 'PT Sans', sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	padding: 40px 80px 40px 80px;
 	color: #626262;
 }
@@ -13,12 +13,24 @@ body {
 }
 
 .heading {
-	font-family: 'Satisfy', cursive;
+	font-family: 'Quicksand', cursive;
 	font-size: 40px;
 }
 
 .canvas-container {
 	min-width: 60%;
+}
+
+.content {
+	line-height: 1.6;
+}
+
+.content span {
+	color: #8a8a8a;
+}
+
+.content p {
+	font-size: 20px;
 }
 
 .controls {

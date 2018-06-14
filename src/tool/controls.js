@@ -11,8 +11,6 @@ import {
   GravityControls
 } from './elements'
 
-import { Force } from '../src'
-
 // Render extra controls based on currently selected element
 const renderControls = props => {
   if (props.currentElement === 'Force') return <ForceControls {...props} />

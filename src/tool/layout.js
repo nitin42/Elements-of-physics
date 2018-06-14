@@ -7,6 +7,7 @@ import { Delay } from './Delay'
 import { Loading } from './Loading'
 import { Canvas } from './canvas'
 import { Controls } from './controls'
+import { Content } from './Content'
 
 import './styles.css'
 
@@ -154,44 +155,47 @@ export class Layout extends React.Component {
   render() {
     if (window.innerWidth > 450) {
       return (
-        <div className="container">
-          <div className="canvas-container" ref={this.ref}>
-            <Delay
-              wait={800}
-              render={waiting => {
-                return waiting ? (
-                  <Loading />
-                ) : (
-                  <Provider value={this.state}>
-                    <Canvas />
-                  </Provider>
-                )
-              }}
-            />
-          </div>
-          <div
-            className="controls"
-            style={{ backgroundColor: hexToRgba(this.state.color, '10') }}
-          >
-            <Provider value={this.state}>
-              <Controls
-                handleVelocity={this.handleVelocity}
-                handleElementSelect={this.handleElementSelect}
-                handleBallChange={this.handleBallChange}
-                handleBallSize={this.handleBallSize}
-                handleColorPicker={this.showColorPicker}
-                handleColorChange={this.handleColorChange}
-                handleBackgroundChange={this.handleBackgroundChange}
-                handleBackground={this.showBackgroundColorPicker}
-                handleFriction={this.handleFriction}
-                handleGravity={this.handleGravity}
-                handleFrictionCoefficient={this.handleFrictionCoefficient}
-                handleGConstant={this.handleGConstant}
-                handleMove={this.handleMove}
-                renderOptions={this.renderOptions}
+        <div>
+          <div className="container">
+            <div className="canvas-container" ref={this.ref}>
+              <Delay
+                wait={800}
+                render={waiting => {
+                  return waiting ? (
+                    <Loading />
+                  ) : (
+                    <Provider value={this.state}>
+                      <Canvas />
+                    </Provider>
+                  )
+                }}
               />
-            </Provider>
+            </div>
+            <div
+              className="controls"
+              style={{ backgroundColor: hexToRgba(this.state.color, '10') }}
+            >
+              <Provider value={this.state}>
+                <Controls
+                  handleVelocity={this.handleVelocity}
+                  handleElementSelect={this.handleElementSelect}
+                  handleBallChange={this.handleBallChange}
+                  handleBallSize={this.handleBallSize}
+                  handleColorPicker={this.showColorPicker}
+                  handleColorChange={this.handleColorChange}
+                  handleBackgroundChange={this.handleBackgroundChange}
+                  handleBackground={this.showBackgroundColorPicker}
+                  handleFriction={this.handleFriction}
+                  handleGravity={this.handleGravity}
+                  handleFrictionCoefficient={this.handleFrictionCoefficient}
+                  handleGConstant={this.handleGConstant}
+                  handleMove={this.handleMove}
+                  renderOptions={this.renderOptions}
+                />
+              </Provider>
+            </div>
           </div>
+          <Content />
         </div>
       )
     } else {

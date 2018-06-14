@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Acceleration, Force, Gravity } from '../src'
+import { Acceleration, Force, Gravity } from '../'
 import { Slider } from './Slider'
 import { CheckBox } from './CheckBox'
 
