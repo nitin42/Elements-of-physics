@@ -4,7 +4,7 @@ import { BlockPicker } from 'react-color'
 import { capitalize } from './utils'
 
 export const ColorPicker = props => {
-  const pickerOffset = props.name === 'Color: ' ? '25px' : '-25px'
+  const pickerOffset = props.name === 'Color: ' ? '22px' : '-35px'
 
   return (
     <React.Fragment>
@@ -13,7 +13,7 @@ export const ColorPicker = props => {
         style={{
           width: 20,
           height: 20,
-          borderRadius: '4px',
+          borderRadius: '5px',
           backgroundColor: props.color,
           display: 'inline-block',
           marginBottom: -4

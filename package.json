@@ -6,6 +6,8 @@
   "author": "Nitin Tulswani",
   "license": "MIT",
   "dependencies": {
+    "babel-plugin-emotion": "^9.2.0",
+    "emotion": "^9.2.3",
     "hex-rgba": "^1.0.2",
     "p5": "^0.6.1",
     "prop-types": "^15.6.1",

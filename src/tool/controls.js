@@ -1,4 +1,5 @@
 import React from 'react'
+import { css } from 'emotion'
 
 import { Consumer } from './context'
 
@@ -10,6 +11,13 @@ import {
   AccelerationControls,
   GravityControls
 } from './elements'
+
+const contentStyles = {
+  textAlign: 'justify',
+  fontSize: '18px',
+  lineHeight: 1.5,
+  fontWeight: 300
+}
 
 // Render extra controls based on currently selected element
 const renderControls = props => {
@@ -23,7 +31,15 @@ const ControlsList = props => (
   <ul id="horizontal-list">
     <li>
       <span>Element: </span>
-      <select name="elements" onChange={props.handleElementSelect}>
+      <select
+        className={css`
+          &:focus {
+            outline-color: ${props.color};
+          }
+        `}
+        name="elements"
+        onChange={props.handleElementSelect}
+      >
         {props.renderOptions()}
       </select>
     </li>
@@ -77,14 +93,7 @@ export const Controls = props => (
       <React.Fragment>
         <h1 className="heading">Elements of physics</h1>
         <div className="control-center">
-          <p
-            style={{
-              textAlign: 'justify',
-              fontSize: '18px',
-              lineHeight: 1.5,
-              fontWeight: 300
-            }}
-          >
+          <p style={contentStyles}>
             Learn about elements of physics with an interactive simulation.
           </p>
         </div>

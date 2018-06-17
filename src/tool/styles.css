@@ -4,9 +4,13 @@ body {
 	color: #626262;
 }
 
+h1 {
+	font-size: 40px;
+}
+
 .container {
 	display: grid;
-	grid-template-columns: 65% auto;
+	grid-template-columns: 3fr 2fr;
 	grid-gap: 0;
 	border: 1px solid #f8f8f8;
 	box-shadow: 8px 8px 8px #f8f8f8;
@@ -23,6 +27,7 @@ body {
 
 .content {
 	line-height: 1.6;
+	word-spacing: 2.5;
 }
 
 .content span {
@@ -34,7 +39,6 @@ body {
 }
 
 .controls {
-	margin: 0 auto;
 	padding: 5px 20px;
 	border-left: 1px solid #f8f8f8;
 }
@@ -115,7 +119,23 @@ ul#horizontal-list li {
 }
 
 @media only screen and (max-width: 450px) {
+	body {
+		padding: 10px 40px 10px 40px;
+	}
+
 	.heading {
-		font-size: 30px;
+		font-size: 20px;
+	}
+
+	.content {
+		line-height: 1.8;
+	}
+
+	.content span {
+		color: #8a8a8a;
+	}
+
+	.content p {
+		font-size: 18px;
 	}
 }

@@ -11,6 +11,23 @@ import { Content } from './Content'
 
 import './styles.css'
 
+const infoStyles = {
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: '20px',
+  fontSize: '20px',
+  padding: '5px',
+  fontWeight: 'bolder'
+}
+
+const Info = () => (
+  <div style={infoStyles}>
+    <strong>
+      Sorry! The simulator only works on larger displays currently.
+    </strong>
+  </div>
+)
+
 export class Layout extends React.Component {
   ref = React.createRef()
 
@@ -44,11 +61,12 @@ export class Layout extends React.Component {
     // Gravitational constant
     gConstant: 10,
     // Enable dragging of ball when <Gravity /> compnonent is mounted
-    move: false
+    move: false,
+    innerWidth: window.innerWidth
   }
 
   componentDidMount() {
-    if (window.innerWidth > 450) {
+    if (window.innerWidth > 859) {
       const { width, height } = this.ref.current.getBoundingClientRect()
 
       // Send this measures down to canvas to size accordingly
@@ -62,7 +80,7 @@ export class Layout extends React.Component {
   }
 
   componentDidUpdate() {
-    if (window.innerWidth > 450) {
+    if (window.innerWidth > 859) {
       const { height } = this.ref.current.getBoundingClientRect()
 
       // Update the canvas height when controls are updated.
@@ -81,7 +99,9 @@ export class Layout extends React.Component {
   }
 
   handleCanvasResize = e => {
-    if (window.innerWidth > 450) {
+    this.setState({ innerWidth: window.innerWidth })
+
+    if (window.innerWidth > 859) {
       const { width, height } = this.ref.current.getBoundingClientRect()
 
       const canvas = document.getElementById('defaultCanvas0')
@@ -153,64 +173,58 @@ export class Layout extends React.Component {
   handleMove = e => this.setState({ [e.target.name]: e.target.checked })
 
   render() {
-    if (window.innerWidth > 450) {
-      return (
-        <div>
-          <div className="container">
-            <div className="canvas-container" ref={this.ref}>
-              <Delay
-                wait={800}
-                render={waiting => {
-                  return waiting ? (
-                    <Loading />
-                  ) : (
-                    <Provider value={this.state}>
-                      <Canvas />
-                    </Provider>
-                  )
-                }}
-              />
-            </div>
-            <div
-              className="controls"
-              style={{ backgroundColor: hexToRgba(this.state.color, '10') }}
-            >
-              <Provider value={this.state}>
-                <Controls
-                  handleVelocity={this.handleVelocity}
-                  handleElementSelect={this.handleElementSelect}
-                  handleBallChange={this.handleBallChange}
-                  handleBallSize={this.handleBallSize}
-                  handleColorPicker={this.showColorPicker}
-                  handleColorChange={this.handleColorChange}
-                  handleBackgroundChange={this.handleBackgroundChange}
-                  handleBackground={this.showBackgroundColorPicker}
-                  handleFriction={this.handleFriction}
-                  handleGravity={this.handleGravity}
-                  handleFrictionCoefficient={this.handleFrictionCoefficient}
-                  handleGConstant={this.handleGConstant}
-                  handleMove={this.handleMove}
-                  renderOptions={this.renderOptions}
+    return (
+      <div>
+        {this.state.innerWidth > 859 ? (
+          <div>
+            <div className="container">
+              <div className="canvas-container" ref={this.ref}>
+                <Delay
+                  wait={800}
+                  render={waiting => {
+                    return waiting ? (
+                      <Loading />
+                    ) : (
+                      <Provider value={this.state}>
+                        <Canvas />
+                      </Provider>
+                    )
+                  }}
                 />
-              </Provider>
+              </div>
+              <div
+                className="controls"
+                style={{ backgroundColor: hexToRgba(this.state.color, '10') }}
+              >
+                <Provider value={this.state}>
+                  <Controls
+                    handleVelocity={this.handleVelocity}
+                    handleElementSelect={this.handleElementSelect}
+                    handleBallChange={this.handleBallChange}
+                    handleBallSize={this.handleBallSize}
+                    handleColorPicker={this.showColorPicker}
+                    handleColorChange={this.handleColorChange}
+                    handleBackgroundChange={this.handleBackgroundChange}
+                    handleBackground={this.showBackgroundColorPicker}
+                    handleFriction={this.handleFriction}
+                    handleGravity={this.handleGravity}
+                    handleFrictionCoefficient={this.handleFrictionCoefficient}
+                    handleGConstant={this.handleGConstant}
+                    handleMove={this.handleMove}
+                    renderOptions={this.renderOptions}
+                  />
+                </Provider>
+              </div>
             </div>
+            <Content />
           </div>
-          <Content />
-        </div>
-      )
-    } else {
-      return (
-        <div
-          style={{
-            backgroundColor: 'mistyrose',
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '50px'
-          }}
-        >
-          <p>Oops! Simulator can be accessed only on bigger screens 😅</p>
-        </div>
-      )
-    }
+        ) : (
+          <div>
+            <Info />
+            <Content />
+          </div>
+        )}
+      </div>
+    )
   }
 }
