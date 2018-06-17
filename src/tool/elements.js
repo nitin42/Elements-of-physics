@@ -68,6 +68,7 @@ export const ForceControls = props => (
         max="1000"
         value={props.balls}
         handler={props.handleBallChange}
+        tip="Set number of balls to be drawn on the canvas"
       />
     </li>
     <li>
@@ -75,6 +76,7 @@ export const ForceControls = props => (
         name="friction"
         checked={props.friction}
         handler={props.handleFriction}
+        tip="Enable friction"
       />
     </li>
     <li>
@@ -85,6 +87,7 @@ export const ForceControls = props => (
         step="0.1"
         value={props.frictionCoefficient}
         handler={props.handleFrictionCoefficient}
+        tip="Set a value for friction coefficient."
       />
     </li>
     <li>
@@ -92,6 +95,7 @@ export const ForceControls = props => (
         name="gravity"
         checked={props.gravity}
         handler={props.handleGravity}
+        tip="Enable gravity"
       />
     </li>
     <li>
@@ -102,8 +106,6 @@ export const ForceControls = props => (
         onClick={props.toggleModal}
         data-tip="Add a vector for applying force on a ball"
       />
-      <ReactTooltip place="right" effect="float" />
-
       <ul className="vector-list">
         {props.valArr.map((vector, key) => {
           if (vector.x === 0 && vector.y === 0) {
@@ -159,6 +161,7 @@ export const ForceControls = props => (
         </div>
       </Modal>
     </li>
+    <ReactTooltip place="right" effect="float" />
   </React.Fragment>
 )
 
@@ -170,6 +173,7 @@ export const AccelerationControls = props => (
       max="1000"
       value={props.balls}
       handler={props.handleBallChange}
+      tip="Set number of balls to be drawn on the canvas"
     />
   </li>
 )
@@ -177,7 +181,12 @@ export const AccelerationControls = props => (
 export const GravityControls = props => (
   <React.Fragment>
     <li>
-      <CheckBox name="move" checked={props.move} handler={props.handleMove} />
+      <CheckBox
+        name="move"
+        checked={props.move}
+        handler={props.handleMove}
+        tip="Enable dragging of ball"
+      />
     </li>
     <li>
       <Slider
@@ -187,7 +196,9 @@ export const GravityControls = props => (
         value={props.gConstant}
         handler={props.handleGConstant}
         disabled={props.move}
+        tip="Set the value for gravitation constant"
       />
     </li>
+    <ReactTooltip place="right" effect="float" />
   </React.Fragment>
 )

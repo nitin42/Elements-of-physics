@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Slider = props => (
   <React.Fragment>
-    <span>
+    <span data-tip={props.tip}>
       {props.name}
       {props.value}
     </span>

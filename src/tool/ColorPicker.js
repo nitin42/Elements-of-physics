@@ -26,7 +26,6 @@ export const ColorPicker = props => {
         data-tip={tooltip}
       />
       <ReactTooltip place="right" effect="float" />
-
       {props.show ? (
         <div
           style={{

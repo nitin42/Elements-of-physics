@@ -1,5 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
+import ReactTooltip from 'react-tooltip'
 
 import { Consumer } from './context'
 
@@ -69,6 +70,7 @@ const ControlsList = props => (
         value={props.ballSize}
         disabled={props.move}
         handler={props.handleBallSize}
+        tip="Set the size of a ball"
       />
     </li>
     <li>
@@ -79,6 +81,7 @@ const ControlsList = props => (
         value={props.maxVelocity}
         handler={props.handleVelocity}
         disabled={props.move}
+        tip="Limit the velocity of a ball"
       />
     </li>
     {renderControls(props)}
@@ -100,6 +103,7 @@ export const Controls = props => (
         <div style={{ marginTop: '10px' }}>
           <ControlsList {...state} {...props} />
         </div>
+        <ReactTooltip place="right" effect="float" />
       </React.Fragment>
     )}
   </Consumer>
