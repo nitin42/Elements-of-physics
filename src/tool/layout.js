@@ -133,7 +133,10 @@ export class Layout extends React.Component {
 
     this.setState(state => ({
       isModalOpen: !state.isModalOpen,
-      valArr: state.valArr.concat({ x: state.xVec, y: state.yVec }),
+      valArr:
+        state.xVec === 0 && state.yVec === 0
+          ? state.valArr
+          : state.valArr.concat({ x: state.xVec, y: state.yVec }),
       fnArr: state.fnArr.concat(
         new Function(
           'ball',

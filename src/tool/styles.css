@@ -132,8 +132,8 @@ input[type='text'] {
 }
 
 .vector-list {
-	list-style-type: none;
-	padding: 10px;
+	list-style-type: square;
+	padding: 20px;
 }
 
 .vector-list li {

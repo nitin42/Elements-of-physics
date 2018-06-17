@@ -1,10 +1,14 @@
 import React from 'react'
 import { BlockPicker } from 'react-color'
+import ReactTooltip from 'react-tooltip'
 
 import { capitalize } from './utils'
 
 export const ColorPicker = props => {
   const pickerOffset = props.name === 'Color: ' ? '22px' : '-35px'
+  const tooltip = `Pick a ${
+    props.name === 'Color: ' ? 'color for ball.' : 'background color for canvas'
+  }`
 
   return (
     <React.Fragment>
@@ -19,7 +23,10 @@ export const ColorPicker = props => {
           marginBottom: -4
         }}
         onClick={props.clickHandler}
+        data-tip={tooltip}
       />
+      <ReactTooltip place="right" effect="float" />
+
       {props.show ? (
         <div
           style={{

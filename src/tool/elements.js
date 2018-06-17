@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'react-responsive-modal'
+import ReactTooltip from 'react-tooltip'
 
 import { Acceleration, Force, Gravity } from '../'
 import { Slider } from './Slider'
@@ -99,21 +100,29 @@ export const ForceControls = props => (
         className="fas fa-plus-circle"
         style={{ cursor: 'pointer' }}
         onClick={props.toggleModal}
+        data-tip="Add a vector for applying force on a ball"
       />
+      <ReactTooltip place="right" effect="float" />
+
       <ul className="vector-list">
-        {props.valArr.map((force, key) => (
-          <li className="vector-animation" key={key}>
-            <strong>
-              F<sub>{key + 1}&nbsp;&nbsp;</sub>-&nbsp;
-            </strong>
-            {force.x}x + {force.y}y&nbsp;&nbsp;
-            <i
-              className="fas fa-minus-circle minus-icon"
-              id="vector-list"
-              onClick={e => props.deleteVectors(key)}
-            />
-          </li>
-        ))}
+        {props.valArr.map((vector, key) => {
+          if (vector.x === 0 && vector.y === 0) {
+          } else {
+            return (
+              <li className="vector-animation" key={key}>
+                <strong>
+                  F<sub>{key + 1}&nbsp;&nbsp;</sub>-&nbsp;
+                </strong>
+                {vector.x}x + {vector.y}y&nbsp;&nbsp;
+                <i
+                  className="fas fa-minus-circle minus-icon"
+                  id="vector-list"
+                  onClick={e => props.deleteVectors(key)}
+                />
+              </li>
+            )
+          }
+        })}
       </ul>
       <Modal
         open={props.isModalOpen}
