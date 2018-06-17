@@ -8,25 +8,9 @@ import { Loading } from './Loading'
 import { Canvas } from './canvas'
 import { Controls } from './controls'
 import { Content } from './Content'
+import { Info } from './Info'
 
 import './styles.css'
-
-const infoStyles = {
-  display: 'flex',
-  justifyContent: 'center',
-  marginTop: '20px',
-  fontSize: '20px',
-  padding: '5px',
-  fontWeight: 'bolder'
-}
-
-const Info = () => (
-  <div style={infoStyles}>
-    <strong>
-      Sorry! The simulator only works on larger displays currently.
-    </strong>
-  </div>
-)
 
 export class Layout extends React.Component {
   ref = React.createRef()
@@ -46,9 +30,11 @@ export class Layout extends React.Component {
     ballSize: 20,
     // Maximum velocity
     maxVelocity: 10,
+    // Ball color picker
     showColorPicker: false,
     // Ball color
     color: '#ff69b4',
+    // Canvas color picker
     showBackgroundPicker: false,
     // Canvas color
     background: '#5d5d5d',
@@ -62,11 +48,24 @@ export class Layout extends React.Component {
     gConstant: 10,
     // Enable dragging of ball when <Gravity /> compnonent is mounted
     move: false,
-    innerWidth: window.innerWidth
+    // Screen width
+    innerWidth: window.innerWidth,
+    // Modal for creating a vector for applying force on a ball
+    isModalOpen: false,
+    // Store the function for applying force on each ball
+    fnArr: [],
+    // Store the values x and y position for each ball
+    valArr: [],
+    //
+    forces: [],
+    // X position of the ball
+    xVec: 0,
+    // Y position of the ball
+    yVec: 0
   }
 
   componentDidMount() {
-    if (window.innerWidth > 859) {
+    if (window.innerWidth > 850) {
       const { width, height } = this.ref.current.getBoundingClientRect()
 
       // Send this measures down to canvas to size accordingly
@@ -80,7 +79,7 @@ export class Layout extends React.Component {
   }
 
   componentDidUpdate() {
-    if (window.innerWidth > 859) {
+    if (window.innerWidth > 850) {
       const { height } = this.ref.current.getBoundingClientRect()
 
       // Update the canvas height when controls are updated.
@@ -101,7 +100,7 @@ export class Layout extends React.Component {
   handleCanvasResize = e => {
     this.setState({ innerWidth: window.innerWidth })
 
-    if (window.innerWidth > 859) {
+    if (window.innerWidth > 850) {
       const { width, height } = this.ref.current.getBoundingClientRect()
 
       const canvas = document.getElementById('defaultCanvas0')
@@ -123,6 +122,55 @@ export class Layout extends React.Component {
       )
     })
   }
+
+  // Open or close the apply force modal
+  toggleModal = () =>
+    this.setState(state => ({ isModalOpen: !state.isModalOpen }))
+
+  // Fired when the vector inputs (x and y position values) are filled
+  updateVector = e => {
+    e.preventDefault()
+
+    this.setState(state => ({
+      isModalOpen: !state.isModalOpen,
+      valArr: state.valArr.concat({ x: state.xVec, y: state.yVec }),
+      fnArr: state.fnArr.concat(
+        new Function(
+          'ball',
+          'Vector',
+          'a',
+          'b',
+          'ball.applyForce(new Vector(a, b))'
+        )
+      ),
+      // Reset the input field for vectors
+      xVec: 0,
+      yVec: 0
+    }))
+  }
+
+  // Delete a force vector
+  deleteVectors = key => {
+    const fn = [...this.state.fnArr]
+    const val = [...this.state.valArr]
+
+    const fnIndex = fn.indexOf(key)
+    const valIndex = val.indexOf(key)
+
+    fn.splice(fnIndex, 1)
+    val.splice(valIndex, 1)
+
+    this.setState(state => ({
+      fnArr: fn,
+      valArr: val
+    }))
+  }
+
+  // x vector position
+  updateXVec = e => this.setState({ xVec: e.target.value })
+
+  // y vector position
+  updateYVec = e => this.setState({ yVec: e.target.value })
 
   // Handler for updating currently selected element
   // Also update the state for drag because when it is enabled, sliders are disabled. So for every new element, reset that state
@@ -175,8 +223,8 @@ export class Layout extends React.Component {
   render() {
     return (
       <div>
-        {this.state.innerWidth > 859 ? (
-          <div>
+        {this.state.innerWidth > 850 ? (
+          <React.Fragment>
             <div className="container">
               <div className="canvas-container" ref={this.ref}>
                 <Delay
@@ -212,12 +260,18 @@ export class Layout extends React.Component {
                     handleGConstant={this.handleGConstant}
                     handleMove={this.handleMove}
                     renderOptions={this.renderOptions}
+                    isModalOpen={this.state.isModalOpen}
+                    toggleModal={this.toggleModal}
+                    updateVector={this.updateVector}
+                    deleteVectors={this.deleteVectors}
+                    updateXVec={this.updateXVec}
+                    updateYVec={this.updateYVec}
                   />
                 </Provider>
               </div>
             </div>
             <Content />
-          </div>
+          </React.Fragment>
         ) : (
           <div>
             <Info />
