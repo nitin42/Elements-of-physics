@@ -111,14 +111,17 @@ export const ForceControls = props => (
           if (vector.x === 0 && vector.y === 0) {
           } else {
             return (
-              <li className="vector-animation" key={key}>
+              <li
+                className="vector-animation"
+                id={`vector-item-${key}`}
+                key={key}
+              >
                 <strong>
                   F<sub>{key + 1}&nbsp;&nbsp;</sub>-&nbsp;
                 </strong>
                 {vector.x}x + {vector.y}y&nbsp;&nbsp;
                 <i
                   className="fas fa-minus-circle minus-icon"
-                  id="vector-list"
                   onClick={e => props.deleteVectors(key)}
                 />
               </li>

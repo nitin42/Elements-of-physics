@@ -164,10 +164,12 @@ span {
 @keyframes fadeAway {
 	from {
 		opacity: 1;
+		transform: translateX(0);
 	}
 
 	to {
 		opacity: 0;
+		transform: translateX(400px);
 	}
 }
 
@@ -202,6 +204,11 @@ span {
 	height: 25px;
 	border-radius: 50%;
 	cursor: pointer;
+}
+
+.remove-vector {
+	cursor: pointer;
+	animation: fadeAway 2s;
 }
 
 @media only screen and (max-width: 450px) {

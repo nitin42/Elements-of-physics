@@ -15,6 +15,7 @@
     "react-color": "^2.14.1",
     "react-dom": "^16.4.0",
     "react-responsive-modal": "^3.0.3",
+    "react-toggled": "^1.2.7",
     "react-tooltip": "^3.6.1"
   },
   "devDependencies": {
