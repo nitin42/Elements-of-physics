@@ -5,10 +5,41 @@ body {
 }
 
 h1 {
+	display: inline;
 	font-size: 50px;
 	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.home-content p {
+	font-size: 25px;
+	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	line-height: 1.7;
+	word-spacing: 1.5;
+}
+
+.home-content span {
+	font-size: 25px;
+	border-bottom: 2px solid #eeaeca;
+	padding: 1.5px;
+}
+
+.home-content h1 {
+	font-size: 72px;
+}
+
+p > .github-link {
+	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	border-bottom: 2px solid #eeaeca;
+}
+
+.home-content {
+	text-align: justify;
 }
 
 /* Main grid container */
@@ -35,6 +66,7 @@ h1 {
 .content {
 	line-height: 1.6;
 	word-spacing: 2;
+	margin-top: 20px;
 }
 
 .content span {

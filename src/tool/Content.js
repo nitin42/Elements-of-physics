@@ -3,7 +3,9 @@ import React from 'react'
 export const Content = props => (
   <React.Fragment>
     <div className="content">
-      <h1>Elements of physics</h1>
+      <h1 style={{ borderBottom: '3.5px solid #eeaeca', padding: '3px' }}>
+        Introduction
+      </h1>
       <p>
         Welcome to an interactive simulation describing different elements of
         physics like <span>Acceleration</span>, <span>Force</span>,{' '}
@@ -16,7 +18,9 @@ export const Content = props => (
         two points A and B, then the vector will be difference between point A
         and point B.
       </p>
-      <h1>Acceleration</h1>
+      <h1 style={{ borderBottom: '3.5px solid #eeaeca', padding: '3px' }}>
+        Acceleration
+      </h1>
       <p>
         Acceleration is defined as change in velocity over a period of time. In
         the above simulator, if you choose the element Acceleration from the
@@ -36,9 +40,13 @@ export const Content = props => (
         So when this constant force acts on the ball, it causes it to
         accelerate.
       </p>
-      <h1>Force</h1>
+      <h1 style={{ borderBottom: '3.5px solid #eeaeca', padding: '3px' }}>
+        Force
+      </h1>
       <p>A force is a vector causes an object with mass to accelerate.</p>
-      <h1>Gravity</h1>
+      <h1 style={{ borderBottom: '3.5px solid #eeaeca', padding: '3px' }}>
+        Gravity
+      </h1>
       <p>The force that pulls down all the matter.</p>
     </div>
   </React.Fragment>

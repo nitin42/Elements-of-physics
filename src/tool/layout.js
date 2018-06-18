@@ -1,6 +1,7 @@
 import React from 'react'
 import hexToRgba from 'hex-rgba'
 import { css } from 'emotion'
+import { Link } from '@reach/router'
 
 import { Provider } from './context'
 
@@ -12,6 +13,7 @@ import { Content } from './Content'
 import { Info } from './Info'
 
 import './styles.css'
+import { StyledLink } from './StyledLink'
 
 export class Layout extends React.Component {
   ref = React.createRef()
@@ -66,6 +68,7 @@ export class Layout extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     if (window.innerWidth > 850) {
       const { width, height } = this.ref.current.getBoundingClientRect()
 
@@ -263,12 +266,30 @@ export class Layout extends React.Component {
 
   render() {
     return (
-      <div>
+      <div
+        className={css`
+          animation: fadeIn 0.9s ease-in;
+
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateX(-400px) rotateZ(-180deg);
+            }
+
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        `}
+      >
+        <div style={{ position: 'relative', left: -70, top: -25 }}>
+          <StyledLink to="/" fontSize={10}>
+            <i className="fas fa-arrow-left" />&nbsp;Back
+          </StyledLink>{' '}
+        </div>
         {this.state.innerWidth > 850 ? (
           <React.Fragment>
-            {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
-							<h1>Welcome to Elements of Physics</h1>
-						</div> */}
             <div className="container">
               <div className="canvas-container" ref={this.ref}>
                 <Delay
