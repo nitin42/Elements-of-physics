@@ -3819,6 +3819,14 @@ react-responsive-modal@^3.0.3:
     react-minimalist-portal "^2.2.0"
     react-transition-group "^2.3.1"
 
+react-toastify@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-4.1.0.tgz#0d14d3cf36523ade27a2edd5323a9db373dce4c5"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+    react-transition-group "^2.2.1"
+
 react-toggled@^1.2.7:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/react-toggled/-/react-toggled-1.2.7.tgz#be1b72058358dd1ffe11811e4427e5c9cf140c10"
@@ -3830,7 +3838,7 @@ react-tooltip@^3.6.1:
     classnames "^2.2.5"
     prop-types "^15.6.0"
 
-react-transition-group@^2.3.1:
+react-transition-group@^2.2.1, react-transition-group@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.3.1.tgz#31d611b33e143a5e0f2d94c348e026a0f3b474b6"
   dependencies:

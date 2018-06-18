@@ -1,6 +1,5 @@
 import React from 'react'
 import hexToRgba from 'hex-rgba'
-import ReactTooltip from 'react-tooltip'
 
 import { Provider } from './context'
 

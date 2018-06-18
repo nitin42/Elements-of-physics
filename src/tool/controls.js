@@ -40,6 +40,11 @@ const ControlsList = props => (
         `}
         name="elements"
         onChange={props.handleElementSelect}
+        data-tip={
+          props.currentElement === 'Acceleration'
+            ? 'Move the mouse over the canvas.'
+            : ''
+        }
       >
         {props.renderOptions()}
       </select>
