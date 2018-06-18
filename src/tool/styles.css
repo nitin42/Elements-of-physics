@@ -64,14 +64,6 @@ h1 {
 	}
 }
 
-/* Modal for apply force vector */
-.modal {
-	padding: 35px;
-	width: 50%;
-	font-family: 'Quicksand', sans-serif;
-	font-size: 20px;
-}
-
 /* Vector input fields */
 .vector-input {
 	display: flex;
@@ -85,23 +77,6 @@ input[type='text'] {
 	width: 50px;
 	font-size: 20px;
 	border-bottom: 1.5px solid #bebebe;
-	outline: none;
-}
-
-.vector-button {
-	border: 2px solid black;
-	background-color: white;
-	color: black;
-	font-size: 20px;
-	padding: 10px;
-}
-
-.vector-button:hover {
-	background-color: black;
-	color: white;
-}
-
-.vector-button:focus {
 	outline: none;
 }
 

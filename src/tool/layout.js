@@ -1,5 +1,6 @@
 import React from 'react'
 import hexToRgba from 'hex-rgba'
+import ReactTooltip from 'react-tooltip'
 
 import { Provider } from './context'
 
@@ -23,7 +24,7 @@ export class Layout extends React.Component {
     // Elements of physics
     elements: ['Acceleration', 'Force', 'Gravity'],
     // Current selected element
-    currentElement: 'Force',
+    currentElement: 'Acceleration',
     // Balls drawn on canvas
     balls: 100,
     // Size of ball (width and height)
@@ -61,7 +62,8 @@ export class Layout extends React.Component {
     // X position of the ball
     xVec: 0,
     // Y position of the ball
-    yVec: 0
+    yVec: 0,
+    firstMount: 0
   }
 
   componentDidMount() {
@@ -69,10 +71,11 @@ export class Layout extends React.Component {
       const { width, height } = this.ref.current.getBoundingClientRect()
 
       // Send this measures down to canvas to size accordingly
-      this.setState({
+      this.setState(state => ({
         width,
-        height
-      })
+        height,
+        firstMount: state.firstMount + 1
+      }))
 
       window.addEventListener('resize', this.handleCanvasResize, false)
     }
@@ -129,27 +132,48 @@ export class Layout extends React.Component {
 
   // Fired when the vector inputs (x and y position values) are filled
   updateVector = e => {
-    e.preventDefault()
-
-    this.setState(state => ({
-      isModalOpen: !state.isModalOpen,
-      valArr:
-        state.xVec === 0 && state.yVec === 0
-          ? state.valArr
-          : state.valArr.concat({ x: state.xVec, y: state.yVec }),
-      fnArr: state.fnArr.concat(
-        new Function(
-          'ball',
-          'Vector',
-          'a',
-          'b',
-          'ball.applyForce(new Vector(a, b))'
+    if (this.state.xVec === 0 && this.state.yVec === 0) {
+      document
+        .getElementById('vector-button')
+        .animate(
+          [
+            { transform: 'translate3d(-1px, 0, 0)' },
+            { transform: 'translate3d(2px, 0, 0)' },
+            { transform: 'translate3d(-4px, 0, 0)' },
+            { transform: 'translate3d(4px, 0, 0)' },
+            { transform: 'translate3d(-4px, 0, 0)' },
+            { transform: 'translate3d(4px, 0, 0)' },
+            { transform: 'translate3d(-4px, 0, 0)' },
+            { transform: 'translate3d(2px, 0, 0)' },
+            { transform: 'translate3d(-1px, 0, 0)' }
+          ],
+          {
+            easing: 'cubic-bezier(.36,.07,.19,.97)',
+            fill: 'both',
+            duration: 800
+          }
         )
-      ),
-      // Reset the input field for vectors
-      xVec: 0,
-      yVec: 0
-    }))
+    } else {
+      this.setState(state => ({
+        isModalOpen: !state.isModalOpen,
+        valArr:
+          state.xVec === 0 && state.yVec === 0
+            ? state.valArr
+            : state.valArr.concat({ x: state.xVec, y: state.yVec }),
+        fnArr: state.fnArr.concat(
+          new Function(
+            'ball',
+            'Vector',
+            'a',
+            'b',
+            'ball.applyForce(new Vector(a, b))'
+          )
+        ),
+        // Reset the input field for vectors
+        xVec: 0,
+        yVec: 0
+      }))
+    }
   }
 
   // Delete a force vector

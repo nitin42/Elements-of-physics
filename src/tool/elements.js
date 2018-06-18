@@ -1,6 +1,8 @@
 import React from 'react'
 import Modal from 'react-responsive-modal'
 import ReactTooltip from 'react-tooltip'
+import { css } from 'emotion'
+import hexToRgba from 'hex-rgba'
 
 import { Acceleration, Force, Gravity } from '../'
 import { Slider } from './Slider'
@@ -132,7 +134,14 @@ export const ForceControls = props => (
       <Modal
         open={props.isModalOpen}
         onClose={props.toggleModal}
-        classNames={{ modal: 'modal' }}
+        classNames={{
+          modal: css`
+            padding: 35px;
+            width: 50%;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 20px;
+          `
+        }}
       >
         <div>
           <p>
@@ -157,7 +166,28 @@ export const ForceControls = props => (
             force on each ball.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <button className="vector-button" onClick={props.updateVector}>
+            <button
+              id="vector-button"
+              className={css`
+                border: 2px solid black;
+                background-color: white;
+                color: black;
+                font-size: 20px;
+                padding: 10px;
+                border-radius: 2px;
+                transition: 0.4s;
+
+                &:hover {
+                  background-color: black;
+                  color: white;
+                }
+
+                &:focus {
+                  outline: none;
+                }
+              `}
+              onClick={props.updateVector}
+            >
               Apply vector
             </button>
           </div>
