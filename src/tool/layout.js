@@ -23,7 +23,7 @@ export class Layout extends React.Component {
     // Elements of physics
     elements: ['Acceleration', 'Force', 'Gravity'],
     // Current selected element
-    currentElement: 'Acceleration',
+    currentElement: 'Force',
     // Balls drawn on canvas
     balls: 100,
     // Size of ball (width and height)
@@ -157,16 +157,30 @@ export class Layout extends React.Component {
     const fn = [...this.state.fnArr]
     const val = [...this.state.valArr]
 
-    const fnIndex = fn.indexOf(key)
-    const valIndex = val.indexOf(key)
+    fn.splice(fn.indexOf(key), 1)
+    val.splice(val.indexOf(key), 1)
 
-    fn.splice(fnIndex, 1)
-    val.splice(valIndex, 1)
+    // Start animation on node removal!
+    const animate = document
+      .getElementById(`vector-item-${key}`)
+      .animate(
+        [
+          { opacity: 1, transform: 'translateX(0px)' },
+          { opacity: 0, transform: 'translateX(400px)' }
+        ],
+        {
+          duration: 600,
+          iterations: 1,
+          easing: 'ease-in-out'
+        }
+      )
 
-    this.setState(state => ({
-      fnArr: fn,
-      valArr: val
-    }))
+    // After the animation, update the state arrays for vector functions and values
+    animate.onfinish = () =>
+      this.setState(state => ({
+        fnArr: fn,
+        valArr: val
+      }))
   }
 
   // x vector position
