@@ -1,5 +1,6 @@
 import React from 'react'
 import hexToRgba from 'hex-rgba'
+import { css } from 'emotion'
 
 import { Provider } from './context'
 
@@ -33,11 +34,11 @@ export class Layout extends React.Component {
     // Ball color picker
     showColorPicker: false,
     // Ball color
-    color: '#ff69b4',
+    color: '#ff8a65',
     // Canvas color picker
     showBackgroundPicker: false,
     // Canvas color
-    background: '#5d5d5d',
+    background: '#d9e3f0',
     // Enable frictional force
     friction: false,
     // Friction coefficient value
@@ -61,8 +62,7 @@ export class Layout extends React.Component {
     // X position of the ball
     xVec: 0,
     // Y position of the ball
-    yVec: 0,
-    firstMount: 0
+    yVec: 0
   }
 
   componentDidMount() {
@@ -70,11 +70,10 @@ export class Layout extends React.Component {
       const { width, height } = this.ref.current.getBoundingClientRect()
 
       // Send this measures down to canvas to size accordingly
-      this.setState(state => ({
+      this.setState({
         width,
-        height,
-        firstMount: state.firstMount + 1
-      }))
+        height
+      })
 
       window.addEventListener('resize', this.handleCanvasResize, false)
     }
@@ -116,7 +115,9 @@ export class Layout extends React.Component {
 
   // render the list of elements option
   renderOptions = () => {
-    return this.state.elements.map((element, i) => {
+    const { elements } = this.state
+
+    return elements.map((element, i) => {
       return (
         <option value={element} key={i}>
           {element}
@@ -265,6 +266,9 @@ export class Layout extends React.Component {
       <div>
         {this.state.innerWidth > 850 ? (
           <React.Fragment>
+            {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
+							<h1>Welcome to Elements of Physics</h1>
+						</div> */}
             <div className="container">
               <div className="canvas-container" ref={this.ref}>
                 <Delay
@@ -282,7 +286,7 @@ export class Layout extends React.Component {
               </div>
               <div
                 className="controls"
-                style={{ backgroundColor: hexToRgba(this.state.color, '10') }}
+                style={{ backgroundColor: hexToRgba(this.state.color, '4') }}
               >
                 <Provider value={this.state}>
                   <Controls

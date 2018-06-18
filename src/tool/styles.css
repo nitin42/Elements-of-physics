@@ -5,7 +5,10 @@ body {
 }
 
 h1 {
-	font-size: 40px;
+	font-size: 50px;
+	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 /* Main grid container */
@@ -14,13 +17,13 @@ h1 {
 	grid-template-columns: 3fr 2fr;
 	grid-gap: 0;
 	border: 1px solid #f8f8f8;
-	box-shadow: 8px 8px 8px #f8f8f8;
+	box-shadow: 9px 9px 9px #f8f8f8;
 }
 
 /* Heading on canvas and content */
 .heading {
 	font-family: 'Quicksand', cursive;
-	font-size: 40px;
+	font-size: 45px;
 }
 
 /* Main canvas */
@@ -31,7 +34,7 @@ h1 {
 /* Simulator content */
 .content {
 	line-height: 1.6;
-	word-spacing: 2.5;
+	word-spacing: 2;
 }
 
 .content span {

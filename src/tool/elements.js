@@ -162,25 +162,24 @@ export const ForceControls = props => (
           </div>
           <p>
             After you've have defined the vector, a force with this vector will
-            be applied on each ball. Click the below button to see the effect of
-            force on each ball.
+            be applied on each ball. Click the below button to apply the vector
+            and see the effect of force on each ball.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button
               id="vector-button"
               className={css`
-                border: 2px solid black;
-                background-color: white;
-                color: black;
+                color: white;
                 font-size: 20px;
                 padding: 10px;
-                border-radius: 2px;
+                border-radius: 50px;
                 transition: 0.4s;
-
-                &:hover {
-                  background-color: black;
-                  color: white;
-                }
+                background: linear-gradient(
+                  90deg,
+                  rgba(131, 58, 180, 1) 0%,
+                  rgba(253, 29, 29, 1) 50%,
+                  rgba(252, 176, 69, 1) 100%
+                );
 
                 &:focus {
                   outline: none;
