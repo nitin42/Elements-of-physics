@@ -4,7 +4,7 @@ import ReactTooltip from 'react-tooltip'
 import { css } from 'emotion'
 import hexToRgba from 'hex-rgba'
 
-import { Acceleration, Force, Gravity } from '../'
+import { Acceleration, Force, Gravity } from '../../../'
 import { Slider } from './Slider'
 import { CheckBox } from './CheckBox'
 
@@ -45,6 +45,7 @@ export const AccelerationCanvas = props => (
     maxVelocity={props.maxVelocity}
     background={props.background}
     ballSize={{ width: props.ballSize, height: props.ballSize }}
+    magnitude={props.magnitude}
   />
 )
 
@@ -172,8 +173,10 @@ export const ForceControls = props => (
                 color: white;
                 font-size: 20px;
                 padding: 10px;
+                border: none;
                 border-radius: 50px;
                 transition: 0.4s;
+                cursor: pointer;
                 background: linear-gradient(
                   90deg,
                   rgba(131, 58, 180, 1) 0%,
@@ -198,16 +201,29 @@ export const ForceControls = props => (
 )
 
 export const AccelerationControls = props => (
-  <li>
-    <Slider
-      name="Balls: "
-      min="1"
-      max="1000"
-      value={props.balls}
-      handler={props.handleBallChange}
-      tip="Set number of balls to be drawn on the canvas"
-    />
-  </li>
+  <React.Fragment>
+    <li>
+      <Slider
+        name="Balls: "
+        min="1"
+        max="1000"
+        value={props.balls}
+        handler={props.handleBallChange}
+        tip="Set number of balls to be drawn on the canvas"
+      />
+    </li>
+    <li>
+      <Slider
+        name="Acceleration magnitude: "
+        min="0.1"
+        max="3"
+        step="0.1"
+        value={props.magnitude}
+        handler={props.handleMagnitude}
+        tip="Set the magnitude of acceleration vector"
+      />
+    </li>
+  </React.Fragment>
 )
 
 export const GravityControls = props => (

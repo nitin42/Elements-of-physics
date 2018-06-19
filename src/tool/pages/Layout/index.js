@@ -5,15 +5,15 @@ import { Link } from '@reach/router'
 
 import { Provider } from './context'
 
-import { Delay } from './Delay'
+import { Delay } from '../../Delay'
 import { Loading } from './Loading'
 import { Canvas } from './canvas'
 import { Controls } from './controls'
 import { Content } from './Content'
 import { Info } from './Info'
+import { StyledLink } from '../../StyledLink'
 
-import './styles.css'
-import { StyledLink } from './StyledLink'
+import '../../styles.css'
 
 export class Layout extends React.Component {
   ref = React.createRef()
@@ -64,11 +64,14 @@ export class Layout extends React.Component {
     // X position of the ball
     xVec: 0,
     // Y position of the ball
-    yVec: 0
+    yVec: 0,
+    // Acceleration magnitude
+    magnitude: 0.4
   }
 
   componentDidMount() {
     window.scrollTo(0, 0)
+
     if (window.innerWidth > 850) {
       const { width, height } = this.ref.current.getBoundingClientRect()
 
@@ -100,6 +103,8 @@ export class Layout extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleCanvasResize, false)
   }
+
+  handleMagnitude = e => this.setState({ magnitude: Number(e.target.value) })
 
   handleCanvasResize = e => {
     this.setState({ innerWidth: window.innerWidth })
@@ -267,21 +272,25 @@ export class Layout extends React.Component {
   render() {
     return (
       <div
-        className={css`
-          animation: fadeIn 0.9s ease-in;
+        className={
+          this.state.innerWidth > 850
+            ? css`
+                animation: fadeIn 0.9s ease-in;
 
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-              transform: translateX(-400px) rotateZ(-180deg);
-            }
+                @keyframes fadeIn {
+                  from {
+                    opacity: 0;
+                    transform: rotateZ(180deg);
+                  }
 
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-        `}
+                  to {
+                    opacity: 1;
+                    transform: rotateZ(0deg);
+                  }
+                }
+              `
+            : 'simulator'
+        }
       >
         <div style={{ position: 'relative', left: -70, top: -25 }}>
           <StyledLink to="/" fontSize={10}>
@@ -324,6 +333,7 @@ export class Layout extends React.Component {
                     handleFrictionCoefficient={this.handleFrictionCoefficient}
                     handleGConstant={this.handleGConstant}
                     handleMove={this.handleMove}
+                    handleMagnitude={this.handleMagnitude}
                     renderOptions={this.renderOptions}
                     isModalOpen={this.state.isModalOpen}
                     toggleModal={this.toggleModal}
@@ -335,12 +345,13 @@ export class Layout extends React.Component {
                 </Provider>
               </div>
             </div>
-            <Content />
+            <Provider value={this.state}>
+              <Content />
+            </Provider>
           </React.Fragment>
         ) : (
           <div>
             <Info />
-            <Content />
           </div>
         )}
       </div>

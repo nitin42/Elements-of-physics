@@ -49,6 +49,7 @@ export type ForceProps = {
 export type AccelerationProps = {
   // Number of balls in the canvas
   balls: number,
+  magnitude: number,
   ...$Exact<commonProps>
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { capitalize } from './utils'
+import { capitalize } from '../../utils'
 
 export const CheckBox = props => (
   <React.Fragment>

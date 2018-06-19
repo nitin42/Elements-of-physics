@@ -49,7 +49,7 @@ export class Ball {
     this.dir.normalize()
 
     // Scale it by 0.5 units
-    this.dir.mult(0.5)
+    this.dir.mult(this.props.magnitude) // this.props.magnitude
 
     // Changing location is velocity and changing velocity is acceleration, hence:
     // Assuming the mass is 1 (in pixel world, so F=A)

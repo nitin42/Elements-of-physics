@@ -1,29 +1,81 @@
 body {
 	font-family: 'Quicksand', sans-serif;
 	padding: 40px 80px 40px 80px;
-	color: #626262;
 }
 
 h1 {
-	display: inline;
-	font-size: 50px;
+	font-size: 40px;
 	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.content h1 {
+	display: inline;
+	border-bottom: 4px solid #f1bed4;
+}
+
+h2 {
+	display: inline;
+	font-size: 30px;
+	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	border-bottom: 4px solid #f1bed4;
+}
+
+h3 {
+	display: inline;
+	font-size: 27px;
+	padding: 3px;
+	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-weight: bolder;
+	border-bottom: 4px solid #f1bed4;
+}
+
+ul {
+	list-style: none;
+}
+
+.content-acceleration {
+	margin-top: 30px;
+}
+
+.content p {
+	font-size: 20px;
+	color: #94bbe9;
+	line-height: 1.7;
+	word-spacing: 1.5;
+}
+
+blockquote {
+	font-size: 20px;
+	color: #eeaeca;
+	border-left: 4px solid #eeaeca;
+	padding: 10px;
+	margin: 12px;
+	/* background: #fdf6f9; */
+}
+
+.content span {
+	font-size: 20px;
+	color: #94bbe9;
+	padding: 1.5px;
 }
 
 .home-content p {
 	font-size: 25px;
-	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	color: #94bbe9;
 	line-height: 1.7;
 	word-spacing: 1.5;
 }
 
 .home-content span {
 	font-size: 25px;
-	border-bottom: 2px solid #eeaeca;
+	color: #eeaeca;
+	/* border-bottom: 2px dotted #eeaeca; */
 	padding: 1.5px;
 }
 
@@ -32,10 +84,21 @@ h1 {
 }
 
 p > .github-link {
-	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	color: #eeaeca;
+	text-decoration: none;
+	border-bottom: 2px dotted #eeaeca;
+}
+
+a#profile {
+	color: #eeaeca;
+	text-decoration: none;
 	border-bottom: 2px solid #eeaeca;
+}
+
+a#article {
+	color: #eeaeca;
+	text-decoration: none;
+	border-bottom: 2px dotted #eeaeca;
 }
 
 .home-content {
@@ -70,11 +133,7 @@ p > .github-link {
 }
 
 .content span {
-	color: #8a8a8a;
-}
-
-.content p {
-	font-size: 20px;
+	color: #eeaeca;
 }
 
 /* Controls for updating the canvas */
@@ -216,7 +275,7 @@ span {
 	cursor: pointer;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
 	body {
 		padding: 10px 40px 10px 40px;
 	}
@@ -235,5 +294,13 @@ span {
 
 	.content p {
 		font-size: 18px;
+	}
+
+	h1 {
+		font-size: 25px;
+	}
+
+	.nitin-tulswani > a {
+		font-size: 20px;
 	}
 }

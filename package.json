@@ -32,7 +32,7 @@
     "prettier": "^1.13.4"
   },
   "scripts": {
-    "start": "parcel ./index.html",
+    "start": "parcel ./public/index.html",
     "precommit": "lint-staged",
     "flow": "flow",
     "format": "find src -name '*.js' | xargs ./node_modules/.bin/prettier --write --no-semi --single-quote"

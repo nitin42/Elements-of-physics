@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from 'emotion'
 import { Link } from '@reach/router'
-import { StyledLink } from './StyledLink'
+import { StyledLink } from '../../StyledLink'
 
 const styles = {
   display: 'flex',
@@ -13,11 +13,11 @@ export const Home = () => (
     <div style={styles}>
       <h1>Elements of Physics</h1>
     </div>
-    <div style={styles}>
+    <div style={styles} className="nitin-tulswani">
       <p>
         by{' '}
-        <a href="https://twitter.com/NTulswani" target="_blank">
-          <i>Nitin Tulswani&nbsp;</i>
+        <a id="profile" href="https://twitter.com/NTulswani" target="_blank">
+          <i>Nitin Tulswani</i>
         </a>
       </p>
     </div>
@@ -34,9 +34,12 @@ export const Home = () => (
       the canvas.
     </p>
     <p>
-      Each element is interactive and fun to play with so you probably won't get
-      bore. Although there is some theory behind each element, but it's written
-      in a very concise and compressed way.
+      Each element is interactive and fun to play with. Though there is some
+      theory behind each element, but it's written in a very concise and
+      compressed way (you probably won't get bore). The scope for the
+      mathematics used behind the animations is also kept minimal so as to make
+      it easier to grasp the core concepts without much cognitive load, which
+      means less symbolic expressions.
     </p>
     <p>
       Source code for the tools and animations used in the simulator can be
@@ -47,8 +50,9 @@ export const Home = () => (
         target="_blank"
       >
         here
-      </a>. I hope you enjoy!
+      </a>.
     </p>
+    <p>I hope you enjoy!</p>
     <div style={{ ...styles, marginTop: '60px' }}>
       <StyledLink to="layout" width="8%">
         Start

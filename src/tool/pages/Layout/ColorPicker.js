@@ -2,7 +2,7 @@ import React from 'react'
 import { BlockPicker } from 'react-color'
 import ReactTooltip from 'react-tooltip'
 
-import { capitalize } from './utils'
+import { capitalize } from '../../utils'
 
 export const ColorPicker = props => {
   const pickerOffset = props.name === 'Color: ' ? '22px' : '-35px'
