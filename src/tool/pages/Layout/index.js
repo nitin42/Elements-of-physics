@@ -11,9 +11,9 @@ import { Canvas } from './canvas'
 import { Controls } from './controls'
 import { Content } from './Content'
 import { Info } from './Info'
-import { StyledLink } from '../../StyledLink'
+import { StyledLink } from '../../styles/StyledLink'
 
-import '../../styles.css'
+import '../../styles/styles.css'
 
 export class Layout extends React.Component {
   ref = React.createRef()
