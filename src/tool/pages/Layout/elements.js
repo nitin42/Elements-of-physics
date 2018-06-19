@@ -4,7 +4,10 @@ import ReactTooltip from 'react-tooltip'
 import { css } from 'emotion'
 import hexToRgba from 'hex-rgba'
 
-import { Acceleration, Force, Gravity } from '../../../'
+import { Acceleration } from '../../../components/Acceleration'
+import { Force } from '../../../components/Force'
+import { Gravity } from '../../../components/Gravity'
+
 import { Slider } from './Slider'
 import { CheckBox } from './CheckBox'
 

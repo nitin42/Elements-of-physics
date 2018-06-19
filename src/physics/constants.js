@@ -1,6 +1,6 @@
 // @flow
 
-import type { instance, mixedProps } from './types'
+import type { instance, mixedProps } from '../types'
 
 // Default value for number of balls
 export const DEFAULT_BALLS = 100

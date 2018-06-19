@@ -3,9 +3,9 @@
 import React from 'react'
 
 import { hoc } from './hoc'
-import { getCanvasSize } from '../constants'
-import { Magnet } from '../Magnet'
-import { FMA } from '../FMA'
+import { getCanvasSize } from '../physics/constants'
+import { Magnet } from '../physics/Magnet'
+import { FMA } from '../physics/FMA'
 
 import { getGravityProps } from '../props/gravityProps'
 

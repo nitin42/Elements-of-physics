@@ -2,7 +2,7 @@
 
 import { Vector } from './vector'
 
-import type { instance, AccelerationProps } from './types'
+import type { instance, AccelerationProps } from '../types'
 
 import {
   DEFAULT_BALL_COLOR,

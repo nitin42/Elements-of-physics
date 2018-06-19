@@ -2,7 +2,7 @@
 
 import { Vector } from './vector'
 
-import type { instance, ForceProps, GravityProps } from './types'
+import type { instance, ForceProps, GravityProps } from '../types'
 
 import {
   DEFAULT_BALL_COLOR,

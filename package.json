@@ -34,6 +34,7 @@
   "scripts": {
     "start": "parcel ./public/index.html",
     "precommit": "lint-staged",
+    "reset": "rm -rf .cache && rm -rf dist && yarn start",
     "flow": "flow",
     "format": "find src -name '*.js' | xargs ./node_modules/.bin/prettier --write --no-semi --single-quote"
   },

@@ -3,9 +3,9 @@
 import React from 'react'
 
 import { hoc } from './hoc'
-import { DEFAULT_BALLS, getCanvasSize } from '../constants'
-import { Vector } from '../vector'
-import { FMA } from '../FMA'
+import { DEFAULT_BALLS, getCanvasSize } from '../physics/constants'
+import { Vector } from '../physics/vector'
+import { FMA } from '../physics/FMA'
 import { getForcesProps } from '../props/forceProps'
 
 import type { instance, dispatch, ForceProps } from '../types'

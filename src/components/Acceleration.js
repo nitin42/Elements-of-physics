@@ -3,14 +3,12 @@
 import React from 'react'
 
 import { hoc } from './hoc'
-import { DEFAULT_BALLS, getCanvasSize } from '../constants'
-import { Ball } from '../Ball'
+import { DEFAULT_BALLS, getCanvasSize } from '../physics/constants'
+import { Ball } from '../physics/Ball'
 import { getAccelerationProps } from '../props/accelerationProps'
-import { p5Renderer } from '../renderer'
+import { p5Renderer } from '../physics/renderer'
 
 import type { instance, dispatch, AccelerationProps } from '../types'
-
-var p5inst = null
 
 // Draw the balls on canvas when <Acceleration /> component is used
 const drawStuffUsingAcceleration = (

@@ -3,7 +3,7 @@
 import { Vector } from './vector'
 import { FMA } from './FMA'
 
-import type { instance, GravityProps } from './types'
+import type { instance, GravityProps } from '../types'
 
 // Gravitational force (force of attraction)
 export class Magnet {
