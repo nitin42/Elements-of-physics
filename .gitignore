@@ -3,3 +3,4 @@ node_modules
 dist
 index.html
 ./index.js
+yarn-error.log

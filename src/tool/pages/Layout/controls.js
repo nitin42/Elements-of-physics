@@ -5,7 +5,6 @@ import ReactTooltip from 'react-tooltip'
 import { Consumer } from './context'
 
 import { Slider } from './Slider'
-import { CheckBox } from './CheckBox'
 import { ColorPicker } from './ColorPicker'
 import {
   ForceControls,

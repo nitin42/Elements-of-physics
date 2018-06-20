@@ -1,7 +1,5 @@
 // @flow
 
-import React from 'react'
-
 import { hoc } from './hoc'
 import { getCanvasSize } from '../physics/constants'
 import { Magnet } from '../physics/Magnet'

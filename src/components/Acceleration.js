@@ -1,12 +1,9 @@
 // @flow
 
-import React from 'react'
-
 import { hoc } from './hoc'
 import { DEFAULT_BALLS, getCanvasSize } from '../physics/constants'
 import { Ball } from '../physics/Ball'
 import { getAccelerationProps } from '../props/accelerationProps'
-import { p5Renderer } from '../physics/renderer'
 
 import type { instance, dispatch, AccelerationProps } from '../types'
 

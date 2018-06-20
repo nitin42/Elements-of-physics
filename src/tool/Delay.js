@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 // Copied and edited from https://github.com/chrisshiplet/react-delay (LAZINESS 😅)
-export class Delay extends Component {
+export class Delay extends React.Component {
   static defaultProps = {
     wait: 250
   }

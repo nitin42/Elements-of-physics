@@ -20,7 +20,12 @@ export const ForceContent = props => (
     <p>
       Along with the acceleration force, we can also apply an additional force
       to the ball like{' '}
-      <a id="article" href="#">
+      <a
+        id="article"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.khanacademy.org/science/physics/forces-newtons-laws/inclined-planes-friction/a/what-is-friction"
+      >
         Frictional force
       </a>. Enable the friction and adjust the friction coefficient in the
       control section. Friction coefficient determines the strength of friction.
@@ -39,6 +44,7 @@ export const ForceContent = props => (
       <a
         id="article"
         target="_blank"
+        rel="noopener noreferrer"
         href="https://www.khanacademy.org/science/physics/forces-newtons-laws/inclined-planes-friction/a/what-is-friction"
       >
         this

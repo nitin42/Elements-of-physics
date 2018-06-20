@@ -10,6 +10,7 @@ export const getAccelerationProps = props => {
     measures,
     extras,
     background,
+    magnitude,
     ...rest
   } = props
   return rest

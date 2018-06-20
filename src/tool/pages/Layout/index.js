@@ -1,7 +1,6 @@
 import React from 'react'
 import hexToRgba from 'hex-rgba'
 import { css, injectGlobal } from 'emotion'
-import { Link } from '@reach/router'
 
 import { Provider } from './context'
 

@@ -2,7 +2,6 @@ import React from 'react'
 import Modal from 'react-responsive-modal'
 import ReactTooltip from 'react-tooltip'
 import { css } from 'emotion'
-import hexToRgba from 'hex-rgba'
 
 import { Acceleration } from '../../../components/Acceleration'
 import { Force } from '../../../components/Force'
@@ -116,6 +115,7 @@ export const ForceControls = props => (
       <ul className="vector-list">
         {props.valArr.map((vector, key) => {
           if (vector.x === 0 && vector.y === 0) {
+            return null
           } else {
             return (
               <li

@@ -31,6 +31,7 @@ export const AccelerationContent = props => (
         id="article"
         href="https://www.khanacademy.org/science/physics/forces-newtons-laws/newtons-laws-of-motion/a/what-is-newtons-second-law"
         target="_blank"
+        rel="noopener noreferrer"
         style={{ borderBottom: '2px dotted #eeaeca' }}
       >
         Newton's Second Law of Motion
@@ -68,7 +69,12 @@ export const AccelerationContent = props => (
             marginTop: '20px'
           }}
         >
-          <img src={require('../../images/4.jpg')} height={360} width={400} />
+          <img
+            src={require('../../images/4.jpg')}
+            height={360}
+            width={400}
+            alt="Figure-1"
+          />
         </div>
         <p>
           In the above figure, we represent the ball with position (x<sub>
@@ -87,7 +93,12 @@ export const AccelerationContent = props => (
             marginTop: '20px'
           }}
         >
-          <img src={require('../../images/7.jpg')} height={360} width={700} />
+          <img
+            src={require('../../images/7.jpg')}
+            height={360}
+            width={700}
+            alt="Figure-2"
+          />
         </div>
       </li>
       <p>
@@ -119,6 +130,7 @@ export const AccelerationContent = props => (
           <a
             id="article"
             target="_blank"
+            rel="noopener noreferrer"
             href="https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-vectors/a/vector-magnitude-normalization"
           >
             vector normalization

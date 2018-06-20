@@ -1,7 +1,5 @@
 // @flow
 
-import React from 'react'
-
 import { hoc } from './hoc'
 import { DEFAULT_BALLS, getCanvasSize } from '../physics/constants'
 import { Vector } from '../physics/vector'
@@ -38,7 +36,7 @@ const drawStuffUsingForces = (
       // Gravity - The force that pulls together all the matter
       if (props.gravity) {
         const mass = balls[i].mass
-        gravity = new Vector(0, 0.1 * 9)
+        gravity = new Vector(0, 0.1 * mass)
       } else {
         gravity = new Vector(0, 0.1)
       }

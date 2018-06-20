@@ -8,6 +8,10 @@ const loaderStyles = {
 
 export const Loading = () => (
   <div style={loaderStyles}>
-    <div className="loading">🌀</div>
+    <div className="loading">
+      <span role="img" aria-label="loading">
+        🌀
+      </span>
+    </div>
   </div>
 )

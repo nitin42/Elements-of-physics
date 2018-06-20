@@ -1,6 +1,4 @@
 import React from 'react'
-import { css } from 'emotion'
-import { Link } from '@reach/router'
 
 import { StyledLink } from '../styles/StyledLink'
 
@@ -17,7 +15,12 @@ export const Home = () => (
     <div style={styles} className="nitin-tulswani">
       <p>
         by{' '}
-        <a id="profile" href="https://twitter.com/NTulswani" target="_blank">
+        <a
+          id="profile"
+          href="https://twitter.com/NTulswani"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <i>Nitin Tulswani</i>
         </a>
       </p>
@@ -48,6 +51,7 @@ export const Home = () => (
         className="github-link"
         href="https://github.com/nitin42/Elements-of-physics"
         target="_blank"
+        rel="noopener noreferrer"
       >
         here
       </a>.

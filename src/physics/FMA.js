@@ -6,9 +6,7 @@ import type { instance, ForceProps, GravityProps } from '../types'
 
 import {
   DEFAULT_BALL_COLOR,
-  DEFAULT_BALL_HEIGHT,
   DEFAULT_MAX_VELOCITY,
-  DEFAULT_BALL_WIDTH,
   DEFAULT_STROKE_WEIGHT
 } from './constants'
 

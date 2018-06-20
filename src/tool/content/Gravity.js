@@ -39,9 +39,13 @@ export const GravityContent = props => (
       the distance between both the balls.
     </p>
     <p>
-      You can adjust the gravitational constant (😱) and see how it affects the
-      gravitational force in the control section. You can also adjust the ball
-      size using <span>size</span> slider.
+      You can adjust the gravitational constant (<span
+        role="img"
+        aria-label="shocking"
+      >
+        😱
+      </span>) and see how it affects the gravitational force in the control
+      section. You can also adjust the ball size using <span>size</span> slider.
     </p>
   </React.Fragment>
 )

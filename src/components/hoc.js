@@ -1,11 +1,12 @@
 // @flow
 
 import * as React from 'react'
-const p5 = require('p5')
 
 import { p5Renderer } from '../physics/renderer'
 
 import type { instance, drawStuff, mixedProps, propsGetter } from '../types'
+
+const p5 = require('p5')
 
 export const hoc = (
   drawStuffFn: drawStuff,

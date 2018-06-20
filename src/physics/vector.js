@@ -67,7 +67,7 @@ export class Vector {
   normalize() {
     let m = this.mag()
 
-    if (m != 0) {
+    if (m !== 0) {
       this.div(m)
     }
   }
