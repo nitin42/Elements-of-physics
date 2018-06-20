@@ -2,8 +2,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router } from '@reach/router'
 
-import { Layout } from './tool/pages/Layout/index'
-import { Home } from './tool/pages/Home'
+import { Layout, Home } from './module-build'
+
+import './styles.css'
 
 const App = () => (
   <Router>

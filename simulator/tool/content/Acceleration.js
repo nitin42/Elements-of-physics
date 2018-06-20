@@ -69,12 +69,12 @@ export const AccelerationContent = props => (
             marginTop: '20px'
           }}
         >
-          <img
+          {/* <img
             src={require('../../images/4.jpg')}
             height={360}
             width={400}
             alt="Figure-1"
-          />
+          /> */}
         </div>
         <p>
           In the above figure, we represent the ball with position (x<sub>
@@ -93,12 +93,12 @@ export const AccelerationContent = props => (
             marginTop: '20px'
           }}
         >
-          <img
+          {/* <img
             src={require('../../images/7.jpg')}
             height={360}
             width={700}
             alt="Figure-2"
-          />
+          /> */}
         </div>
       </li>
       <p>

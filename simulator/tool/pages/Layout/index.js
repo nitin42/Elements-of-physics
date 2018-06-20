@@ -12,8 +12,6 @@ import { Content } from './Content'
 import { Info } from './Info'
 import { StyledLink } from '../../styles/StyledLink'
 
-import '../../styles/styles.css'
-
 export class Layout extends React.Component {
   ref = React.createRef()
 
