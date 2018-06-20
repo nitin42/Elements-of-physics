@@ -1,4 +1,4 @@
 {
 	"presets": ["env", "react"],
-	"plugins": ["transform-object-rest-spread", "transform-class-properties", "emotion"]
+	"plugins": ["transform-flow-strip-types", "transform-object-rest-spread", "transform-class-properties", "emotion"]
 }

@@ -6,7 +6,7 @@ import { p5Renderer } from '../physics/renderer'
 
 import type { instance, drawStuff, mixedProps, propsGetter } from '../types'
 
-const p5 = require('p5')
+import p5 from 'p5/lib/p5.min' //loads the correct minified 388KB file!
 
 export const hoc = (
   drawStuffFn: drawStuff,
@@ -36,8 +36,9 @@ export const hoc = (
 
     getCanvas = () =>
       new p5(p => {
-        this.renderer(p)
         this.instance = p
+
+        this.renderer(p)
 
         // Do some extra stuff here with processing
         this.props.extras && this.props.extras(p)

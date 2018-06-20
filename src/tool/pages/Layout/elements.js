@@ -37,19 +37,22 @@ export const ForceCanvas = props => (
   />
 )
 
-export const AccelerationCanvas = props => (
-  <Acceleration
-    width={props.width}
-    height={props.height}
-    color={props.color}
-    stroke={0.01}
-    balls={props.balls}
-    maxVelocity={props.maxVelocity}
-    background={props.background}
-    ballSize={{ width: props.ballSize, height: props.ballSize }}
-    magnitude={props.magnitude}
-  />
-)
+export const AccelerationCanvas = props => {
+  console.log('Rendering')
+  return (
+    <Acceleration
+      width={props.width}
+      height={props.height}
+      color={props.color}
+      stroke={0.01}
+      balls={props.balls}
+      maxVelocity={props.maxVelocity}
+      background={props.background}
+      ballSize={{ width: props.ballSize, height: props.ballSize }}
+      magnitude={props.magnitude}
+    />
+  )
+}
 
 export const GravityCanvas = props => (
   <Gravity

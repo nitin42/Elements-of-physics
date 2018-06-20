@@ -80,6 +80,7 @@ export class Ball {
   }
 
   displayBalls() {
+    console.log(this.loc)
     this.instance.strokeWeight(this.props.stroke || DEFAULT_STROKE_WEIGHT)
     this.instance.fill(this.props.color || DEFAULT_BALL_COLOR)
     this.instance.ellipse(

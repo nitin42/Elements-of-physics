@@ -14,12 +14,6 @@ import { StyledLink } from '../../styles/StyledLink'
 
 import '../../styles/styles.css'
 
-injectGlobal`
-body {
-	background: ${hexToRgba('#4a5d74', 1.5)}
-}
-`
-
 export class Layout extends React.Component {
   ref = React.createRef()
 
@@ -275,6 +269,7 @@ export class Layout extends React.Component {
   handleMove = e => this.setState({ [e.target.name]: e.target.checked })
 
   render() {
+    console.log(this.state.innerWidth)
     return (
       <div
         className={
