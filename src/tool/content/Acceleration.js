@@ -2,14 +2,28 @@ import React from 'react'
 
 export const AccelerationContent = props => (
   <React.Fragment>
+    <h1>Introduction</h1>
+    <p>
+      Welcome to Elements of Physics, an interactive simulation which describes
+      different elements of physics like <span>Acceleration</span>,{' '}
+      <span>Force</span> and <span>Gravity</span>. Before we start learning
+      about these elements, we need to know something about vectors.
+    </p>
+    <h1>Vector</h1>
+    <p>
+      A vector is a quantity that has a direction and magnitude. Consider two
+      points A and B, then the vector will be difference between point A and
+      point B.
+    </p>
     <h1>Acceleration</h1>
     <p>
       Acceleration is defined as change in velocity over a period of time. In
       the above simulator, if you choose the element <span>Acceleration</span>{' '}
       from the options, then you will notice a number of balls being attracted
       towards the current position of mouse on the canvas. This behavior is due
-      to the force created when a ball moves from its actual position to the
-      mouse position. Let's examine how force actually works in pixel world.
+      to the acceleration force created when a ball moves from its actual
+      position to the mouse position. Let's examine how force actually works in
+      pixel world.
     </p>
     <p>
       According to the{' '}
@@ -21,8 +35,11 @@ export const AccelerationContent = props => (
       >
         Newton's Second Law of Motion
       </a>, Force equals mass times acceleration. Since we are in pixel world,{' '}
-      <span>we assume the mass of a ball to be one</span>. Now to determine the
-      force, we use the Newton's Second Law equation -
+      <span>
+        we assume the amount of matter in an object to be 1. Hence, the mass of
+        a ball here is 1
+      </span>. Now to determine the acceleration force, we use the Newton's
+      Second Law equation -
     </p>
     <blockquote>Force = Mass x Acceleration</blockquote>
     <p>
@@ -70,7 +87,7 @@ export const AccelerationContent = props => (
             marginTop: '20px'
           }}
         >
-          <img src={require('../../images/6.jpg')} height={360} width={700} />
+          <img src={require('../../images/7.jpg')} height={360} width={700} />
         </div>
       </li>
       <p>
@@ -86,7 +103,7 @@ export const AccelerationContent = props => (
       <li>
         <h3>Better animations with vector math</h3>
         <p>
-          In the above step, we calculated the acceleration vector. With this
+          In the above step, we determined acceleration vector. With this
           vector, ball will move directly to the mouse location and it would
           appear like it happened instantaneously. Imagine when you have
           multiple balls !? It would then create a janky experience and hence
@@ -111,7 +128,7 @@ export const AccelerationContent = props => (
         </blockquote>
         <p>
           Go to the control section and adjust the magnitude of the accleration
-          vector. You'll notice that ball either accelerates fast or slowly
+          vector. You'll notice that ball either accelerates fastly or slowly
           towards the mouse location.
         </p>
       </li>

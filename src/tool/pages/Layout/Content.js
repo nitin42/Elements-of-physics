@@ -19,23 +19,7 @@ const pickContent = currentElement => {
 export const Content = props => (
   <Consumer>
     {state => (
-      <div className="content">
-        <h1>Introduction</h1>
-        <p>
-          Welcome to Elements of Physics, an interactive simulation which
-          describes different elements of physics like <span>Acceleration</span>,{' '}
-          <span>Force</span>, <span>Gravity</span> and{' '}
-          <span>Particle generation.</span> Before we start learning about these
-          elements, we need to know something about vectors.
-        </p>
-        <h1>Vector</h1>
-        <p>
-          A vector is a quantity that has a direction and magnitude. Consider
-          two points A and B, then the vector will be difference between point A
-          and point B.
-        </p>
-        {pickContent(state.currentElement)}
-      </div>
+      <div className="content">{pickContent(state.currentElement)}</div>
     )}
   </Consumer>
 )

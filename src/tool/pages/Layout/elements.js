@@ -94,6 +94,7 @@ export const ForceControls = props => (
         value={props.frictionCoefficient}
         handler={props.handleFrictionCoefficient}
         tip="Set a value for friction coefficient."
+        disabled={!props.friction}
       />
     </li>
     <li>

@@ -1,6 +1,6 @@
 import React from 'react'
 import hexToRgba from 'hex-rgba'
-import { css } from 'emotion'
+import { css, injectGlobal } from 'emotion'
 import { Link } from '@reach/router'
 
 import { Provider } from './context'
@@ -14,6 +14,12 @@ import { Info } from './Info'
 import { StyledLink } from '../../styles/StyledLink'
 
 import '../../styles/styles.css'
+
+injectGlobal`
+body {
+	background: ${hexToRgba('#4a5d74', 1.5)}
+}
+`
 
 export class Layout extends React.Component {
   ref = React.createRef()
@@ -275,17 +281,17 @@ export class Layout extends React.Component {
         className={
           this.state.innerWidth > 850
             ? css`
-                animation: fadeIn 0.9s ease-in;
+                animation: fadeIn 1s ease-in;
 
                 @keyframes fadeIn {
                   from {
                     opacity: 0;
-                    transform: rotateZ(180deg);
+                    transform: rotateY(-180deg);
                   }
 
                   to {
                     opacity: 1;
-                    transform: rotateZ(0deg);
+                    transform: rotateY(0deg);
                   }
                 }
               `
