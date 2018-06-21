@@ -1636,11 +1636,11 @@ var ForceContent = function ForceContent(props) {
       null,
       'A force is a vector that causes an object with mass to accelerate. When you select the element ',
       React__default.createElement('span', null, 'Force'),
-      ' from the list of element options, then you will notice a number of balls moving with a',
       ' ',
+      'from the list of element options, then you will notice a number of balls moving with a ',
       React__default.createElement('span', null, 'constant'),
-      ' velocity. Rendering balls on canvas using',
       ' ',
+      'velocity. Rendering balls on canvas using ',
       React__default.createElement('span', null, 'Force'),
       ' shares a similar mechanism when compared to',
       ' ',
@@ -1658,6 +1658,12 @@ var ForceContent = function ForceContent(props) {
       'blockquote',
       null,
       'Force / Mass = Acceleration'
+    ),
+    React__default.createElement('h2', null, 'Applying force on a ball'),
+    React__default.createElement(
+      'div',
+      { style: { marginTop: '20px' } },
+      React__default.createElement('h3', null, 'Frictional force')
     ),
     React__default.createElement(
       'p',
@@ -1697,6 +1703,11 @@ var ForceContent = function ForceContent(props) {
       'article for a deeper analysis on frictional force.'
     ),
     React__default.createElement(
+      'div',
+      { style: { marginTop: '20px' } },
+      React__default.createElement('h3', null, 'Gravitational force')
+    ),
+    React__default.createElement(
       'p',
       null,
       'We can also apply ',
@@ -1704,15 +1715,20 @@ var ForceContent = function ForceContent(props) {
       ' to a ball. Enable gravity in the control section. You will notice that each ball hits the ground with same acceleration. Why? Because gravitational force is scaled according to the mass of a ball.'
     ),
     React__default.createElement(
+      'div',
+      { style: { marginTop: '20px' } },
+      React__default.createElement('h3', null, 'External force')
+    ),
+    React__default.createElement(
       'p',
       null,
-      'Interestingly, you can also apply an external force using a vector. Click the ',
+      'Interestingly, you can also apply an external force using a vector. Click the',
+      ' ',
       React__default.createElement('i', {
         style: { color: '#4c4c4c' },
         className: 'fas fa-plus-circle'
       }),
-      ' icon near apply force in the control section and you will be prompted with a modal to create your own vector. Try it and see how this force affects the ball. You can also remove this vector using',
-      ' ',
+      ' icon near apply force in the control section and you will be prompted with a modal to create your own vector. Try it and see how this force affects the ball. You can also remove this vector using ',
       React__default.createElement('i', {
         style: { color: '#4c4c4c' },
         className: 'fas fa-minus-circle'
@@ -1763,20 +1779,18 @@ var GravityContent = function GravityContent(props) {
         'F = G x m1 x m2 / r',
         React__default.createElement('sup', null, '2')
       ),
-      ' ',
-      "? Let's breakdown this expression by comparing each symbol with our example."
+      ". Let's breakdown this expression by comparing each symbol with our example."
     ),
     React__default.createElement(
       'p',
       null,
       React__default.createElement('span', null, 'F'),
-      ' stands for gravitational force that we need to calculate.',
-      ' ',
+      ' stands for gravitational force that we need to calculate. ',
       React__default.createElement('span', null, 'G'),
-      ' stands for ',
-      React__default.createElement('span', null, 'Gravitational constant'),
-      ',',
+      ' stands for',
       ' ',
+      React__default.createElement('span', null, 'Gravitational constant'),
+      ', ',
       React__default.createElement('span', null, 'm1, m2'),
       ' are the masses of both the balls and ',
       React__default.createElement('span', null, 'r'),
@@ -1788,15 +1802,39 @@ var GravityContent = function GravityContent(props) {
       'You can adjust the gravitational constant (',
       React__default.createElement(
         'span',
-        {
-          role: 'img',
-          'aria-label': 'shocking'
-        },
+        { role: 'img', 'aria-label': 'shocking' },
         '\uD83D\uDE31'
       ),
       ') and see how it affects the gravitational force in the control section. You can also adjust the ball size using ',
       React__default.createElement('span', null, 'size'),
       ' slider.'
+    ),
+    React__default.createElement(
+      'div',
+      { style: { marginTop: '40px' } },
+      React__default.createElement(
+        'p',
+        { id: 'celebration' },
+        'Hooray! Now you know all the three elements of physics. Next series will be updated with more elements like oscillations, particle generation and angular motion.'
+      ),
+      React__default.createElement(
+        'p',
+        { id: 'celebration' },
+        'You can',
+        ' ',
+        React__default.createElement(
+          'a',
+          {
+            id: 'article',
+            href: 'https://twitter.com/NTulswani',
+            target: '_blank',
+            rel: 'noopener noreferrer'
+          },
+          'follow me on Twitter'
+        ),
+        ' ',
+        'for more updates!'
+      )
     )
   )
 }
@@ -2310,12 +2348,12 @@ var Home = function Home() {
     React__default.createElement(
       'p',
       null,
-      'Elements of Physics is an interactive simulation which describes different elements of physics like ',
+      'Elements of Physics is an interactive simulation which describes different elements of physics like',
+      ' ',
       React__default.createElement('span', null, 'Gravity'),
       ', ',
       React__default.createElement('span', null, 'Acceleration'),
-      ' ',
-      'and ',
+      ' and ',
       React__default.createElement('span', null, 'Force'),
       '. Each element is described with different simulation controls.'
     ),
@@ -2324,15 +2362,14 @@ var Home = function Home() {
       null,
       'The simulator consists of two parts - ',
       React__default.createElement('span', null, 'canvas'),
-      ' and',
-      ' ',
+      ' and ',
       React__default.createElement('span', null, 'control section'),
       '. Control section consists of different controls for manipulating each element, and everything is then rendered on the canvas.'
     ),
     React__default.createElement(
       'p',
       null,
-      "Each element is interactive and fun to play with. Though there is some theory behind each element, but it's written in a very concise and compressed way. The scope for the mathematics used behind the animations is also kept minimal so as to make it easier to grasp the core concepts without much cognitive load, which means less symbolic expressions."
+      "Each element is interactive and fun to play with. Though there is some theory behind each element, but it's written in a very concise and compressed way. The scope for the mathematics used behind the animations is also kept minimal so as to make it easier to grasp the core concepts without much cognitive load, which means less symbolic expressions (hooray!)"
     ),
     React__default.createElement(
       'p',
@@ -2351,7 +2388,7 @@ var Home = function Home() {
       ),
       '.'
     ),
-    React__default.createElement('p', null, 'I hope you enjoy!'),
+    React__default.createElement('p', null, 'I hope you enjoy \uD83D\uDE03'),
     React__default.createElement(
       'div',
       { style: _extends({}, styles, { marginTop: '60px' }) },

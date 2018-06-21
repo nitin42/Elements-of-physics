@@ -13,6 +13,12 @@ h1 {
 
 .content h1 {
 	display: inline;
+	border-bottom: 4px solid #eeaeca;
+}
+
+#celebration {
+	font-size: 25px;
+	color: #eeaeca;
 }
 
 h2 {
@@ -21,6 +27,7 @@ h2 {
 	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	border-bottom: 4px solid #eeaeca;
 }
 
 h3 {

@@ -28,8 +28,7 @@ export const GravityContent = props => (
       Gravitational force is calculated using the expression{' '}
       <span>
         F = G x m1 x m2 / r<sup>2</sup>
-      </span>{' '}
-      ? Let's breakdown this expression by comparing each symbol with our
+      </span>. Let's breakdown this expression by comparing each symbol with our
       example.
     </p>
     <p>
@@ -47,5 +46,24 @@ export const GravityContent = props => (
       </span>) and see how it affects the gravitational force in the control
       section. You can also adjust the ball size using <span>size</span> slider.
     </p>
+    <div style={{ marginTop: '40px' }}>
+      <p id="celebration">
+        Hooray! Now you know all the three elements of physics. Next series will
+        be updated with more elements like oscillations, particle generation and
+        angular motion.
+      </p>
+      <p id="celebration">
+        You can{' '}
+        <a
+          id="article"
+          href="https://twitter.com/NTulswani"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          follow me on Twitter
+        </a>{' '}
+        for more updates!
+      </p>
+    </div>
   </React.Fragment>
 )

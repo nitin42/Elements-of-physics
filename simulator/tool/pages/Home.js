@@ -42,7 +42,8 @@ export const Home = () => (
       theory behind each element, but it's written in a very concise and
       compressed way. The scope for the mathematics used behind the animations
       is also kept minimal so as to make it easier to grasp the core concepts
-      without much cognitive load, which means less symbolic expressions.
+      without much cognitive load, which means less symbolic expressions
+      (hooray!)
     </p>
     <p>
       Source code for the tools and animations used in the simulator can be
@@ -56,7 +57,7 @@ export const Home = () => (
         here
       </a>.
     </p>
-    <p>I hope you enjoy!</p>
+    <p>I hope you enjoy 😃</p>
     <div style={{ ...styles, marginTop: '60px' }}>
       <StyledLink to="layout" width="8%">
         Start

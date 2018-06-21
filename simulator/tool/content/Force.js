@@ -17,6 +17,10 @@ export const ForceContent = props => (
       - 1. So each ball gets a acceleration force of <span>Force / mass</span>.
     </p>
     <blockquote>Force / Mass = Acceleration</blockquote>
+    <h2>Applying force on a ball</h2>
+    <div style={{ marginTop: '20px' }}>
+      <h3>Frictional force</h3>
+    </div>
     <p>
       Along with the acceleration force, we can also apply an additional force
       to the ball like{' '}
@@ -51,12 +55,18 @@ export const ForceContent = props => (
       </a>{' '}
       article for a deeper analysis on frictional force.
     </blockquote>
+    <div style={{ marginTop: '20px' }}>
+      <h3>Gravitational force</h3>
+    </div>
     <p>
       We can also apply <span>gravitational force</span> to a ball. Enable
       gravity in the control section. You will notice that each ball hits the
       ground with same acceleration. Why? Because gravitational force is scaled
       according to the mass of a ball.
     </p>
+    <div style={{ marginTop: '20px' }}>
+      <h3>External force</h3>
+    </div>
     <p>
       Interestingly, you can also apply an external force using a vector. Click
       the <i style={{ color: '#4c4c4c' }} className="fas fa-plus-circle" /> icon
