@@ -125,7 +125,7 @@ a#article {
 
 /* Heading on canvas and content */
 .heading {
-	font-family: 'Open Sans', cursive;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 45px;
 }
 

@@ -126,7 +126,7 @@ export const ForceControls = props => (
                 key={key}
               >
                 <strong>
-                  F<sub>{key + 1}&nbsp;&nbsp;</sub>-&nbsp;
+                  F<sub>{key + 1} </sub>-{' '}
                 </strong>
                 {vector.x}x + {vector.y}y&nbsp;&nbsp;
                 <i
@@ -167,6 +167,11 @@ export const ForceControls = props => (
               onChange={props.updateYVec}
             />y
           </div>
+          <blockquote style={{ color: '#4c4c4c', borderColor: '#4c4c4c' }}>
+            You can remove the force vector using{' '}
+            <i style={{ color: '#4c4c4c' }} className="fas fa-minus-circle" />{' '}
+            icon by hovering over the vector.
+          </blockquote>
           <p>
             After you've have defined the vector, a force with this vector will
             be applied on each ball. Click the below button to apply the vector
@@ -201,8 +206,8 @@ export const ForceControls = props => (
           </div>
         </div>
       </Modal>
+      <ReactTooltip place="right" effect="float" />
     </li>
-    <ReactTooltip place="right" effect="float" />
   </React.Fragment>
 )
 
@@ -239,7 +244,7 @@ export const GravityControls = props => (
         name="move"
         checked={props.move}
         handler={props.handleMove}
-        tip="Enable dragging of ball"
+        tip="Enable dragging of bigger ball"
       />
     </li>
     <li>

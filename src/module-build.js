@@ -1098,8 +1098,9 @@ var ForceControls = function ForceControls(props) {
                 'strong',
                 null,
                 'F',
-                React__default.createElement('sub', null, key + 1, '\xA0\xA0'),
-                '-\xA0'
+                React__default.createElement('sub', null, key + 1, ' '),
+                '-',
+                ' '
               ),
               vector.x,
               'x + ',
@@ -1152,6 +1153,17 @@ var ForceControls = function ForceControls(props) {
             'y'
           ),
           React__default.createElement(
+            'blockquote',
+            { style: { color: '#4c4c4c', borderColor: '#4c4c4c' } },
+            'You can remove the force vector using ',
+            React__default.createElement('i', {
+              style: { color: '#4c4c4c' },
+              className: 'fas fa-minus-circle'
+            }),
+            ' ',
+            'icon by hovering over the vector.'
+          ),
+          React__default.createElement(
             'p',
             null,
             "After you've have defined the vector, a force with this vector will be applied on each ball. Click the below button to apply the vector and see the effect of force on each ball."
@@ -1172,12 +1184,12 @@ var ForceControls = function ForceControls(props) {
             )
           )
         )
-      )
-    ),
-    React__default.createElement(ReactTooltip, {
-      place: 'right',
-      effect: 'float'
-    })
+      ),
+      React__default.createElement(ReactTooltip, {
+        place: 'right',
+        effect: 'float'
+      })
+    )
   )
 }
 
@@ -1224,7 +1236,7 @@ var GravityControls = function GravityControls(props) {
         name: 'move',
         checked: props.move,
         handler: props.handleMove,
-        tip: 'Enable dragging of ball'
+        tip: 'Enable dragging of bigger ball'
       })
     ),
     React__default.createElement(
@@ -2349,19 +2361,19 @@ var Home = function Home() {
             target: '_blank',
             rel: 'noopener noreferrer'
           },
-          React__default.createElement('i', null, 'Nitin Tulswani')
+          'Nitin Tulswani'
         )
       )
     ),
     React__default.createElement(
       'p',
       null,
-      'Elements of Physics is an interactive simulation which describes different elements of physics like ',
+      'Elements of Physics is an interactive simulation which describes different elements of physics like',
+      ' ',
       React__default.createElement('span', null, 'Gravity'),
       ', ',
       React__default.createElement('span', null, 'Acceleration'),
-      ' ',
-      'and ',
+      ' and ',
       React__default.createElement('span', null, 'Force'),
       '. Each element is described with different simulation controls.'
     ),
@@ -2370,10 +2382,93 @@ var Home = function Home() {
       null,
       'The simulator consists of two parts - ',
       React__default.createElement('span', null, 'canvas'),
-      ' and',
-      ' ',
+      ' and ',
       React__default.createElement('span', null, 'control section'),
-      '. Control section consists of different controls for manipulating each element, and everything is then rendered on the canvas.'
+      '. Control section consists of different controls for manipulating each element, and everything is then rendered on the canvas. You can hover over an option in the control section to understand the functionality of that control.'
+    ),
+    React__default.createElement(
+      'div',
+      {
+        style: {
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '30px',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '5px'
+        }
+      },
+      React__default.createElement('img', {
+        src: require('./images/simulator.png'),
+        alt: 'simulator',
+        height: 500,
+        width: 800,
+        style: { boxShadow: '4px 4px 4px #f8f8f8' }
+      }),
+      React__default.createElement(
+        'p',
+        { style: { color: 'grey', fontSize: '15px' } },
+        'Simulator'
+      )
+    ),
+    React__default.createElement(
+      'div',
+      {
+        style: {
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '40px',
+          padding: '5px'
+        }
+      },
+      React__default.createElement(
+        'div',
+        null,
+        React__default.createElement('img', {
+          src: require('./images/canvas.png'),
+          alt: 'canvas',
+          style: { boxShadow: '4px 4px 4px #f8f8f8' },
+          height: 600,
+          width: 600
+        }),
+        React__default.createElement(
+          'div',
+          {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '10px',
+              color: 'grey',
+              fontSize: '15px'
+            }
+          },
+          'Canvas'
+        )
+      ),
+      React__default.createElement(
+        'div',
+        { style: { marginLeft: 'auto' } },
+        React__default.createElement('img', {
+          src: require('./images/control-section.png'),
+          alt: 'control-section',
+          style: { boxShadow: '4px 4px 4px #f8f8f8' },
+          height: 600,
+          width: 400
+        }),
+        React__default.createElement(
+          'div',
+          {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '10px',
+              color: 'grey',
+              fontSize: '15px'
+            }
+          },
+          'Control section'
+        )
+      )
     ),
     React__default.createElement(
       'p',
@@ -2397,7 +2492,7 @@ var Home = function Home() {
       ),
       '.'
     ),
-    React__default.createElement('p', null, 'I hope you enjoy \uD83D\uDE03'),
+    React__default.createElement('p', null, 'I hope you enjoy!'),
     React__default.createElement(
       'div',
       { style: _extends({}, styles, { marginTop: '60px' }) },
