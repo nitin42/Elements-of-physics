@@ -5,17 +5,13 @@ import { DEFAULT_BALLS, getCanvasSize } from '../physics/constants'
 import { Ball } from '../physics/Ball'
 import { getAccelerationProps } from '../props/accelerationProps'
 
-import type { instance, dispatch, AccelerationProps } from '../types'
+import type { instance, AccelerationProps } from '../types'
 
 // Draw the balls on canvas when <Acceleration /> component is used
-const drawStuffUsingAcceleration = (
-  p: instance,
-  dispatch: dispatch,
-  props: AccelerationProps
-) => {
+const drawStuffUsingAcceleration = (p: instance, props: AccelerationProps) => {
   const balls = new Array(Number(props.balls) || DEFAULT_BALLS)
 
-  const setup = () => {
+  p.setup = () => {
     getCanvasSize(p, props)
 
     for (let i = 0; i < balls.length; i++) {
@@ -23,7 +19,7 @@ const drawStuffUsingAcceleration = (
     }
   }
 
-  const draw = () => {
+  p.draw = () => {
     p.background(props.background)
     for (let i = 0; i < balls.length; i++) {
       balls[i].updatePosition()
@@ -31,9 +27,6 @@ const drawStuffUsingAcceleration = (
       balls[i].displayBalls()
     }
   }
-
-  // Dispatch all the processing core functions
-  dispatch([setup, draw])
 }
 
 export const Acceleration = hoc(

@@ -12,6 +12,13 @@ import { Content } from './Content'
 import { Info } from './Info'
 import { StyledLink } from '../../styles/StyledLink'
 
+injectGlobal`
+  body {
+    background: ${hexToRgba('#27323e', '2')}
+
+  }
+`
+
 export class Layout extends React.Component {
   ref = React.createRef()
 

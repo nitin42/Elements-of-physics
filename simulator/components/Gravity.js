@@ -7,25 +7,21 @@ import { FMA } from '../physics/FMA'
 
 import { getGravityProps } from '../props/gravityProps'
 
-import type { instance, dispatch, GravityProps } from '../types'
+import type { instance, GravityProps } from '../types'
 
 // Draw the balls on canvas when <Acceleration /> component is used
-const drawStuffUsingGravity = (
-  p: instance,
-  dispatch: dispatch,
-  props: GravityProps
-) => {
+const drawStuffUsingGravity = (p: instance, props: GravityProps) => {
   let magnet
   let rotator
 
-  const setup = () => {
+  p.setup = () => {
     getCanvasSize(p, props)
 
     rotator = new FMA(p, props, 1.5, p.width / 2.5, p.height / 2.5)
     magnet = new Magnet(p, props)
   }
 
-  const draw = () => {
+  p.draw = () => {
     p.background(props.background)
 
     let gravitationalForce = magnet.attract(rotator)
@@ -37,16 +33,13 @@ const drawStuffUsingGravity = (
     rotator.displayBalls()
   }
 
-  const mouseDragged = () => {
+  p.mouseDragged = () => {
     magnet.location.x = p.mouseX
     magnet.location.y = p.mouseY
 
     // Prevent default behaviour!
     return false
   }
-
-  // Dispatch all the processing core functions
-  dispatch([setup, draw, props.move ? mouseDragged : null])
 }
 
 export const Gravity = hoc(drawStuffUsingGravity, getGravityProps)

@@ -6,18 +6,13 @@ import { Vector } from '../physics/vector'
 import { FMA } from '../physics/FMA'
 import { getForcesProps } from '../props/forceProps'
 
-import type { instance, dispatch, ForceProps } from '../types'
+import type { instance, ForceProps } from '../types'
 
 // Draw the balls on canvas when <Force /> component is used
-const drawStuffUsingForces = (
-  p: instance,
-  dispatch: dispatch,
-  props: ForceProps,
-  getArray
-) => {
+const drawStuffUsingForces = (p: instance, props: ForceProps, getArray) => {
   const balls = new Array(Number(props.balls) || DEFAULT_BALLS)
 
-  const setup = () => {
+  p.setup = () => {
     getCanvasSize(p, props)
 
     for (let i = 0; i < balls.length; i++) {
@@ -25,7 +20,7 @@ const drawStuffUsingForces = (
     }
   }
 
-  const draw = () => {
+  p.draw = () => {
     p.background(props.background)
 
     for (let i = 0; i < balls.length; i++) {
@@ -69,9 +64,6 @@ const drawStuffUsingForces = (
       balls[i].displayBalls()
     }
   }
-
-  // Dispatch all the processing core functions
-  dispatch([setup, draw])
 }
 
 export const Force = hoc(drawStuffUsingForces, getForcesProps)

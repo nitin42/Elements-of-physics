@@ -1,132 +1,15 @@
-import { PureComponent, createElement } from 'react'
-import React__default from 'react'
-import hexToRgba from 'hex-rgba'
-import { css } from 'emotion'
+import React__default, { createElement, PureComponent } from 'react'
+import p5 from 'p5/lib/p5.min'
 import Modal from 'react-responsive-modal'
 import ReactTooltip from 'react-tooltip'
-import p5 from 'p5/lib/p5.min'
+import { css, injectGlobal } from 'emotion'
 import { BlockPicker } from 'react-color'
 import { Link } from '@reach/router'
+import hexToRgba from 'hex-rgba'
 
-var _React$createContext = React__default.createContext()
-var Provider = _React$createContext.Provider
-var Consumer = _React$createContext.Consumer
-
-var asyncGenerator = (function() {
-  function AwaitValue(value) {
-    this.value = value
-  }
-
-  function AsyncGenerator(gen) {
-    var front, back
-
-    function send(key, arg) {
-      return new Promise(function(resolve, reject) {
-        var request = {
-          key: key,
-          arg: arg,
-          resolve: resolve,
-          reject: reject,
-          next: null
-        }
-
-        if (back) {
-          back = back.next = request
-        } else {
-          front = back = request
-          resume(key, arg)
-        }
-      })
-    }
-
-    function resume(key, arg) {
-      try {
-        var result = gen[key](arg)
-        var value = result.value
-
-        if (value instanceof AwaitValue) {
-          Promise.resolve(value.value).then(
-            function(arg) {
-              resume('next', arg)
-            },
-            function(arg) {
-              resume('throw', arg)
-            }
-          )
-        } else {
-          settle(result.done ? 'return' : 'normal', result.value)
-        }
-      } catch (err) {
-        settle('throw', err)
-      }
-    }
-
-    function settle(type, value) {
-      switch (type) {
-        case 'return':
-          front.resolve({
-            value: value,
-            done: true
-          })
-          break
-
-        case 'throw':
-          front.reject(value)
-          break
-
-        default:
-          front.resolve({
-            value: value,
-            done: false
-          })
-          break
-      }
-
-      front = front.next
-
-      if (front) {
-        resume(front.key, front.arg)
-      } else {
-        back = null
-      }
-    }
-
-    this._invoke = send
-
-    if (typeof gen.return !== 'function') {
-      this.return = undefined
-    }
-  }
-
-  if (typeof Symbol === 'function' && Symbol.asyncIterator) {
-    AsyncGenerator.prototype[Symbol.asyncIterator] = function() {
-      return this
-    }
-  }
-
-  AsyncGenerator.prototype.next = function(arg) {
-    return this._invoke('next', arg)
-  }
-
-  AsyncGenerator.prototype.throw = function(arg) {
-    return this._invoke('throw', arg)
-  }
-
-  AsyncGenerator.prototype.return = function(arg) {
-    return this._invoke('return', arg)
-  }
-
-  return {
-    wrap: function(fn) {
-      return function() {
-        return new AsyncGenerator(fn.apply(this, arguments))
-      }
-    },
-    await: function(value) {
-      return new AwaitValue(value)
-    }
-  }
-})()
+var _React$createContext = React__default.createContext(),
+  Provider = _React$createContext.Provider,
+  Consumer = _React$createContext.Consumer
 
 var classCallCheck = function(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -332,16 +215,7 @@ var Loading = function Loading() {
 
 // Receives p5 instance and a callback to draw the stuff on canvas
 var p5Renderer = function p5Renderer(instance, callback, props) {
-  // Dispatches all the processing functions
-  var dispatch = function dispatch(fns) {
-    fns.forEach(function(fn) {
-      if (typeof fn === 'function') {
-        instance[fn.name] = fn
-      }
-    })
-  }
-
-  callback(instance, dispatch, props)
+  callback(instance, props)
 }
 
 var hoc = function hoc(drawStuffFn, propsGetter) {
@@ -657,7 +531,6 @@ var Ball = (function() {
     {
       key: 'displayBalls',
       value: function displayBalls() {
-        console.log(this.loc)
         this.instance.strokeWeight(this.props.stroke || DEFAULT_STROKE_WEIGHT)
         this.instance.fill(this.props.color || DEFAULT_BALL_COLOR)
         this.instance.ellipse(
@@ -702,14 +575,10 @@ var getAccelerationProps = function getAccelerationProps(props) {
 }
 
 // Draw the balls on canvas when <Acceleration /> component is used
-var drawStuffUsingAcceleration = function drawStuffUsingAcceleration(
-  p,
-  dispatch,
-  props
-) {
+var drawStuffUsingAcceleration = function drawStuffUsingAcceleration(p, props) {
   var balls = new Array(Number(props.balls) || DEFAULT_BALLS)
 
-  var setup = function setup() {
+  p.setup = function() {
     getCanvasSize(p, props)
 
     for (var i = 0; i < balls.length; i++) {
@@ -717,7 +586,7 @@ var drawStuffUsingAcceleration = function drawStuffUsingAcceleration(
     }
   }
 
-  var draw = function draw() {
+  p.draw = function() {
     p.background(props.background)
     for (var i = 0; i < balls.length; i++) {
       balls[i].updatePosition()
@@ -725,9 +594,6 @@ var drawStuffUsingAcceleration = function drawStuffUsingAcceleration(
       balls[i].displayBalls()
     }
   }
-
-  // Dispatch all the processing core functions
-  dispatch([setup, draw])
 }
 
 var Acceleration = hoc(drawStuffUsingAcceleration, getAccelerationProps)
@@ -864,15 +730,10 @@ var getForcesProps = function getForcesProps(props) {
 }
 
 // Draw the balls on canvas when <Force /> component is used
-var drawStuffUsingForces = function drawStuffUsingForces(
-  p,
-  dispatch,
-  props,
-  getArray
-) {
+var drawStuffUsingForces = function drawStuffUsingForces(p, props, getArray) {
   var balls = new Array(Number(props.balls) || DEFAULT_BALLS)
 
-  var setup = function setup() {
+  p.setup = function() {
     getCanvasSize(p, props)
 
     for (var i = 0; i < balls.length; i++) {
@@ -880,7 +741,7 @@ var drawStuffUsingForces = function drawStuffUsingForces(
     }
   }
 
-  var draw = function draw() {
+  p.draw = function() {
     p.background(props.background)
 
     for (var i = 0; i < balls.length; i++) {
@@ -924,9 +785,6 @@ var drawStuffUsingForces = function drawStuffUsingForces(
       balls[i].displayBalls()
     }
   }
-
-  // Dispatch all the processing core functions
-  dispatch([setup, draw])
 }
 
 var Force = hoc(drawStuffUsingForces, getForcesProps)
@@ -1014,18 +872,18 @@ var getGravityProps = function getGravityProps(props) {
 }
 
 // Draw the balls on canvas when <Acceleration /> component is used
-var drawStuffUsingGravity = function drawStuffUsingGravity(p, dispatch, props) {
+var drawStuffUsingGravity = function drawStuffUsingGravity(p, props) {
   var magnet = void 0
   var rotator = void 0
 
-  var setup = function setup() {
+  p.setup = function() {
     getCanvasSize(p, props)
 
     rotator = new FMA(p, props, 1.5, p.width / 2.5, p.height / 2.5)
     magnet = new Magnet(p, props)
   }
 
-  var draw = function draw() {
+  p.draw = function() {
     p.background(props.background)
 
     var gravitationalForce = magnet.attract(rotator)
@@ -1037,16 +895,13 @@ var drawStuffUsingGravity = function drawStuffUsingGravity(p, dispatch, props) {
     rotator.displayBalls()
   }
 
-  var mouseDragged = function mouseDragged() {
+  p.mouseDragged = function() {
     magnet.location.x = p.mouseX
     magnet.location.y = p.mouseY
 
     // Prevent default behaviour!
     return false
   }
-
-  // Dispatch all the processing core functions
-  dispatch([setup, draw, props.move ? mouseDragged : null])
 }
 
 var Gravity = hoc(drawStuffUsingGravity, getGravityProps)
@@ -1590,10 +1445,10 @@ var AccelerationContent = function AccelerationContent(props) {
     React__default.createElement(
       'p',
       null,
-      'Welcome to Elements of Physics, an interactive simulation which describes different elements of physics like',
-      ' ',
+      'Welcome to Elements of Physics, an interactive simulation which describes different elements of physics like ',
       React__default.createElement('span', null, 'Acceleration'),
-      ', ',
+      ',',
+      ' ',
       React__default.createElement('span', null, 'Force'),
       ' and ',
       React__default.createElement('span', null, 'Gravity'),
@@ -1611,7 +1466,8 @@ var AccelerationContent = function AccelerationContent(props) {
       null,
       'Acceleration is defined as change in velocity over a period of time. In the above simulator, if you choose the element ',
       React__default.createElement('span', null, 'Acceleration'),
-      " from the options, then you will notice a number of balls being attracted towards the current position of mouse on the canvas. This behavior is due to the acceleration force created when a ball moves from its actual position to the mouse position. Let's examine how force actually works in pixel world."
+      ' ',
+      "from the options, then you will notice a number of balls being attracted towards the current position of mouse on the canvas. This behavior is due to the acceleration force created when a ball moves from its actual position to the mouse position. Let's examine how force actually works in pixel world."
     ),
     React__default.createElement(
       'p',
@@ -1647,7 +1503,8 @@ var AccelerationContent = function AccelerationContent(props) {
     React__default.createElement(
       'p',
       null,
-      'After substituting the values in the above equation, we end up with ',
+      'After substituting the values in the above equation, we end up with',
+      ' ',
       React__default.createElement('span', null, 'F = A'),
       '. This means, a constant force is being applied to each ball which causes it to accelerate.'
     ),
@@ -2002,6 +1859,8 @@ var StyledLink = function StyledLink(props) {
     props.children
   )
 }
+
+injectGlobal('body{background:', hexToRgba('#27323e', '2'), '}')
 
 var Layout = (function(_React$Component) {
   inherits(Layout, _React$Component)

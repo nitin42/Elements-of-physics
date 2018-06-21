@@ -39,9 +39,6 @@ const createConfig = ({ output, min = false, env } = {}) => ({
 
 export default [
   createConfig({
-    output: [
-      { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' }
-    ]
+    output: [{ file: pkg.module, format: 'es' }]
   })
 ]

@@ -1,6 +1,7 @@
 body {
 	font-family: 'Quicksand', sans-serif;
 	padding: 40px 80px 40px 80px;
+	font-weight: bolder;
 }
 
 h1 {
@@ -42,15 +43,15 @@ ul {
 
 .content p {
 	font-size: 20px;
-	color: #94bbe9;
+	color: #85a8d1;
 	line-height: 1.7;
 	word-spacing: 1.5;
 }
 
 blockquote {
 	font-size: 20px;
-	color: #eeaeca;
-	border-left: 4px solid #eeaeca;
+	color: #d69cb5;
+	border-left: 4px solid #d69cb5;
 	padding: 10px;
 	margin: 12px;
 	/* background: #fdf6f9; */
@@ -58,21 +59,21 @@ blockquote {
 
 .content span {
 	font-size: 20px;
-	color: #94bbe9;
+	color: #85a8d1;
 	padding: 1.5px;
 }
 
 .home-content p {
 	font-size: 25px;
-	color: #94bbe9;
+	color: #85a8d1;
 	line-height: 1.7;
 	word-spacing: 1.5;
 }
 
 .home-content span {
 	font-size: 25px;
-	color: #eeaeca;
-	/* border-bottom: 2px dotted #eeaeca; */
+	color: #d69cb5;
+	/* border-bottom: 2px dotted #d69cb5; */
 	padding: 1.5px;
 }
 
@@ -81,21 +82,21 @@ blockquote {
 }
 
 p > .github-link {
-	color: #eeaeca;
+	color: #d69cb5;
 	text-decoration: none;
-	border-bottom: 2px dotted #eeaeca;
+	border-bottom: 2px dotted #d69cb5;
 }
 
 a#profile {
-	color: #eeaeca;
+	color: #d69cb5;
 	text-decoration: none;
-	border-bottom: 2px solid #eeaeca;
+	border-bottom: 2px solid #d69cb5;
 }
 
 a#article {
-	color: #eeaeca;
+	color: #d69cb5;
 	text-decoration: none;
-	border-bottom: 2px dotted #eeaeca;
+	border-bottom: 2px dotted #d69cb5;
 }
 
 .home-content {
@@ -130,7 +131,7 @@ a#article {
 }
 
 .content span {
-	color: #eeaeca;
+	color: #d69cb5;
 }
 
 /* Controls for updating the canvas */

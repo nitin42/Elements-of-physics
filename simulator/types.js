@@ -64,32 +64,14 @@ export type GravityProps = {
 
 export type mixedProps = GravityProps | ForceProps | AccelerationProps
 
-// Processing core callbacks
-type dispatchCallback = () => void | boolean
-
-// Dispatch function batches all the processing core functions
-export type dispatch = (args: Array<dispatchCallback | null>) => void
-
 // Core draw function for drawing stuff when Gravity component is used
-export type gravityStuff = (
-  p: instance,
-  dispatch: dispatch,
-  props: GravityProps
-) => void
+export type gravityStuff = (p: instance, props: GravityProps) => void
 
 // Core draw function for drawing stuff when Force component is used
-export type forceStuff = (
-  p: instance,
-  dispatch: dispatch,
-  props: ForceProps
-) => void
+export type forceStuff = (p: instance, props: ForceProps) => void
 
 // Core draw function for drawing stuff when Acceleration component is used
-export type accelerationStuff = (
-  p: instance,
-  dispatch: dispatch,
-  props: AccelerationProps
-) => void
+export type accelerationStuff = (p: instance, props: AccelerationProps) => void
 
 // Returns the rest props
 export type propsGetter = (props: mixedProps) => Object

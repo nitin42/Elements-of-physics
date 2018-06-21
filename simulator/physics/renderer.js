@@ -7,15 +7,6 @@ export const p5Renderer = (
   instance: instance,
   callback: Function,
   props: mixedProps
-): void => {
-  // Dispatches all the processing functions
-  const dispatch = fns => {
-    fns.forEach(fn => {
-      if (typeof fn === 'function') {
-        instance[fn.name] = fn
-      }
-    })
-  }
-
-  callback(instance, dispatch, props)
+) => {
+  callback(instance, props)
 }
