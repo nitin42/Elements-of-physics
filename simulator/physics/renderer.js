@@ -8,5 +8,6 @@ export const p5Renderer = (
   callback: Function,
   props: mixedProps
 ) => {
+  // TODO: Dispatching processing core function don't work when deployed
   callback(instance, props)
 }

@@ -215,6 +215,7 @@ var Loading = function Loading() {
 
 // Receives p5 instance and a callback to draw the stuff on canvas
 var p5Renderer = function p5Renderer(instance, callback, props) {
+  // TODO: Dispatching processing core function don't work when deployed
   callback(instance, props)
 }
 
@@ -588,6 +589,7 @@ var drawStuffUsingAcceleration = function drawStuffUsingAcceleration(p, props) {
 
   p.draw = function() {
     p.background(props.background)
+
     for (var i = 0; i < balls.length; i++) {
       balls[i].updatePosition()
       balls[i].hasCrossedEdge()
@@ -895,12 +897,14 @@ var drawStuffUsingGravity = function drawStuffUsingGravity(p, props) {
     rotator.displayBalls()
   }
 
-  p.mouseDragged = function() {
-    magnet.location.x = p.mouseX
-    magnet.location.y = p.mouseY
+  if (props.move) {
+    p.mouseDragged = function() {
+      magnet.location.x = p.mouseX
+      magnet.location.y = p.mouseY
 
-    // Prevent default behaviour!
-    return false
+      // Prevent default behaviour!
+      return false
+    }
   }
 }
 
@@ -1636,11 +1640,11 @@ var ForceContent = function ForceContent(props) {
       null,
       'A force is a vector that causes an object with mass to accelerate. When you select the element ',
       React__default.createElement('span', null, 'Force'),
+      ' from the list of element options, then you will notice a number of balls moving with a',
       ' ',
-      'from the list of element options, then you will notice a number of balls moving with a ',
       React__default.createElement('span', null, 'constant'),
+      ' velocity. Rendering balls on canvas using',
       ' ',
-      'velocity. Rendering balls on canvas using ',
       React__default.createElement('span', null, 'Force'),
       ' shares a similar mechanism when compared to',
       ' ',
@@ -1722,13 +1726,13 @@ var ForceContent = function ForceContent(props) {
     React__default.createElement(
       'p',
       null,
-      'Interestingly, you can also apply an external force using a vector. Click the',
-      ' ',
+      'Interestingly, you can also apply an external force using a vector. Click the ',
       React__default.createElement('i', {
         style: { color: '#4c4c4c' },
         className: 'fas fa-plus-circle'
       }),
-      ' icon near apply force in the control section and you will be prompted with a modal to create your own vector. Try it and see how this force affects the ball. You can also remove this vector using ',
+      ' icon near apply force in the control section and you will be prompted with a modal to create your own vector. Try it and see how this force affects the ball. You can also remove this vector using',
+      ' ',
       React__default.createElement('i', {
         style: { color: '#4c4c4c' },
         className: 'fas fa-minus-circle'
@@ -1785,12 +1789,13 @@ var GravityContent = function GravityContent(props) {
       'p',
       null,
       React__default.createElement('span', null, 'F'),
-      ' stands for gravitational force that we need to calculate. ',
-      React__default.createElement('span', null, 'G'),
-      ' stands for',
+      ' stands for gravitational force that we need to calculate.',
       ' ',
+      React__default.createElement('span', null, 'G'),
+      ' stands for ',
       React__default.createElement('span', null, 'Gravitational constant'),
-      ', ',
+      ',',
+      ' ',
       React__default.createElement('span', null, 'm1, m2'),
       ' are the masses of both the balls and ',
       React__default.createElement('span', null, 'r'),
@@ -1802,7 +1807,10 @@ var GravityContent = function GravityContent(props) {
       'You can adjust the gravitational constant (',
       React__default.createElement(
         'span',
-        { role: 'img', 'aria-label': 'shocking' },
+        {
+          role: 'img',
+          'aria-label': 'shocking'
+        },
         '\uD83D\uDE31'
       ),
       ') and see how it affects the gravitational force in the control section. You can also adjust the ball size using ',
@@ -2348,12 +2356,12 @@ var Home = function Home() {
     React__default.createElement(
       'p',
       null,
-      'Elements of Physics is an interactive simulation which describes different elements of physics like',
-      ' ',
+      'Elements of Physics is an interactive simulation which describes different elements of physics like ',
       React__default.createElement('span', null, 'Gravity'),
       ', ',
       React__default.createElement('span', null, 'Acceleration'),
-      ' and ',
+      ' ',
+      'and ',
       React__default.createElement('span', null, 'Force'),
       '. Each element is described with different simulation controls.'
     ),
@@ -2362,7 +2370,8 @@ var Home = function Home() {
       null,
       'The simulator consists of two parts - ',
       React__default.createElement('span', null, 'canvas'),
-      ' and ',
+      ' and',
+      ' ',
       React__default.createElement('span', null, 'control section'),
       '. Control section consists of different controls for manipulating each element, and everything is then rendered on the canvas.'
     ),

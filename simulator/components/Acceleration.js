@@ -21,6 +21,7 @@ const drawStuffUsingAcceleration = (p: instance, props: AccelerationProps) => {
 
   p.draw = () => {
     p.background(props.background)
+
     for (let i = 0; i < balls.length; i++) {
       balls[i].updatePosition()
       balls[i].hasCrossedEdge()

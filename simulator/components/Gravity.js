@@ -33,12 +33,14 @@ const drawStuffUsingGravity = (p: instance, props: GravityProps) => {
     rotator.displayBalls()
   }
 
-  p.mouseDragged = () => {
-    magnet.location.x = p.mouseX
-    magnet.location.y = p.mouseY
+  if (props.move) {
+    p.mouseDragged = () => {
+      magnet.location.x = p.mouseX
+      magnet.location.y = p.mouseY
 
-    // Prevent default behaviour!
-    return false
+      // Prevent default behaviour!
+      return false
+    }
   }
 }
 
