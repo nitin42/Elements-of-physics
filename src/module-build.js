@@ -990,7 +990,6 @@ var ForceCanvas = function ForceCanvas(props) {
 }
 
 var AccelerationCanvas = function AccelerationCanvas(props) {
-  console.log('Rendering')
   return React__default.createElement(Acceleration, {
     width: props.width,
     height: props.height,
@@ -1822,27 +1821,6 @@ var Content = function Content(props) {
   })
 }
 
-var infoStyles = {
-  display: 'flex',
-  justifyContent: 'center',
-  marginTop: '20px',
-  fontSize: '20px',
-  padding: '5px',
-  fontWeight: 'bolder'
-}
-
-var Info = function Info() {
-  return React__default.createElement(
-    'div',
-    { style: infoStyles },
-    React__default.createElement(
-      'strong',
-      null,
-      'Sorry! The simulator only works on larger displays currently.'
-    )
-  )
-}
-
 var StyledLink = function StyledLink(props) {
   return React__default.createElement(
     Link,
@@ -1858,6 +1836,51 @@ var StyledLink = function StyledLink(props) {
     },
     props.children
   )
+}
+
+var fadeIn = function fadeIn() {
+  return /*#__PURE__*/ css(
+    'animation:fadeIn 1s ease-in;@keyframes fadeIn{from{opacity:0;transform:rotateY(-180deg);}to{opacity:1;transform:rotateY(0deg);}}'
+  )
+}
+
+var shakeElement = function shakeElement(id) {
+  return document
+    .getElementById(id)
+    .animate(
+      [
+        { transform: 'translate3d(-1px, 0, 0)' },
+        { transform: 'translate3d(2px, 0, 0)' },
+        { transform: 'translate3d(-4px, 0, 0)' },
+        { transform: 'translate3d(4px, 0, 0)' },
+        { transform: 'translate3d(-4px, 0, 0)' },
+        { transform: 'translate3d(4px, 0, 0)' },
+        { transform: 'translate3d(-4px, 0, 0)' },
+        { transform: 'translate3d(2px, 0, 0)' },
+        { transform: 'translate3d(-1px, 0, 0)' }
+      ],
+      {
+        easing: 'cubic-bezier(.36,.07,.19,.97)',
+        fill: 'both',
+        duration: 800
+      }
+    )
+}
+
+var fadeAway = function fadeAway(id) {
+  return document
+    .getElementById(id)
+    .animate(
+      [
+        { opacity: 1, transform: 'translateX(0px)' },
+        { opacity: 0, transform: 'translateX(400px)' }
+      ],
+      {
+        duration: 600,
+        iterations: 1,
+        easing: 'ease-in-out'
+      }
+    )
 }
 
 injectGlobal('body{background:', hexToRgba('#27323e', '2'), '}')
@@ -1923,8 +1946,6 @@ var Layout = (function(_React$Component) {
         gConstant: 10,
         // Enable dragging of ball when <Gravity /> compnonent is mounted
         move: false,
-        // Screen width
-        innerWidth: window.innerWidth,
         // Modal for creating a vector for applying force on a ball
         isModalOpen: false,
         // Store the function for applying force on each ball
@@ -1946,17 +1967,15 @@ var Layout = (function(_React$Component) {
       (_this.handleCanvasResize = function(e) {
         _this.setState({ innerWidth: window.innerWidth })
 
-        if (window.innerWidth > 850) {
-          var _this$ref$current$get = _this.ref.current.getBoundingClientRect(),
-            width = _this$ref$current$get.width,
-            height = _this$ref$current$get.height
+        var _this$ref$current$get = _this.ref.current.getBoundingClientRect(),
+          width = _this$ref$current$get.width,
+          height = _this$ref$current$get.height
 
-          var canvas = document.getElementById('defaultCanvas0')
+        var canvas = document.getElementById('defaultCanvas0')
 
-          if (canvas !== null) {
-            canvas.style.height = height
-            canvas.style.width = width
-          }
+        if (canvas !== null) {
+          canvas.style.height = height
+          canvas.style.width = width
         }
       }),
       (_this.renderOptions = function() {
@@ -1977,26 +1996,7 @@ var Layout = (function(_React$Component) {
       }),
       (_this.updateVector = function(e) {
         if (_this.state.xVec === 0 && _this.state.yVec === 0) {
-          document
-            .getElementById('vector-button')
-            .animate(
-              [
-                { transform: 'translate3d(-1px, 0, 0)' },
-                { transform: 'translate3d(2px, 0, 0)' },
-                { transform: 'translate3d(-4px, 0, 0)' },
-                { transform: 'translate3d(4px, 0, 0)' },
-                { transform: 'translate3d(-4px, 0, 0)' },
-                { transform: 'translate3d(4px, 0, 0)' },
-                { transform: 'translate3d(-4px, 0, 0)' },
-                { transform: 'translate3d(2px, 0, 0)' },
-                { transform: 'translate3d(-1px, 0, 0)' }
-              ],
-              {
-                easing: 'cubic-bezier(.36,.07,.19,.97)',
-                fill: 'both',
-                duration: 800
-              }
-            )
+          shakeElement('vector-button')
         } else {
           _this.setState(function(state) {
             return {
@@ -2005,6 +2005,7 @@ var Layout = (function(_React$Component) {
                 state.xVec === 0 && state.yVec === 0
                   ? state.valArr
                   : state.valArr.concat({ x: state.xVec, y: state.yVec }),
+              // eslint-disable-line no-new-func
               fnArr: state.fnArr.concat(
                 new Function(
                   'ball',
@@ -2029,19 +2030,7 @@ var Layout = (function(_React$Component) {
         val.splice(val.indexOf(key), 1)
 
         // Start animation on node removal!
-        var animate = document
-          .getElementById('vector-item-' + key)
-          .animate(
-            [
-              { opacity: 1, transform: 'translateX(0px)' },
-              { opacity: 0, transform: 'translateX(400px)' }
-            ],
-            {
-              duration: 600,
-              iterations: 1,
-              easing: 'ease-in-out'
-            }
-          )
+        var animate = fadeAway('vector-item-' + key)
 
         // After the animation, update the state arrays for vector functions and values
         animate.onfinish = function() {
@@ -2119,39 +2108,36 @@ var Layout = (function(_React$Component) {
     {
       key: 'componentDidMount',
       value: function componentDidMount() {
+        // Scroll to top when layout is rendered
         window.scrollTo(0, 0)
 
-        if (window.innerWidth > 850) {
-          var _ref$current$getBound = this.ref.current.getBoundingClientRect(),
-            width = _ref$current$getBound.width,
-            height = _ref$current$getBound.height
+        var _ref$current$getBound = this.ref.current.getBoundingClientRect(),
+          width = _ref$current$getBound.width,
+          height = _ref$current$getBound.height
 
-          // Send this measures down to canvas to size accordingly
+        // Send this measures down to canvas to size accordingly
 
-          this.setState({
-            width: width,
-            height: height
-          })
+        this.setState({
+          width: width,
+          height: height
+        })
 
-          window.addEventListener('resize', this.handleCanvasResize, false)
-        }
+        window.addEventListener('resize', this.handleCanvasResize, false)
       }
     },
     {
       key: 'componentDidUpdate',
       value: function componentDidUpdate() {
-        if (window.innerWidth > 850) {
-          var _ref$current$getBound2 = this.ref.current.getBoundingClientRect(),
-            height = _ref$current$getBound2.height
+        var _ref$current$getBound2 = this.ref.current.getBoundingClientRect(),
+          height = _ref$current$getBound2.height
 
-          // Update the canvas height when controls are updated.
+        // Update the canvas height when controls are updated.
 
-          if (height !== this.state.height) {
-            var canvas = document.getElementById('defaultCanvas0')
+        if (height !== this.state.height) {
+          var canvas = document.getElementById('defaultCanvas0')
 
-            if (canvas !== null) {
-              canvas.style.height = height
-            }
+          if (canvas !== null) {
+            canvas.style.height = height
           }
         }
       }
@@ -2202,17 +2188,9 @@ var Layout = (function(_React$Component) {
       value: function render() {
         var _this2 = this
 
-        console.log(this.state.innerWidth)
         return React__default.createElement(
           'div',
-          {
-            className:
-              this.state.innerWidth > 850
-                ? /*#__PURE__*/ css(
-                    'animation:fadeIn 1s ease-in;@keyframes fadeIn{from{opacity:0;transform:rotateY(-180deg);}to{opacity:1;transform:rotateY(0deg);}}'
-                  )
-                : 'simulator'
-          },
+          { className: fadeIn() },
           React__default.createElement(
             'div',
             { style: { position: 'relative', left: -70, top: -25 } },
@@ -2223,81 +2201,71 @@ var Layout = (function(_React$Component) {
                 className: 'fas fa-arrow-left'
               }),
               '\xA0Back'
-            ),
-            ' '
+            )
           ),
-          this.state.innerWidth > 850
-            ? React__default.createElement(
-                React__default.Fragment,
-                null,
-                React__default.createElement(
-                  'div',
-                  { className: 'container' },
-                  React__default.createElement(
-                    'div',
-                    { className: 'canvas-container', ref: this.ref },
-                    React__default.createElement(Delay, {
-                      wait: 800,
-                      render: function render(waiting) {
-                        return waiting
-                          ? React__default.createElement(Loading, null)
-                          : React__default.createElement(
-                              Provider,
-                              { value: _this2.state },
-                              React__default.createElement(Canvas, null)
-                            )
-                      }
-                    })
-                  ),
-                  React__default.createElement(
-                    'div',
-                    {
-                      className: 'controls',
-                      style: {
-                        backgroundColor: hexToRgba(this.state.color, '4')
-                      }
-                    },
-                    React__default.createElement(
-                      Provider,
-                      { value: this.state },
-                      React__default.createElement(Controls, {
-                        handleVelocity: this.handleVelocity,
-                        handleElementSelect: this.handleElementSelect,
-                        handleBallChange: this.handleBallChange,
-                        handleBallSize: this.handleBallSize,
-                        handleColorPicker: this.showColorPicker,
-                        handleColorChange: this.handleColorChange,
-                        handleBackgroundChange: this.handleBackgroundChange,
-                        handleBackground: this.showBackgroundColorPicker,
-                        handleFriction: this.handleFriction,
-                        handleGravity: this.handleGravity,
-                        handleFrictionCoefficient: this
-                          .handleFrictionCoefficient,
-                        handleGConstant: this.handleGConstant,
-                        handleMove: this.handleMove,
-                        handleMagnitude: this.handleMagnitude,
-                        renderOptions: this.renderOptions,
-                        isModalOpen: this.state.isModalOpen,
-                        toggleModal: this.toggleModal,
-                        updateVector: this.updateVector,
-                        deleteVectors: this.deleteVectors,
-                        updateXVec: this.updateXVec,
-                        updateYVec: this.updateYVec
-                      })
-                    )
-                  )
-                ),
+          React__default.createElement(
+            React__default.Fragment,
+            null,
+            React__default.createElement(
+              'div',
+              { className: 'container' },
+              React__default.createElement(
+                'div',
+                { className: 'canvas-container', ref: this.ref },
+                React__default.createElement(Delay, {
+                  wait: 800,
+                  render: function render(waiting) {
+                    return waiting
+                      ? React__default.createElement(Loading, null)
+                      : React__default.createElement(
+                          Provider,
+                          { value: _this2.state },
+                          React__default.createElement(Canvas, null)
+                        )
+                  }
+                })
+              ),
+              React__default.createElement(
+                'div',
+                {
+                  className: 'controls',
+                  style: { backgroundColor: hexToRgba(this.state.color, '4') }
+                },
                 React__default.createElement(
                   Provider,
                   { value: this.state },
-                  React__default.createElement(Content, null)
+                  React__default.createElement(Controls, {
+                    handleVelocity: this.handleVelocity,
+                    handleElementSelect: this.handleElementSelect,
+                    handleBallChange: this.handleBallChange,
+                    handleBallSize: this.handleBallSize,
+                    handleColorPicker: this.showColorPicker,
+                    handleColorChange: this.handleColorChange,
+                    handleBackgroundChange: this.handleBackgroundChange,
+                    handleBackground: this.showBackgroundColorPicker,
+                    handleFriction: this.handleFriction,
+                    handleGravity: this.handleGravity,
+                    handleFrictionCoefficient: this.handleFrictionCoefficient,
+                    handleGConstant: this.handleGConstant,
+                    handleMove: this.handleMove,
+                    handleMagnitude: this.handleMagnitude,
+                    renderOptions: this.renderOptions,
+                    isModalOpen: this.state.isModalOpen,
+                    toggleModal: this.toggleModal,
+                    updateVector: this.updateVector,
+                    deleteVectors: this.deleteVectors,
+                    updateXVec: this.updateXVec,
+                    updateYVec: this.updateYVec
+                  })
                 )
               )
-            : React__default.createElement(
-                'div',
-                null,
-                React__default.createElement(Info, null)
-              )
+            ),
+            React__default.createElement(
+              Provider,
+              { value: this.state },
+              React__default.createElement(Content, null)
+            )
+          )
         )
       }
     }

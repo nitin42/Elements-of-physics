@@ -38,7 +38,6 @@ export const ForceCanvas = props => (
 )
 
 export const AccelerationCanvas = props => {
-  console.log('Rendering')
   return (
     <Acceleration
       width={props.width}

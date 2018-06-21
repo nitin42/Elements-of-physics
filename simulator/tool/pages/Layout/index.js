@@ -1,6 +1,6 @@
 import React from 'react'
 import hexToRgba from 'hex-rgba'
-import { css, injectGlobal } from 'emotion'
+import { injectGlobal } from 'emotion'
 
 import { Provider } from './context'
 
@@ -9,13 +9,13 @@ import { Loading } from './Loading'
 import { Canvas } from './canvas'
 import { Controls } from './controls'
 import { Content } from './Content'
-import { Info } from './Info'
 import { StyledLink } from '../../styles/StyledLink'
+
+import { fadeIn, shakeElement, fadeAway } from '../../animations/index'
 
 injectGlobal`
   body {
     background: ${hexToRgba('#27323e', '2')}
-
   }
 `
 
@@ -55,8 +55,6 @@ export class Layout extends React.Component {
     gConstant: 10,
     // Enable dragging of ball when <Gravity /> compnonent is mounted
     move: false,
-    // Screen width
-    innerWidth: window.innerWidth,
     // Modal for creating a vector for applying force on a ball
     isModalOpen: false,
     // Store the function for applying force on each ball
@@ -74,32 +72,29 @@ export class Layout extends React.Component {
   }
 
   componentDidMount() {
+    // Scroll to top when layout is rendered
     window.scrollTo(0, 0)
 
-    if (window.innerWidth > 850) {
-      const { width, height } = this.ref.current.getBoundingClientRect()
+    const { width, height } = this.ref.current.getBoundingClientRect()
 
-      // Send this measures down to canvas to size accordingly
-      this.setState({
-        width,
-        height
-      })
+    // Send this measures down to canvas to size accordingly
+    this.setState({
+      width,
+      height
+    })
 
-      window.addEventListener('resize', this.handleCanvasResize, false)
-    }
+    window.addEventListener('resize', this.handleCanvasResize, false)
   }
 
   componentDidUpdate() {
-    if (window.innerWidth > 850) {
-      const { height } = this.ref.current.getBoundingClientRect()
+    const { height } = this.ref.current.getBoundingClientRect()
 
-      // Update the canvas height when controls are updated.
-      if (height !== this.state.height) {
-        const canvas = document.getElementById('defaultCanvas0')
+    // Update the canvas height when controls are updated.
+    if (height !== this.state.height) {
+      const canvas = document.getElementById('defaultCanvas0')
 
-        if (canvas !== null) {
-          canvas.style.height = height
-        }
+      if (canvas !== null) {
+        canvas.style.height = height
       }
     }
   }
@@ -113,15 +108,13 @@ export class Layout extends React.Component {
   handleCanvasResize = e => {
     this.setState({ innerWidth: window.innerWidth })
 
-    if (window.innerWidth > 850) {
-      const { width, height } = this.ref.current.getBoundingClientRect()
+    const { width, height } = this.ref.current.getBoundingClientRect()
 
-      const canvas = document.getElementById('defaultCanvas0')
+    const canvas = document.getElementById('defaultCanvas0')
 
-      if (canvas !== null) {
-        canvas.style.height = height
-        canvas.style.width = width
-      }
+    if (canvas !== null) {
+      canvas.style.height = height
+      canvas.style.width = width
     }
   }
 
@@ -145,26 +138,7 @@ export class Layout extends React.Component {
   // Fired when the vector inputs (x and y position values) are filled
   updateVector = e => {
     if (this.state.xVec === 0 && this.state.yVec === 0) {
-      document
-        .getElementById('vector-button')
-        .animate(
-          [
-            { transform: 'translate3d(-1px, 0, 0)' },
-            { transform: 'translate3d(2px, 0, 0)' },
-            { transform: 'translate3d(-4px, 0, 0)' },
-            { transform: 'translate3d(4px, 0, 0)' },
-            { transform: 'translate3d(-4px, 0, 0)' },
-            { transform: 'translate3d(4px, 0, 0)' },
-            { transform: 'translate3d(-4px, 0, 0)' },
-            { transform: 'translate3d(2px, 0, 0)' },
-            { transform: 'translate3d(-1px, 0, 0)' }
-          ],
-          {
-            easing: 'cubic-bezier(.36,.07,.19,.97)',
-            fill: 'both',
-            duration: 800
-          }
-        )
+      shakeElement('vector-button')
     } else {
       this.setState(state => ({
         isModalOpen: !state.isModalOpen,
@@ -172,6 +146,7 @@ export class Layout extends React.Component {
           state.xVec === 0 && state.yVec === 0
             ? state.valArr
             : state.valArr.concat({ x: state.xVec, y: state.yVec }),
+        // eslint-disable-line no-new-func
         fnArr: state.fnArr.concat(
           new Function(
             'ball',
@@ -197,19 +172,7 @@ export class Layout extends React.Component {
     val.splice(val.indexOf(key), 1)
 
     // Start animation on node removal!
-    const animate = document
-      .getElementById(`vector-item-${key}`)
-      .animate(
-        [
-          { opacity: 1, transform: 'translateX(0px)' },
-          { opacity: 0, transform: 'translateX(400px)' }
-        ],
-        {
-          duration: 600,
-          iterations: 1,
-          easing: 'ease-in-out'
-        }
-      )
+    const animate = fadeAway(`vector-item-${key}`)
 
     // After the animation, update the state arrays for vector functions and values
     animate.onfinish = () =>
@@ -274,91 +237,64 @@ export class Layout extends React.Component {
   handleMove = e => this.setState({ [e.target.name]: e.target.checked })
 
   render() {
-    console.log(this.state.innerWidth)
     return (
-      <div
-        className={
-          this.state.innerWidth > 850
-            ? css`
-                animation: fadeIn 1s ease-in;
-
-                @keyframes fadeIn {
-                  from {
-                    opacity: 0;
-                    transform: rotateY(-180deg);
-                  }
-
-                  to {
-                    opacity: 1;
-                    transform: rotateY(0deg);
-                  }
-                }
-              `
-            : 'simulator'
-        }
-      >
+      <div className={fadeIn()}>
         <div style={{ position: 'relative', left: -70, top: -25 }}>
           <StyledLink to="/" fontSize={10}>
             <i className="fas fa-arrow-left" />&nbsp;Back
-          </StyledLink>{' '}
+          </StyledLink>
         </div>
-        {this.state.innerWidth > 850 ? (
-          <React.Fragment>
-            <div className="container">
-              <div className="canvas-container" ref={this.ref}>
-                <Delay
-                  wait={800}
-                  render={waiting => {
-                    return waiting ? (
-                      <Loading />
-                    ) : (
-                      <Provider value={this.state}>
-                        <Canvas />
-                      </Provider>
-                    )
-                  }}
-                />
-              </div>
-              <div
-                className="controls"
-                style={{ backgroundColor: hexToRgba(this.state.color, '4') }}
-              >
-                <Provider value={this.state}>
-                  <Controls
-                    handleVelocity={this.handleVelocity}
-                    handleElementSelect={this.handleElementSelect}
-                    handleBallChange={this.handleBallChange}
-                    handleBallSize={this.handleBallSize}
-                    handleColorPicker={this.showColorPicker}
-                    handleColorChange={this.handleColorChange}
-                    handleBackgroundChange={this.handleBackgroundChange}
-                    handleBackground={this.showBackgroundColorPicker}
-                    handleFriction={this.handleFriction}
-                    handleGravity={this.handleGravity}
-                    handleFrictionCoefficient={this.handleFrictionCoefficient}
-                    handleGConstant={this.handleGConstant}
-                    handleMove={this.handleMove}
-                    handleMagnitude={this.handleMagnitude}
-                    renderOptions={this.renderOptions}
-                    isModalOpen={this.state.isModalOpen}
-                    toggleModal={this.toggleModal}
-                    updateVector={this.updateVector}
-                    deleteVectors={this.deleteVectors}
-                    updateXVec={this.updateXVec}
-                    updateYVec={this.updateYVec}
-                  />
-                </Provider>
-              </div>
+        <React.Fragment>
+          <div className="container">
+            <div className="canvas-container" ref={this.ref}>
+              <Delay
+                wait={800}
+                render={waiting => {
+                  return waiting ? (
+                    <Loading />
+                  ) : (
+                    <Provider value={this.state}>
+                      <Canvas />
+                    </Provider>
+                  )
+                }}
+              />
             </div>
-            <Provider value={this.state}>
-              <Content />
-            </Provider>
-          </React.Fragment>
-        ) : (
-          <div>
-            <Info />
+            <div
+              className="controls"
+              style={{ backgroundColor: hexToRgba(this.state.color, '4') }}
+            >
+              <Provider value={this.state}>
+                <Controls
+                  handleVelocity={this.handleVelocity}
+                  handleElementSelect={this.handleElementSelect}
+                  handleBallChange={this.handleBallChange}
+                  handleBallSize={this.handleBallSize}
+                  handleColorPicker={this.showColorPicker}
+                  handleColorChange={this.handleColorChange}
+                  handleBackgroundChange={this.handleBackgroundChange}
+                  handleBackground={this.showBackgroundColorPicker}
+                  handleFriction={this.handleFriction}
+                  handleGravity={this.handleGravity}
+                  handleFrictionCoefficient={this.handleFrictionCoefficient}
+                  handleGConstant={this.handleGConstant}
+                  handleMove={this.handleMove}
+                  handleMagnitude={this.handleMagnitude}
+                  renderOptions={this.renderOptions}
+                  isModalOpen={this.state.isModalOpen}
+                  toggleModal={this.toggleModal}
+                  updateVector={this.updateVector}
+                  deleteVectors={this.deleteVectors}
+                  updateXVec={this.updateXVec}
+                  updateYVec={this.updateYVec}
+                />
+              </Provider>
+            </div>
           </div>
-        )}
+          <Provider value={this.state}>
+            <Content />
+          </Provider>
+        </React.Fragment>
       </div>
     )
   }

@@ -1,7 +1,7 @@
 body {
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	padding: 40px 80px 40px 80px;
-	font-weight: bolder;
+	font-weight: 500;
 }
 
 h1 {
@@ -30,7 +30,6 @@ h3 {
 	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	font-weight: bolder;
 }
 
 ul {
@@ -43,15 +42,16 @@ ul {
 
 .content p {
 	font-size: 20px;
-	color: #85a8d1;
+	color: #94bbe9;
 	line-height: 1.7;
-	word-spacing: 1.5;
+	word-spacing: 2.5;
 }
 
 blockquote {
 	font-size: 20px;
-	color: #d69cb5;
-	border-left: 4px solid #d69cb5;
+	color: #eeaeca;
+	font-weight: 550;
+	border-left: 4px solid #eeaeca;
 	padding: 10px;
 	margin: 12px;
 	/* background: #fdf6f9; */
@@ -59,22 +59,23 @@ blockquote {
 
 .content span {
 	font-size: 20px;
-	color: #85a8d1;
+	color: #94bbe9;
 	padding: 1.5px;
 }
 
 .home-content p {
 	font-size: 25px;
-	color: #85a8d1;
+	color: #94bbe9;
 	line-height: 1.7;
 	word-spacing: 1.5;
 }
 
 .home-content span {
 	font-size: 25px;
-	color: #d69cb5;
-	/* border-bottom: 2px dotted #d69cb5; */
+	color: #eeaeca;
+	/* border-bottom: 2px dotted #eeaeca; */
 	padding: 1.5px;
+	font-weight: 550;
 }
 
 .home-content h1 {
@@ -82,21 +83,24 @@ blockquote {
 }
 
 p > .github-link {
-	color: #d69cb5;
+	color: #eeaeca;
+	font-weight: 550;
 	text-decoration: none;
-	border-bottom: 2px dotted #d69cb5;
+	border-bottom: 2px dotted #eeaeca;
 }
 
 a#profile {
-	color: #d69cb5;
+	color: #eeaeca;
+	font-weight: 550;
 	text-decoration: none;
-	border-bottom: 2px solid #d69cb5;
+	border-bottom: 2px solid #eeaeca;
 }
 
 a#article {
-	color: #d69cb5;
+	color: #eeaeca;
 	text-decoration: none;
-	border-bottom: 2px dotted #d69cb5;
+	font-weight: 550;
+	border-bottom: 2px dotted #eeaeca;
 }
 
 .home-content {
@@ -114,7 +118,7 @@ a#article {
 
 /* Heading on canvas and content */
 .heading {
-	font-family: 'Quicksand', cursive;
+	font-family: 'Open Sans', cursive;
 	font-size: 45px;
 }
 
@@ -131,7 +135,8 @@ a#article {
 }
 
 .content span {
-	color: #d69cb5;
+	color: #eeaeca;
+	font-weight: 550;
 }
 
 /* Controls for updating the canvas */
