@@ -2,7 +2,7 @@ import React__default, { createElement, PureComponent } from 'react'
 import p5 from 'p5/lib/p5.min'
 import Modal from 'react-responsive-modal'
 import ReactTooltip from 'react-tooltip'
-import { css, injectGlobal } from 'emotion'
+import { css } from 'emotion'
 import { BlockPicker } from 'react-color'
 import { Link } from '@reach/router'
 import hexToRgba from 'hex-rgba'
@@ -1155,7 +1155,8 @@ var ForceControls = function ForceControls(props) {
           React__default.createElement(
             'blockquote',
             { style: { color: '#4c4c4c', borderColor: '#4c4c4c' } },
-            'You can remove the force vector using ',
+            'You can remove the force vector using',
+            ' ',
             React__default.createElement('i', {
               style: { color: '#4c4c4c' },
               className: 'fas fa-minus-circle'
@@ -1941,8 +1942,6 @@ var fadeAway = function fadeAway(id) {
     )
 }
 
-injectGlobal('body{background:', hexToRgba('#27323e', '2'), '}')
-
 var Layout = (function(_React$Component) {
   inherits(Layout, _React$Component)
 
@@ -2403,7 +2402,7 @@ var Home = function Home() {
         alt: 'simulator',
         height: 500,
         width: 800,
-        style: { boxShadow: '4px 4px 4px #f8f8f8' }
+        style: { boxShadow: '4px 4px 4px' }
       }),
       React__default.createElement(
         'p',
@@ -2427,7 +2426,7 @@ var Home = function Home() {
         React__default.createElement('img', {
           src: require('./images/canvas.png'),
           alt: 'canvas',
-          style: { boxShadow: '4px 4px 4px #f8f8f8' },
+          style: { boxShadow: '4px 4px 4px' },
           height: 600,
           width: 600
         }),
@@ -2451,7 +2450,7 @@ var Home = function Home() {
         React__default.createElement('img', {
           src: require('./images/control-section.png'),
           alt: 'control-section',
-          style: { boxShadow: '4px 4px 4px #f8f8f8' },
+          style: { boxShadow: '4px 4px 4px' },
           height: 600,
           width: 400
         }),

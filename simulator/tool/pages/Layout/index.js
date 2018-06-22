@@ -1,6 +1,5 @@
 import React from 'react'
 import hexToRgba from 'hex-rgba'
-import { injectGlobal } from 'emotion'
 
 import { Provider } from './context'
 
@@ -12,12 +11,6 @@ import { Content } from './Content'
 import { StyledLink } from '../../styles/StyledLink'
 
 import { fadeIn, shakeElement, fadeAway } from '../../animations/index'
-
-injectGlobal`
-  body {
-    background: ${hexToRgba('#27323e', '2')}
-  }
-`
 
 export class Layout extends React.Component {
   ref = React.createRef()

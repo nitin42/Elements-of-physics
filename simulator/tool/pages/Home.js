@@ -53,7 +53,7 @@ export const Home = () => (
         alt="simulator"
         height={500}
         width={800}
-        style={{ boxShadow: '4px 4px 4px #f8f8f8' }}
+        style={{ boxShadow: '4px 4px 4px' }}
       />
       <p style={{ color: 'grey', fontSize: '15px' }}>Simulator</p>
     </div>
@@ -69,7 +69,7 @@ export const Home = () => (
         <img
           src={require('./images/canvas.png')}
           alt="canvas"
-          style={{ boxShadow: '4px 4px 4px #f8f8f8' }}
+          style={{ boxShadow: '4px 4px 4px' }}
           height={600}
           width={600}
         />
@@ -89,7 +89,7 @@ export const Home = () => (
         <img
           src={require('./images/control-section.png')}
           alt="control-section"
-          style={{ boxShadow: '4px 4px 4px #f8f8f8' }}
+          style={{ boxShadow: '4px 4px 4px' }}
           height={600}
           width={400}
         />
