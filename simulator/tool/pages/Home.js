@@ -7,15 +7,32 @@ const styles = {
   justifyContent: 'center'
 }
 
+const Center = props => (
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: props.direction,
+      ...props.style
+    }}
+  >
+    {props.children}
+  </div>
+)
+
 export const Home = () => (
   <div className="home-content">
     <div style={styles}>
-      <h1>Elements of Physics</h1>
+      <h1 style={{ display: 'inline', borderBottom: '5px solid #4f4f4f' }}>
+        Elements of Physics
+      </h1>
     </div>
     <div style={styles} className="nitin-tulswani">
       <p>
         by{' '}
         <a
+          className="cool-link"
           id="profile"
           href="https://twitter.com/NTulswani"
           target="_blank"
@@ -25,6 +42,7 @@ export const Home = () => (
         </a>
       </p>
     </div>
+    <h2>Introduction</h2>
     <p>
       Elements of Physics is an interactive simulation which describes different
       elements of physics like <span>Gravity</span>, <span>Acceleration</span>{' '}
@@ -35,77 +53,25 @@ export const Home = () => (
       The simulator consists of two parts - <span>canvas</span> and{' '}
       <span>control section</span>. Control section consists of different
       controls for manipulating each element, and everything is then rendered on
-      the canvas. You can hover over an option in the control section to
-      understand the functionality of that control.
+      the canvas. You can hover over an option in the control section to learn
+      how it works.
     </p>
-    <div
+    <Center
       style={{
-        display: 'flex',
-        justifyContent: 'center',
         marginTop: '30px',
-        flexDirection: 'column',
-        alignItems: 'center',
         padding: '5px'
       }}
+      direction="column"
     >
       <img
-        src={require('./images/simulator.png')}
+        src={require('./images/Simulator.png')}
         alt="simulator"
-        height={500}
-        width={800}
-        style={{ boxShadow: '4px 4px 4px' }}
+        height={600}
+        width={890}
+        style={{ boxShadow: '4px 4px 4px #f9f9f9' }}
       />
       <p style={{ color: 'grey', fontSize: '15px' }}>Simulator</p>
-    </div>
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: '40px',
-        padding: '5px'
-      }}
-    >
-      <div>
-        <img
-          src={require('./images/canvas.png')}
-          alt="canvas"
-          style={{ boxShadow: '4px 4px 4px' }}
-          height={600}
-          width={600}
-        />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '10px',
-            color: 'grey',
-            fontSize: '15px'
-          }}
-        >
-          Canvas
-        </div>
-      </div>
-      <div style={{ marginLeft: 'auto' }}>
-        <img
-          src={require('./images/control-section.png')}
-          alt="control-section"
-          style={{ boxShadow: '4px 4px 4px' }}
-          height={600}
-          width={400}
-        />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '10px',
-            color: 'grey',
-            fontSize: '15px'
-          }}
-        >
-          Control section
-        </div>
-      </div>
-    </div>
+    </Center>
     <p>
       Each element is interactive and fun to play with. Though there is some
       theory behind each element, but it's written in a very concise and
@@ -114,11 +80,20 @@ export const Home = () => (
       without much cognitive load, which means less symbolic expressions
       (hooray!)
     </p>
+    <h2>Interactions</h2>
+    <p>
+      For some elements (Force and Gravity), you can interact with the canvas to
+      alter their behaviour such as attracting a number of balls towards the
+      current location of the mouse on canvas, or dragging a ball on canvas to
+      induce gravitational force.
+    </p>
+    <h2>Source</h2>
     <p>
       Source code for the tools and animations used in the simulator can be
       found{' '}
       <a
-        className="github-link"
+        className="cool-link"
+        id="profile"
         href="https://github.com/nitin42/Elements-of-physics"
         target="_blank"
         rel="noopener noreferrer"

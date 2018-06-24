@@ -1,42 +1,45 @@
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Eczar', serif;
 	padding: 40px 80px 40px 80px;
-	font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	color: #4f4f4f;
 }
 
 h1 {
 	font-size: 50px;
-	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+}
+
+a {
+	color: #4f4f4f;
+}
+
+p {
+	color: #4f4f4f;
+	text-align: justify;
 }
 
 .content h1 {
 	display: inline;
-	border-bottom: 4px solid #eeaeca;
 }
 
 #celebration {
 	font-size: 25px;
-	color: #eeaeca;
 }
 
 h2 {
 	display: inline;
 	font-size: 40px;
-	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	border-bottom: 4px solid #eeaeca;
 }
 
 h3 {
 	display: inline;
 	font-size: 30px;
 	padding: 3px;
-	background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 }
 
 ul {
@@ -49,65 +52,53 @@ ul {
 
 .content p {
 	font-size: 20px;
-	color: #94bbe9;
 	line-height: 1.7;
 	word-spacing: 2.5;
 }
 
 blockquote {
 	font-size: 20px;
-	color: #eeaeca;
-	font-weight: 550;
-	border-left: 4px solid #eeaeca;
 	padding: 10px;
 	margin: 12px;
-	/* background: #fdf6f9; */
+	color: #8a8a8a;
+	border-left: 5px solid #8a8a8a;
+	background: #f9f9f9;
 }
 
 .content span {
 	font-size: 20px;
-	color: #94bbe9;
 	padding: 1.5px;
 }
 
 .home-content p {
 	font-size: 25px;
-	color: #94bbe9;
-	line-height: 1.7;
-	word-spacing: 1.5;
+	line-height: 1.8;
+	word-spacing: 3.5;
 }
 
 .home-content span {
 	font-size: 25px;
-	color: #eeaeca;
-	/* border-bottom: 2px dotted #eeaeca; */
-	padding: 1.5px;
-	font-weight: 550;
+	color: #4f4f4f;
+	font-weight: bolder;
 }
 
 .home-content h1 {
 	font-size: 72px;
 }
 
-p > .github-link {
-	color: #eeaeca;
-	font-weight: 550;
+.github-link {
+	font-weight: 450;
 	text-decoration: none;
-	border-bottom: 2px dotted #eeaeca;
 }
 
 a#profile {
-	color: #eeaeca;
 	font-weight: 550;
 	text-decoration: none;
-	border-bottom: 2px solid #eeaeca;
 }
 
 a#article {
-	color: #eeaeca;
 	text-decoration: none;
 	font-weight: 550;
-	border-bottom: 2px dotted #eeaeca;
 }
 
 .home-content {
@@ -125,7 +116,7 @@ a#article {
 
 /* Heading on canvas and content */
 .heading {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Eczar', serif;
 	font-size: 45px;
 }
 
@@ -136,14 +127,14 @@ a#article {
 
 /* Simulator content */
 .content {
-	line-height: 1.6;
-	word-spacing: 2;
+	line-height: 1.7;
+	word-spacing: 2.5;
 	margin-top: 20px;
 }
 
 .content span {
-	color: #eeaeca;
-	font-weight: 550;
+	color: #4f4f4f;
+	font-weight: bolder;
 }
 
 /* Controls for updating the canvas */
@@ -178,6 +169,7 @@ a#article {
 input[type='text'] {
 	padding: 2px;
 	border: 0;
+	text-align: center;
 	width: 50px;
 	font-size: 20px;
 	border-bottom: 1.5px solid #bebebe;
@@ -285,7 +277,25 @@ span {
 	cursor: pointer;
 }
 
-@media only screen and (max-width: 500px) {
+.cool-link {
+	display: inline-block;
+	text-decoration: none;
+}
+
+.cool-link::after {
+	content: '';
+	display: block;
+	width: 0;
+	height: 4px;
+	background: #4f4f4f;
+	transition: width 0.2s;
+}
+
+.cool-link:hover::after {
+	width: 100%;
+}
+
+@media only screen and (max-width: 450px) {
 	body {
 		padding: 10px 40px 10px 40px;
 	}
@@ -311,6 +321,10 @@ span {
 	}
 
 	.nitin-tulswani > a {
+		font-size: 20px;
+	}
+
+	a {
 		font-size: 20px;
 	}
 }

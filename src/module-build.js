@@ -2,7 +2,7 @@ import React__default, { createElement, PureComponent } from 'react'
 import p5 from 'p5/lib/p5.min'
 import Modal from 'react-responsive-modal'
 import ReactTooltip from 'react-tooltip'
-import { css } from 'emotion'
+import { css, injectGlobal } from 'emotion'
 import { BlockPicker } from 'react-color'
 import { Link } from '@reach/router'
 import hexToRgba from 'hex-rgba'
@@ -971,7 +971,7 @@ var ForceCanvas = function ForceCanvas(props) {
     width: props.width,
     height: props.height,
     color: props.color,
-    stroke: 0.01,
+    stroke: 0.7,
     balls: props.balls,
     background: props.background,
     maxVelocity: props.maxVelocity,
@@ -998,7 +998,7 @@ var AccelerationCanvas = function AccelerationCanvas(props) {
     width: props.width,
     height: props.height,
     color: props.color,
-    stroke: 0.01,
+    stroke: 0.7,
     balls: props.balls,
     maxVelocity: props.maxVelocity,
     background: props.background,
@@ -1012,7 +1012,7 @@ var GravityCanvas = function GravityCanvas(props) {
     width: props.width,
     height: props.height,
     color: props.color,
-    stroke: 0.01,
+    stroke: 0.7,
     gConstant: props.gConstant,
     background: props.background,
     move: props.move,
@@ -1122,9 +1122,7 @@ var ForceControls = function ForceControls(props) {
           open: props.isModalOpen,
           onClose: props.toggleModal,
           classNames: {
-            modal: /*#__PURE__*/ css(
-              "padding:35px;width:50%;font-family:'Quicksand',sans-serif;font-size:20px;"
-            )
+            modal: /*#__PURE__*/ css('padding:35px;width:50%;font-size:20px;')
           }
         },
         React__default.createElement(
@@ -1154,9 +1152,8 @@ var ForceControls = function ForceControls(props) {
           ),
           React__default.createElement(
             'blockquote',
-            { style: { color: '#4c4c4c', borderColor: '#4c4c4c' } },
-            'You can remove the force vector using',
-            ' ',
+            null,
+            'You can remove the force vector using ',
             React__default.createElement('i', {
               style: { color: '#4c4c4c' },
               className: 'fas fa-minus-circle'
@@ -1457,24 +1454,33 @@ var AccelerationContent = function AccelerationContent(props) {
   return React__default.createElement(
     React__default.Fragment,
     null,
-    React__default.createElement('h1', null, 'Introduction'),
-    React__default.createElement(
-      'p',
-      null,
-      'Welcome to Elements of Physics, an interactive simulation which describes different elements of physics like ',
-      React__default.createElement('span', null, 'Acceleration'),
-      ',',
-      ' ',
-      React__default.createElement('span', null, 'Force'),
-      ' and ',
-      React__default.createElement('span', null, 'Gravity'),
-      '. Before we start learning about these elements, we need to know something about vectors.'
-    ),
     React__default.createElement('h1', null, 'Vector'),
     React__default.createElement(
       'p',
       null,
-      'A vector is a quantity that has a direction and magnitude. Consider two points A and B, then the vector will be difference between point A and point B.'
+      'Before we start learning about different elements of physics, we need to know something about vectors. A vector is a quantity that has a direction and magnitude. Consider two points A and B, then the vector will be difference between point A and point B.'
+    ),
+    React__default.createElement(
+      'div',
+      {
+        style: { display: 'flex', justifyContent: 'center', marginTop: '20px' }
+      },
+      React__default.createElement('img', {
+        src: require('./images/Fig-1.png')
+      })
+    ),
+    React__default.createElement(
+      'div',
+      {
+        style: {
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '10px',
+          color: 'grey',
+          fontSize: '15px'
+        }
+      },
+      'Vector between point A and B'
     ),
     React__default.createElement('h1', null, 'Acceleration'),
     React__default.createElement(
@@ -1482,8 +1488,7 @@ var AccelerationContent = function AccelerationContent(props) {
       null,
       'Acceleration is defined as change in velocity over a period of time. In the above simulator, if you choose the element ',
       React__default.createElement('span', null, 'Acceleration'),
-      ' ',
-      "from the options, then you will notice a number of balls being attracted towards the current position of mouse on the canvas. This behavior is due to the acceleration force created when a ball moves from its actual position to the mouse position. Let's examine how force actually works in pixel world."
+      " from the options, then you will notice a number of balls being attracted towards the current position of mouse on the canvas. This behavior is due to the acceleration force created when a ball moves from its actual position to the mouse position. Let's examine how force actually works in pixel world."
     ),
     React__default.createElement(
       'p',
@@ -1493,12 +1498,12 @@ var AccelerationContent = function AccelerationContent(props) {
       React__default.createElement(
         'a',
         {
+          className: 'cool-link',
           id: 'article',
           href:
             'https://www.khanacademy.org/science/physics/forces-newtons-laws/newtons-laws-of-motion/a/what-is-newtons-second-law',
           target: '_blank',
-          rel: 'noopener noreferrer',
-          style: { borderBottom: '2px dotted #eeaeca' }
+          rel: 'noopener noreferrer'
         },
         "Newton's Second Law of Motion"
       ),
@@ -1507,32 +1512,26 @@ var AccelerationContent = function AccelerationContent(props) {
       React__default.createElement(
         'span',
         null,
-        'we assume the amount of matter in an object to be 1. Hence, the mass of a ball here is 1'
+        'we assume the amount of matter in an object to be 1.'
       ),
-      ". Now to determine the acceleration force, we use the Newton's Second Law equation -"
+      " Hence, the mass of a ball here is 1. Now to determine the acceleration force, we use the Newton's Second Law equation."
     ),
     React__default.createElement(
       'blockquote',
       null,
-      'Force = Mass x Acceleration'
+      "Newton's Second Law equation is written as, Force = Mass x Acceleration"
     ),
     React__default.createElement(
       'p',
       null,
-      'After substituting the values in the above equation, we end up with',
-      ' ',
+      'After substituting the values in the equation, we end up with ',
       React__default.createElement('span', null, 'F = A'),
-      '. This means, a constant force is being applied to each ball which causes it to accelerate.'
+      ' (value of Mass is 1). This means, a constant force is being applied to each ball which causes it to accelerate.'
     ),
     React__default.createElement(
       'p',
       null,
-      'This force can also be described as a vector that causes the ball with mass to accelerate.'
-    ),
-    React__default.createElement(
-      'blockquote',
-      null,
-      'Move the mouse over or touch the canvas. You will notice that each ball will be attracted towards the current mouse position with a constant force. Try adjusting the maximum velocity of each ball and see what happens.'
+      'This force can also be described as a vector that causes the ball with mass to accelerate. Move the mouse over or touch the canvas. You will notice that each ball will be attracted towards the current mouse position with a constant force. Try adjusting the maximum velocity of each ball and observe the balls.'
     ),
     React__default.createElement('h2', null, 'Fragmentation'),
     React__default.createElement(
@@ -1546,13 +1545,48 @@ var AccelerationContent = function AccelerationContent(props) {
           null,
           'Representing the ball position and mouse location'
         ),
-        React__default.createElement('div', {
-          style: {
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '20px'
-          }
-        }),
+        React__default.createElement(
+          'div',
+          {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '20px'
+            }
+          },
+          React__default.createElement('img', {
+            src: require('./images/Fig-2.png'),
+            alt: 'Figure-1'
+          })
+        ),
+        React__default.createElement(
+          'div',
+          {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '10px'
+            }
+          },
+          React__default.createElement(
+            'p',
+            {
+              style: {
+                color: 'grey',
+                fontSize: '15px'
+              }
+            },
+            'Ball with location (X',
+            React__default.createElement('sub', null, 'a'),
+            ', Y',
+            React__default.createElement('sub', null, 'a'),
+            ') and mouse with location (X',
+            React__default.createElement('sub', null, 'b'),
+            ', Y',
+            React__default.createElement('sub', null, 'b'),
+            ') on canvas'
+          )
+        ),
         React__default.createElement(
           'p',
           null,
@@ -1575,13 +1609,33 @@ var AccelerationContent = function AccelerationContent(props) {
           null,
           'Calculating the vector between ball and mouse location'
         ),
-        React__default.createElement('div', {
-          style: {
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '20px'
-          }
-        })
+        React__default.createElement(
+          'div',
+          {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '20px'
+            }
+          },
+          React__default.createElement('img', {
+            src: require('./images/Fig-3.png'),
+            alt: 'Figure-2'
+          })
+        ),
+        React__default.createElement(
+          'div',
+          {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '10px',
+              color: 'grey',
+              fontSize: '15px'
+            }
+          },
+          'Determining acceleration vector between the ball and mouse location on the canvas.'
+        )
       ),
       React__default.createElement(
         'p',
@@ -1620,6 +1674,7 @@ var AccelerationContent = function AccelerationContent(props) {
           React__default.createElement(
             'a',
             {
+              style: { color: 'inherit' },
               id: 'article',
               target: '_blank',
               rel: 'noopener noreferrer',
@@ -1629,9 +1684,7 @@ var AccelerationContent = function AccelerationContent(props) {
             'vector normalization'
           ),
           ' ',
-          'and ',
-          React__default.createElement('span', null, 'scale'),
-          ' means multiplying a vector with a constant value.'
+          'and scale means multiplying a vector with a constant value.'
         ),
         React__default.createElement(
           'p',
@@ -1653,28 +1706,27 @@ var ForceContent = function ForceContent(props) {
       null,
       'A force is a vector that causes an object with mass to accelerate. When you select the element ',
       React__default.createElement('span', null, 'Force'),
-      ' from the list of element options, then you will notice a number of balls moving with a',
       ' ',
+      'from the list of element options, then you will notice a number of balls moving with a ',
       React__default.createElement('span', null, 'constant'),
-      ' velocity. Rendering balls on canvas using',
       ' ',
+      'velocity on the canvas. Rendering balls on canvas using ',
       React__default.createElement('span', null, 'Force'),
-      ' shares a similar mechanism when compared to',
-      ' ',
+      ' shares a similar mechanism when compared to ',
       React__default.createElement('span', null, 'Acceleration'),
       '. The only difference here is that each ball is moving with a constant velocity and has different mass.'
     ),
     React__default.createElement(
       'p',
       null,
-      'The value of mass is a pseudo-random number between the inclusive range 0 - 1. So each ball gets a acceleration force of ',
+      'The value of mass here is a pseudo-random number between the inclusive range 0 - 1. So each ball is of different size and gets a acceleration force of ',
       React__default.createElement('span', null, 'Force / mass'),
       '.'
     ),
     React__default.createElement(
       'blockquote',
       null,
-      'Force / Mass = Acceleration'
+      "Newton's Second Law equation : Force / Mass = Acceleration"
     ),
     React__default.createElement('h2', null, 'Applying force on a ball'),
     React__default.createElement(
@@ -1698,16 +1750,28 @@ var ForceContent = function ForceContent(props) {
         },
         'Frictional force'
       ),
-      ". Enable the friction and adjust the friction coefficient in the control section. Friction coefficient determines the strength of friction. More its value, more the friction. After you've enabled the friction, you will notice that the ball moves slowly and then reaches the edge. It stops accelerating further after it has reached the edge. Frictional force reduces the energy of a system while the ball is in motion."
+      '. Enable the friction and adjust the friction coefficient in the control section. Friction coefficient determines the strength of friction. The more is the value of friction coefficient, more is the friction.'
+    ),
+    React__default.createElement(
+      'p',
+      null,
+      "After you've enabled the friction, you will notice that the ball moves slowly and then reaches the edge. It stops accelerating further after it has reached the edge because frictional force reduces the energy of a system while the ball is in motion."
     ),
     React__default.createElement(
       'blockquote',
       null,
-      "Symbolic expression for friction force is -uNV. The negative sign indicates that the friction force always acts in the opposite direction. u is the coefficient of friction, N is the normal force which is perpendicular to the ball's motion along the canvas. We are assuming the value of normal force to be 1 in our case, and V is the velocity unit vector. Check out",
+      'Symbolic expression for friction force is ',
+      React__default.createElement(
+        'span',
+        { style: { color: 'inherit' } },
+        '-uNV'
+      ),
+      ". The negative sign indicates that the friction force always acts in the opposite direction. u is the coefficient of friction, N is the normal force which is perpendicular to the ball's motion along the canvas. We are assuming the value of normal force to be 1 in our case, and V is the velocity unit vector. Check out",
       ' ',
       React__default.createElement(
         'a',
         {
+          style: { color: 'inherit' },
           id: 'article',
           target: '_blank',
           rel: 'noopener noreferrer',
@@ -1729,7 +1793,7 @@ var ForceContent = function ForceContent(props) {
       null,
       'We can also apply ',
       React__default.createElement('span', null, 'gravitational force'),
-      ' to a ball. Enable gravity in the control section. You will notice that each ball hits the ground with same acceleration. Why? Because gravitational force is scaled according to the mass of a ball.'
+      ' to a ball. Enable gravity in the control section. You will notice that each ball hits the ground with same acceleration as gravitational force is scaled according to the mass of a ball.'
     ),
     React__default.createElement(
       'div',
@@ -1739,13 +1803,13 @@ var ForceContent = function ForceContent(props) {
     React__default.createElement(
       'p',
       null,
-      'Interestingly, you can also apply an external force using a vector. Click the ',
+      'Interestingly, you can also apply an external force using a vector. Click the',
+      ' ',
       React__default.createElement('i', {
         style: { color: '#4c4c4c' },
         className: 'fas fa-plus-circle'
       }),
-      ' icon near apply force in the control section and you will be prompted with a modal to create your own vector. Try it and see how this force affects the ball. You can also remove this vector using',
-      ' ',
+      ' icon near apply force in the control section and you will be prompted with a modal to create your own vector. Try it and see how this force affects the ball. You can also remove this vector using ',
       React__default.createElement('i', {
         style: { color: '#4c4c4c' },
         className: 'fas fa-minus-circle'
@@ -1755,7 +1819,7 @@ var ForceContent = function ForceContent(props) {
     React__default.createElement(
       'blockquote',
       null,
-      'Note - You can add multiple force vectors for a ball using apply force option in control section.'
+      'You can add multiple force vectors for a ball using apply force option in control section.'
     )
   )
 }
@@ -1768,16 +1832,12 @@ var GravityContent = function GravityContent(props) {
     React__default.createElement(
       'p',
       null,
-      'Gravity can be described as the force that pulls down all the matter. Select the element ',
-      React__default.createElement('span', null, 'Gravity'),
-      ' from the list of options. You will notice a small ball revolving around the bigger one.'
+      'Gravity is described as the force that pulls down all the matter. Select the element Gravity from the list of options. You will notice a small ball revolving around the bigger one.'
     ),
     React__default.createElement(
       'p',
       null,
-      'Enable the drag option in control section and then drag the bigger ball anywhere on the canvas. You will observe that the smaller ball is attracted towards the bigger one. This behaviour is quite similar to what we had in the element ',
-      React__default.createElement('span', null, 'Acceleration'),
-      ' where all the balls were attracted towards the current position of the mouse. But there is a subtle difference here. Smaller ball is attracted towards the bigger one due to gravitational force, and instead of mouse location we use the location of bigger ball on the canvas whenever it is dragged.'
+      'Enable the drag option in control section and then drag the bigger ball anywhere on the canvas. You will observe that the smaller ball is attracted towards the bigger one. This behaviour is quite similar to what we had in the element Acceleration, where all the balls were attracted towards the current position of the mouse. But there is a subtle difference here. Smaller ball is attracted towards the bigger one due to gravitational force, and instead of mouse location we use the current location of bigger ball on the canvas whenever it is dragged.'
     ),
     React__default.createElement('h2', null, 'Gravitational force'),
     React__default.createElement(
@@ -1802,22 +1862,16 @@ var GravityContent = function GravityContent(props) {
       'p',
       null,
       React__default.createElement('span', null, 'F'),
-      ' stands for gravitational force that we need to calculate.',
-      ' ',
+      ' stands for gravitational force that we need to calculate. ',
       React__default.createElement('span', null, 'G'),
-      ' stands for ',
-      React__default.createElement('span', null, 'Gravitational constant'),
-      ',',
+      ' stands for',
       ' ',
+      React__default.createElement('span', null, 'Gravitational constant'),
+      ', ',
       React__default.createElement('span', null, 'm1, m2'),
       ' are the masses of both the balls and ',
       React__default.createElement('span', null, 'r'),
-      ' is the distance between both the balls.'
-    ),
-    React__default.createElement(
-      'p',
-      null,
-      'You can adjust the gravitational constant (',
+      ' is the distance between both the balls. You can adjust the gravitational constant (',
       React__default.createElement(
         'span',
         {
@@ -1826,35 +1880,16 @@ var GravityContent = function GravityContent(props) {
         },
         '\uD83D\uDE31'
       ),
-      ') and see how it affects the gravitational force in the control section. You can also adjust the ball size using ',
-      React__default.createElement('span', null, 'size'),
-      ' slider.'
+      ') and see how it affects the gravitational force in the control section. You can also adjust the ball size using size slider.'
     ),
+    React__default.createElement('p', null),
     React__default.createElement(
       'div',
       { style: { marginTop: '40px' } },
       React__default.createElement(
         'p',
-        { id: 'celebration' },
-        'Hooray! Now you know all the three elements of physics. Next series will be updated with more elements like oscillations, particle generation and angular motion.'
-      ),
-      React__default.createElement(
-        'p',
-        { id: 'celebration' },
-        'You can',
-        ' ',
-        React__default.createElement(
-          'a',
-          {
-            id: 'article',
-            href: 'https://twitter.com/NTulswani',
-            target: '_blank',
-            rel: 'noopener noreferrer'
-          },
-          'follow me on Twitter'
-        ),
-        ' ',
-        'for more updates!'
+        null,
+        "That's it! I hope you enjoyed reading this small series \uD83D\uDE04"
       )
     )
   )
@@ -1941,6 +1976,8 @@ var fadeAway = function fadeAway(id) {
       }
     )
 }
+
+injectGlobal('body{background:', hexToRgba('#4f4f4f', 4.2), '}')
 
 var Layout = (function(_React$Component) {
   inherits(Layout, _React$Component)
@@ -2335,6 +2372,24 @@ var styles = {
   justifyContent: 'center'
 }
 
+var Center = function Center(props) {
+  return React__default.createElement(
+    'div',
+    {
+      style: _extends(
+        {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: props.direction
+        },
+        props.style
+      )
+    },
+    props.children
+  )
+}
+
 var Home = function Home() {
   return React__default.createElement(
     'div',
@@ -2342,7 +2397,11 @@ var Home = function Home() {
     React__default.createElement(
       'div',
       { style: styles },
-      React__default.createElement('h1', null, 'Elements of Physics')
+      React__default.createElement(
+        'h1',
+        { style: { display: 'inline', borderBottom: '5px solid #4f4f4f' } },
+        'Elements of Physics'
+      )
     ),
     React__default.createElement(
       'div',
@@ -2355,6 +2414,7 @@ var Home = function Home() {
         React__default.createElement(
           'a',
           {
+            className: 'cool-link',
             id: 'profile',
             href: 'https://twitter.com/NTulswani',
             target: '_blank',
@@ -2364,6 +2424,7 @@ var Home = function Home() {
         )
       )
     ),
+    React__default.createElement('h2', null, 'Introduction'),
     React__default.createElement(
       'p',
       null,
@@ -2383,26 +2444,23 @@ var Home = function Home() {
       React__default.createElement('span', null, 'canvas'),
       ' and ',
       React__default.createElement('span', null, 'control section'),
-      '. Control section consists of different controls for manipulating each element, and everything is then rendered on the canvas. You can hover over an option in the control section to understand the functionality of that control.'
+      '. Control section consists of different controls for manipulating each element, and everything is then rendered on the canvas. You can hover over an option in the control section to learn how it works.'
     ),
     React__default.createElement(
-      'div',
+      Center,
       {
         style: {
-          display: 'flex',
-          justifyContent: 'center',
           marginTop: '30px',
-          flexDirection: 'column',
-          alignItems: 'center',
           padding: '5px'
-        }
+        },
+        direction: 'column'
       },
       React__default.createElement('img', {
-        src: require('./images/simulator.png'),
+        src: require('./images/Simulator.png'),
         alt: 'simulator',
-        height: 500,
-        width: 800,
-        style: { boxShadow: '4px 4px 4px' }
+        height: 600,
+        width: 890,
+        style: { boxShadow: '4px 4px 4px #f9f9f9' }
       }),
       React__default.createElement(
         'p',
@@ -2411,69 +2469,17 @@ var Home = function Home() {
       )
     ),
     React__default.createElement(
-      'div',
-      {
-        style: {
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: '40px',
-          padding: '5px'
-        }
-      },
-      React__default.createElement(
-        'div',
-        null,
-        React__default.createElement('img', {
-          src: require('./images/canvas.png'),
-          alt: 'canvas',
-          style: { boxShadow: '4px 4px 4px' },
-          height: 600,
-          width: 600
-        }),
-        React__default.createElement(
-          'div',
-          {
-            style: {
-              display: 'flex',
-              justifyContent: 'center',
-              marginTop: '10px',
-              color: 'grey',
-              fontSize: '15px'
-            }
-          },
-          'Canvas'
-        )
-      ),
-      React__default.createElement(
-        'div',
-        { style: { marginLeft: 'auto' } },
-        React__default.createElement('img', {
-          src: require('./images/control-section.png'),
-          alt: 'control-section',
-          style: { boxShadow: '4px 4px 4px' },
-          height: 600,
-          width: 400
-        }),
-        React__default.createElement(
-          'div',
-          {
-            style: {
-              display: 'flex',
-              justifyContent: 'center',
-              marginTop: '10px',
-              color: 'grey',
-              fontSize: '15px'
-            }
-          },
-          'Control section'
-        )
-      )
-    ),
-    React__default.createElement(
       'p',
       null,
       "Each element is interactive and fun to play with. Though there is some theory behind each element, but it's written in a very concise and compressed way. The scope for the mathematics used behind the animations is also kept minimal so as to make it easier to grasp the core concepts without much cognitive load, which means less symbolic expressions (hooray!)"
     ),
+    React__default.createElement('h2', null, 'Interactions'),
+    React__default.createElement(
+      'p',
+      null,
+      'For some elements (Force and Gravity), you can interact with the canvas to alter their behaviour such as attracting a number of balls towards the current location of the mouse on canvas, or dragging a ball on canvas to induce gravitational force.'
+    ),
+    React__default.createElement('h2', null, 'Source'),
     React__default.createElement(
       'p',
       null,
@@ -2482,7 +2488,8 @@ var Home = function Home() {
       React__default.createElement(
         'a',
         {
-          className: 'github-link',
+          className: 'cool-link',
+          id: 'profile',
           href: 'https://github.com/nitin42/Elements-of-physics',
           target: '_blank',
           rel: 'noopener noreferrer'

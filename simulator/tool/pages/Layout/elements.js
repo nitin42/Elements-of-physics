@@ -15,7 +15,7 @@ export const ForceCanvas = props => (
     width={props.width}
     height={props.height}
     color={props.color}
-    stroke={0.01}
+    stroke={0.7}
     balls={props.balls}
     background={props.background}
     maxVelocity={props.maxVelocity}
@@ -43,7 +43,7 @@ export const AccelerationCanvas = props => {
       width={props.width}
       height={props.height}
       color={props.color}
-      stroke={0.01}
+      stroke={0.7}
       balls={props.balls}
       maxVelocity={props.maxVelocity}
       background={props.background}
@@ -58,7 +58,7 @@ export const GravityCanvas = props => (
     width={props.width}
     height={props.height}
     color={props.color}
-    stroke={0.01}
+    stroke={0.7}
     gConstant={props.gConstant}
     background={props.background}
     move={props.move}
@@ -145,7 +145,6 @@ export const ForceControls = props => (
           modal: css`
             padding: 35px;
             width: 50%;
-            font-family: 'Quicksand', sans-serif;
             font-size: 20px;
           `
         }}
@@ -167,7 +166,7 @@ export const ForceControls = props => (
               onChange={props.updateYVec}
             />y
           </div>
-          <blockquote style={{ color: '#4c4c4c', borderColor: '#4c4c4c' }}>
+          <blockquote>
             You can remove the force vector using{' '}
             <i style={{ color: '#4c4c4c' }} className="fas fa-minus-circle" />{' '}
             icon by hovering over the vector.

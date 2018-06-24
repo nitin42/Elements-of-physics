@@ -2,19 +2,29 @@ import React from 'react'
 
 export const AccelerationContent = props => (
   <React.Fragment>
-    <h1>Introduction</h1>
-    <p>
-      Welcome to Elements of Physics, an interactive simulation which describes
-      different elements of physics like <span>Acceleration</span>,{' '}
-      <span>Force</span> and <span>Gravity</span>. Before we start learning
-      about these elements, we need to know something about vectors.
-    </p>
     <h1>Vector</h1>
     <p>
-      A vector is a quantity that has a direction and magnitude. Consider two
-      points A and B, then the vector will be difference between point A and
-      point B.
+      Before we start learning about different elements of physics, we need to
+      know something about vectors. A vector is a quantity that has a direction
+      and magnitude. Consider two points A and B, then the vector will be
+      difference between point A and point B.
     </p>
+    <div
+      style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}
+    >
+      <img src={require('./images/Fig-1.png')} />
+    </div>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '10px',
+        color: 'grey',
+        fontSize: '15px'
+      }}
+    >
+      Vector between point A and B
+    </div>
     <h1>Acceleration</h1>
     <p>
       Acceleration is defined as change in velocity over a period of time. In
@@ -28,36 +38,33 @@ export const AccelerationContent = props => (
     <p>
       According to the{' '}
       <a
+        className="cool-link"
         id="article"
         href="https://www.khanacademy.org/science/physics/forces-newtons-laws/newtons-laws-of-motion/a/what-is-newtons-second-law"
         target="_blank"
         rel="noopener noreferrer"
-        style={{ borderBottom: '2px dotted #eeaeca' }}
       >
         Newton's Second Law of Motion
       </a>, Force equals mass times acceleration. Since we are in pixel world,{' '}
-      <span>
-        we assume the amount of matter in an object to be 1. Hence, the mass of
-        a ball here is 1
-      </span>. Now to determine the acceleration force, we use the Newton's
-      Second Law equation -
+      <span>we assume the amount of matter in an object to be 1.</span> Hence,
+      the mass of a ball here is 1. Now to determine the acceleration force, we
+      use the Newton's Second Law equation.
     </p>
-    <blockquote>Force = Mass x Acceleration</blockquote>
+    <blockquote>
+      Newton's Second Law equation is written as, Force = Mass x Acceleration
+    </blockquote>
     <p>
-      After substituting the values in the above equation, we end up with{' '}
-      <span>F = A</span>. This means, a constant force is being applied to each
-      ball which causes it to accelerate.
+      After substituting the values in the equation, we end up with{' '}
+      <span>F = A</span> (value of Mass is 1). This means, a constant force is
+      being applied to each ball which causes it to accelerate.
     </p>
     <p>
       This force can also be described as a vector that causes the ball with
-      mass to accelerate.
+      mass to accelerate. Move the mouse over or touch the canvas. You will
+      notice that each ball will be attracted towards the current mouse position
+      with a constant force. Try adjusting the maximum velocity of each ball and
+      observe the balls.
     </p>
-    <blockquote>
-      Move the mouse over or touch the canvas. You will notice that each ball
-      will be attracted towards the current mouse position with a constant
-      force. Try adjusting the maximum velocity of each ball and see what
-      happens.
-    </blockquote>
     <h2>Fragmentation</h2>
     <ul className="content-acceleration">
       <li>
@@ -69,12 +76,24 @@ export const AccelerationContent = props => (
             marginTop: '20px'
           }}
         >
-          {/* <img
-            src={require('../../images/4.jpg')}
-            height={360}
-            width={400}
-            alt="Figure-1"
-          /> */}
+          <img src={require('./images/Fig-2.png')} alt="Figure-1" />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '10px'
+          }}
+        >
+          <p
+            style={{
+              color: 'grey',
+              fontSize: '15px'
+            }}
+          >
+            Ball with location (X<sub>a</sub>, Y<sub>a</sub>) and mouse with
+            location (X<sub>b</sub>, Y<sub>b</sub>) on canvas
+          </p>
         </div>
         <p>
           In the above figure, we represent the ball with position (x<sub>
@@ -93,12 +112,19 @@ export const AccelerationContent = props => (
             marginTop: '20px'
           }}
         >
-          {/* <img
-            src={require('../../images/7.jpg')}
-            height={360}
-            width={700}
-            alt="Figure-2"
-          /> */}
+          <img src={require('./images/Fig-3.png')} alt="Figure-2" />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '10px',
+            color: 'grey',
+            fontSize: '15px'
+          }}
+        >
+          Determining acceleration vector between the ball and mouse location on
+          the canvas.
         </div>
       </li>
       <p>
@@ -128,6 +154,7 @@ export const AccelerationContent = props => (
         <blockquote>
           In mathematical terms, shrink refers to{' '}
           <a
+            style={{ color: 'inherit' }}
             id="article"
             target="_blank"
             rel="noopener noreferrer"
@@ -135,8 +162,7 @@ export const AccelerationContent = props => (
           >
             vector normalization
           </a>{' '}
-          and <span>scale</span> means multiplying a vector with a constant
-          value.
+          and scale means multiplying a vector with a constant value.
         </blockquote>
         <p>
           Go to the control section and adjust the magnitude of the accleration
