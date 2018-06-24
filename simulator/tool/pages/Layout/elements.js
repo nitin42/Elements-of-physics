@@ -15,7 +15,7 @@ export const ForceCanvas = props => (
     width={props.width}
     height={props.height}
     color={props.color}
-    stroke={0.7}
+    stroke={0.08}
     balls={props.balls}
     background={props.background}
     maxVelocity={props.maxVelocity}
@@ -43,7 +43,7 @@ export const AccelerationCanvas = props => {
       width={props.width}
       height={props.height}
       color={props.color}
-      stroke={0.7}
+      stroke={0.08}
       balls={props.balls}
       maxVelocity={props.maxVelocity}
       background={props.background}
@@ -58,7 +58,7 @@ export const GravityCanvas = props => (
     width={props.width}
     height={props.height}
     color={props.color}
-    stroke={0.7}
+    stroke={0.08}
     gConstant={props.gConstant}
     background={props.background}
     move={props.move}
